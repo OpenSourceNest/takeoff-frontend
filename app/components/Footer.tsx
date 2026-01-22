@@ -9,7 +9,7 @@ export default function Footer() {
                     {/* Logo Section */}
                     <div className="flex flex-col items-start">
                         <Image
-                            src="/d9fca2bca071fbf9f417d3d3f22d131c62284538.png"
+                            src="/Logo.png"
                             alt="TAKEOFF"
                             width={180}
                             height={60}
@@ -29,14 +29,14 @@ export default function Footer() {
                                 href="https://github.com/opensourcenest"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm hover:shadow-md transition-shadow"
+                                className="w-10 h-10 bg-black rounded-full flex items-center justify-center shadow-sm hover:shadow-md transition-shadow"
                             >
                                 <Image
-                                    src="/devicon_github-wordmark.png"
-                                    alt="GitHub"
-                                    width={20}
-                                    height={20}
-                                    className="w-5 h-5"
+                                    src="/Github_logo.png"
+                                    alt="GitHub Logo"
+                                    width={24}
+                                    height={24}
+                                    className="w-6 h-6 object-contain"
                                 />
                             </Link>
 
