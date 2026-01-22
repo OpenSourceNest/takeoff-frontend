@@ -1,26 +1,142 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@theme {
+  /* Cream/Beige tones */
+  --color-cream: #F0E6DA;
+  --color-cream-light: #F7EEE1;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Brown tones */
+  --color-brown-dark: #4C301B;
+  --color-brown-deep: #553A26;
+  --color-brown-medium: #937F70;
+
+  /* Orange accent */
+  --color-orange: #A9500C;
+
+  /* Black variations */
+  --color-black: #060301;
+  --color-black-soft: #170E07;
+  --color-black-dark: #1E150E;
+  --color-black-charcoal: #1E1A17;
+  --color-black-shadow: #211812;
+
+  /* Gray tones */
+  --color-gray: #4B4B4B;
+  --color-gray-light: #A6A4A4;
+
+  /* Font family */
+  --font-sans: var(--font-montserrat), system-ui, sans-serif;
+  --font-family-montserrat: var(--font-montserrat), system-ui, sans-serif;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #060301;
+  color: #FFFFFF;
+  font-family: var(--font-family-montserrat);
+}
+
+/* Typography utilities */
+.text-highlight-orange {
+  color: #A9500C;
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: #F0E6DA;
+  color: #060301;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #F7EEE1;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: #FFFFFF;
+  border: 1px solid #FFFFFF;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background-color: #FFFFFF;
+  color: #060301;
+}
+
+/* Navbar styles */
+.navbar {
+  background-color: #4C301B;
+  border-radius: 9999px;
+  padding: 0.75rem 1.5rem;
+}
+
+.nav-link {
+  color: #FFFFFF;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+  color: #A9500C;
+}
+
+/* Dropdown styles */
+.bg-black-dark {
+  background-color: #1E150E;
+}
+
+.bg-brown-dark {
+  background-color: #4C301B;
+}
+
+.border-brown-dark {
+  border-color: #4C301B;
+}
+
+.text-orange {
+  color: #A9500C;
+}
+
+.hover\:bg-brown-dark:hover {
+  background-color: #4C301B;
+}
+
+.hover\:text-orange:hover {
+  color: #A9500C;
+}
+
+/* Footer styles */
+.bg-cream {
+  background-color: #F0E6DA;
+}
+
+.text-brown-dark {
+  color: #4C301B;
+}
+
+.text-brown-medium {
+  color: #937F70;
+}
+
+.hover\:text-brown-dark:hover {
+  color: #4C301B;
+}
+
+.text-cream {
+  color: #F0E6DA;
 }
