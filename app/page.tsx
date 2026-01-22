@@ -6,16 +6,17 @@ import SponsorsSection from "./components/SponsorsSection";
 import CTASection from "./components/CTASection";
 import Footer from "./components/Footer";
 
+
 export default function Home() {
     return (
-        <main>
+        <div className="flex flex-col w-full">
             <Hero />
             <AboutSection />
             <ImpactSection />
             <AudienceSection />
             <SponsorsSection />
             <CTASection />
-            <Footer />
-        </main>
+            {/* Footer is now in layout */}
+        </div>
     );
 }

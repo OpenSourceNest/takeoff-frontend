@@ -18,38 +18,6 @@ export default function Hero() {
 
     return (
         <section className="min-h-screen flex flex-col relative z-10">
-            {/* Header Area - Floating Pill */}
-            <header className="fixed top-8 w-full z-50 px-6">
-                <nav className="max-w-6xl mx-auto bg-black-shadow backdrop-blur-md rounded-full px-15 py-4 flex items-center justify-between">
-                    {/* Logo - Left */}
-                    <Link href="/" className="shrink-0">
-                        <Image
-                            src="/Logo.png"
-                            alt="TAKEOFF Logo"
-                            width={110}
-                            height={34}
-                            className="h-10 w-auto"
-                        />
-                    </Link>
-
-                    {/* Navigation - Right */}
-                    <div className="flex items-center gap-8">
-                        <div className="hidden md:flex items-center gap-8">
-                            <Link href="#connect" className="text-white hover:text-orange text-md font-medium transition-colors">
-                                Connect
-                            </Link>
-                            <Link href="#volunteer" className="text-white hover:text-orange text-md font-medium transition-colors">
-                                Volunteer
-                            </Link>
-                        </div>
-                        <Link href="#register">
-                            <Button variant="outline" className="text-md px-5 py-2">
-                                Register
-                            </Button>
-                        </Link>
-                    </div>
-                </nav>
-            </header>
 
             {/* Hero Body */}
             <div className="relative flex-1 w-full flex flex-col items-center justify-center pt-32 lg:pt-40">

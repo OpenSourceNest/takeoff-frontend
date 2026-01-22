@@ -1,10 +1,8 @@
-import { ReactNode, ElementType } from "react";
+import { ReactNode, ElementType, ButtonHTMLAttributes } from "react";
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: ReactNode;
-    onClick?: () => void;
-    variant?: "primary" | "outline" | "ghost";
-    className?: string;
+    variant?: "primary" | "outline" | "ghost" | "accent";
     icon?: ElementType;
     iconPosition?: "left" | "right";
     isActive?: boolean;
@@ -12,12 +10,12 @@ interface ButtonProps {
 
 export default function Button({
     children,
-    onClick,
     variant = "primary",
     className = "",
     icon: Icon,
     iconPosition = "right",
     isActive = false,
+    ...props
 }: ButtonProps) {
     const baseStyles = "inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full font-semibold transition-all duration-200 cursor-pointer text-sm";
 
@@ -25,12 +23,13 @@ export default function Button({
         primary: isActive ? "bg-black-soft text-white" : "bg-cream text-black hover:bg-cream-light",
         outline: "bg-transparent border border-orange text-white hover:bg-cream-light hover:text-black hover:border-cream-light",
         ghost: "bg-transparent text-orange hover:text-orange",
+        accent: "bg-orange text-white hover:bg-orange/90 border border-orange",
     };
 
     return (
         <button
-            onClick={onClick}
             className={`${baseStyles} ${variants[variant]} ${className}`}
+            {...props}
         >
             {Icon && iconPosition === "left" && <Icon fontSize="small" />}
             {children}
