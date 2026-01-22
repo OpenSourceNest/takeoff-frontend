@@ -1,4 +1,3 @@
-import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import Button from '../components/ui/Button'
@@ -23,14 +22,14 @@ function Navbar() {
                     {/* Navigation - Right */}
                     <div className="flex items-center gap-4 md:gap-8">
                         <div className="flex items-center gap-4 md:gap-8">
-                            <Link href="#connect" className="text-white hover:text-orange text-sm md:text-md font-medium transition-colors">
+                            <Link href="/connect" className="text-white hover:text-orange text-sm md:text-md font-medium transition-colors">
                                 Connect
                             </Link>
                             <Link href="/volunteer" className="text-white hover:text-orange text-sm md:text-md font-medium transition-colors">
                                 Volunteer
                             </Link>
                         </div>
-                        <Link href="register">
+                        <Link href="/register">
                             <Button variant="outline" className="text-md px-5 py-2">
                                 Register
                             </Button>
