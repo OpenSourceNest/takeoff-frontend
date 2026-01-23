@@ -3,6 +3,7 @@
 import React from 'react';
 import Button from './ui/Button';
 import CustomSelect from './ui/CustomSelect';
+import SectionBackground from "./ui/SectionBackground";
 import { useRegisterStore } from '../store/useRegisterStore';
 
 export default function RegisterForm() {
@@ -117,10 +118,10 @@ export default function RegisterForm() {
     }
 
     return (
-        <section className="relative w-full max-w-3xl mx-auto px-6 py-12 md:py-20">
+        <SectionBackground className="relative w-full">
 
             {/* Form Fields */}
-            <form className="space-y-12" onSubmit={handleSubmit}>
+            <form className="space-y-12 max-w-3xl mx-auto px-6 py-12 md:py-20" onSubmit={handleSubmit}>
 
                 {/* 1. First Name */}
                 <div className="space-y-4">
@@ -325,6 +326,6 @@ export default function RegisterForm() {
                 </div>
 
             </form>
-        </section>
+        </SectionBackground>
     );
 }
