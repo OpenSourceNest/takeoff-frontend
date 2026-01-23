@@ -5,6 +5,7 @@ import Button from './ui/Button';
 import CustomSelect from './ui/CustomSelect';
 import SectionBackground from "./ui/SectionBackground";
 import { useRegisterStore } from '../store/useRegisterStore';
+import SectionBackground from './ui/SectionBackground';
 
 export default function RegisterForm() {
     const {
@@ -118,214 +119,215 @@ export default function RegisterForm() {
     }
 
     return (
-        <SectionBackground className="relative w-full">
+        <SectionBackground className="py-20 md:py-32 px-6 relative z-10">
+            <section className="relative w-full max-w-3xl mx-auto px-6 py-12 md:py-20">
 
-            {/* Form Fields */}
-            <form className="space-y-12 max-w-3xl mx-auto px-6 py-12 md:py-20" onSubmit={handleSubmit}>
+                {/* Form Fields */}
+                <form className="space-y-12" onSubmit={handleSubmit}>
 
-                {/* 1. First Name */}
-                <div className="space-y-4">
-                    <label htmlFor="firstName" className="block text-base font-medium text-white/90">What&apos;s your first name?</label>
-                    <input
-                        type="text"
-                        id="firstName"
-                        value={formData.firstName}
-                        onChange={handleChange}
-                        placeholder="Your first name"
-                        className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
-                    />
-                </div>
+                    {/* 1. First Name */}
+                    <div className="space-y-4">
+                        <label htmlFor="firstName" className="block text-base font-medium text-white/90">What&apos;s your first name?</label>
+                        <input
+                            type="text"
+                            id="firstName"
+                            value={formData.firstName}
+                            onChange={handleChange}
+                            placeholder="Your first name"
+                            className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
+                        />
+                    </div>
 
-                {/* 2. Last Name */}
-                <div className="space-y-4">
-                    <label htmlFor="lastName" className="block text-base font-medium text-white/90">What&apos;s your last name?</label>
-                    <input
-                        type="text"
-                        id="lastName"
-                        value={formData.lastName}
-                        onChange={handleChange}
-                        placeholder="Your last name"
-                        className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
-                    />
-                </div>
+                    {/* 2. Last Name */}
+                    <div className="space-y-4">
+                        <label htmlFor="lastName" className="block text-base font-medium text-white/90">What&apos;s your last name?</label>
+                        <input
+                            type="text"
+                            id="lastName"
+                            value={formData.lastName}
+                            onChange={handleChange}
+                            placeholder="Your last name"
+                            className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
+                        />
+                    </div>
 
-                {/* 3. Email */}
-                <div className="space-y-4">
-                    <label htmlFor="email" className="block text-base font-medium text-white/90">What&apos;s your email address?</label>
-                    <input
-                        type="email"
-                        id="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="Your email address"
-                        className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
-                    />
-                </div>
+                    {/* 3. Email */}
+                    <div className="space-y-4">
+                        <label htmlFor="email" className="block text-base font-medium text-white/90">What&apos;s your email address?</label>
+                        <input
+                            type="email"
+                            id="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            placeholder="Your email address"
+                            className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
+                        />
+                    </div>
 
-                {/* 4. Location */}
-                <div className="space-y-4">
-                    <label htmlFor="location" className="block text-base font-medium text-white/90">Where are you located (city, state, country)?</label>
-                    <input
-                        type="text"
-                        id="location"
-                        value={formData.location}
-                        onChange={handleChange}
-                        placeholder="Your location"
-                        className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
-                    />
-                </div>
+                    {/* 4. Location */}
+                    <div className="space-y-4">
+                        <label htmlFor="location" className="block text-base font-medium text-white/90">Where are you located (city, state, country)?</label>
+                        <input
+                            type="text"
+                            id="location"
+                            value={formData.location}
+                            onChange={handleChange}
+                            placeholder="Your location"
+                            className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
+                        />
+                    </div>
 
-                {/* 5. Describe You (Custom Select - Multi) */}
-                <div className="space-y-4">
-                    <label htmlFor="description" className="block text-base font-medium text-white/90">Which of the following best describes you? (Select all that apply)</label>
-                    <CustomSelect
-                        id="description"
-                        multiple={true}
-                        options={[
-                            { value: 'STUDENT', label: 'Student' },
-                            { value: 'PROFESSIONAL_DEVELOPER', label: 'Professional Developer' },
-                            { value: 'HOBBYIST', label: 'Hobbyist' },
-                            { value: 'FRONTEND_DEVELOPER', label: 'Frontend Developer' },
-                            { value: 'BACKEND_DEVELOPER', label: 'Backend Developer' },
-                            { value: 'FULLSTACK_DEVELOPER', label: 'Fullstack Developer' },
-                            { value: 'UI_UX_DESIGNER', label: 'UI/UX Designer' },
-                            { value: 'DEVOPS_ENGINEER', label: 'DevOps Engineer' },
-                            { value: 'QA_ENGINEER', label: 'QA Engineer' },
-                            { value: 'SECURITY_ENGINEER', label: 'Security Engineer' },
-                            { value: 'DATA_SCIENTIST', label: 'Data Scientist' },
-                            { value: 'AI_ML_ENGINEER', label: 'AI/ML Engineer' },
-                            { value: 'PRODUCT_MANAGER', label: 'Product Manager' },
-                            { value: 'PROJECT_MANAGER', label: 'Project Manager' },
-                            { value: 'TECHNICAL_WRITER', label: 'Technical Writer' },
-                            { value: 'CONTENT_CREATOR', label: 'Content Creator' },
-                            { value: 'COMMUNITY_MANAGER', label: 'Community Manager' },
-                            { value: 'EDUCATOR', label: 'Educator' },
-                            { value: 'FOUNDER', label: 'Founder' },
-                            { value: 'IT_SUPPORT', label: 'IT Support' },
-                            { value: 'BUSINESS_ANALYST', label: 'Business Analyst' },
-                            { value: 'SMART_CONTRACT_DEVELOPER', label: 'Smart Contract Developer' },
-                            { value: 'BLOCKCHAIN_DEVELOPER', label: 'Blockchain Developer' },
-                            { value: 'WEB3_DEVELOPER', label: 'Web3 Developer' },
-                            { value: 'SOLIDITY_DEVELOPER', label: 'Solidity Developer' },
-                            { value: 'DAPP_DEVELOPER', label: 'DApp Developer' },
-                            { value: 'TOKENOMICS_SPECIALIST', label: 'Tokenomics Specialist' },
-                            { value: 'NFT_DEVELOPER', label: 'NFT Developer' },
-                            { value: 'DEFI_DEVELOPER', label: 'DeFi Developer' },
-                            { value: 'WEB3_SECURITY_AUDITOR', label: 'Web3 Security Auditor' },
-                            { value: 'BLOCKCHAIN_ARCHITECT', label: 'Blockchain Architect' },
-                            { value: 'OTHER', label: 'Other' }
-                        ]}
-                        value={formData.description}
-                        onChange={(val) => handleSelectChange('description', val)}
-                        placeholder="Select options"
-                    />
-                </div>
+                    {/* 5. Describe You (Custom Select - Multi) */}
+                    <div className="space-y-4">
+                        <label htmlFor="description" className="block text-base font-medium text-white/90">Which of the following best describes you? (Select all that apply)</label>
+                        <CustomSelect
+                            id="description"
+                            multiple={true}
+                            options={[
+                                { value: 'STUDENT', label: 'Student' },
+                                { value: 'PROFESSIONAL_DEVELOPER', label: 'Professional Developer' },
+                                { value: 'HOBBYIST', label: 'Hobbyist' },
+                                { value: 'FRONTEND_DEVELOPER', label: 'Frontend Developer' },
+                                { value: 'BACKEND_DEVELOPER', label: 'Backend Developer' },
+                                { value: 'FULLSTACK_DEVELOPER', label: 'Fullstack Developer' },
+                                { value: 'UI_UX_DESIGNER', label: 'UI/UX Designer' },
+                                { value: 'DEVOPS_ENGINEER', label: 'DevOps Engineer' },
+                                { value: 'QA_ENGINEER', label: 'QA Engineer' },
+                                { value: 'SECURITY_ENGINEER', label: 'Security Engineer' },
+                                { value: 'DATA_SCIENTIST', label: 'Data Scientist' },
+                                { value: 'AI_ML_ENGINEER', label: 'AI/ML Engineer' },
+                                { value: 'PRODUCT_MANAGER', label: 'Product Manager' },
+                                { value: 'PROJECT_MANAGER', label: 'Project Manager' },
+                                { value: 'TECHNICAL_WRITER', label: 'Technical Writer' },
+                                { value: 'CONTENT_CREATOR', label: 'Content Creator' },
+                                { value: 'COMMUNITY_MANAGER', label: 'Community Manager' },
+                                { value: 'EDUCATOR', label: 'Educator' },
+                                { value: 'FOUNDER', label: 'Founder' },
+                                { value: 'IT_SUPPORT', label: 'IT Support' },
+                                { value: 'BUSINESS_ANALYST', label: 'Business Analyst' },
+                                { value: 'SMART_CONTRACT_DEVELOPER', label: 'Smart Contract Developer' },
+                                { value: 'BLOCKCHAIN_DEVELOPER', label: 'Blockchain Developer' },
+                                { value: 'WEB3_DEVELOPER', label: 'Web3 Developer' },
+                                { value: 'SOLIDITY_DEVELOPER', label: 'Solidity Developer' },
+                                { value: 'DAPP_DEVELOPER', label: 'DApp Developer' },
+                                { value: 'TOKENOMICS_SPECIALIST', label: 'Tokenomics Specialist' },
+                                { value: 'NFT_DEVELOPER', label: 'NFT Developer' },
+                                { value: 'DEFI_DEVELOPER', label: 'DeFi Developer' },
+                                { value: 'WEB3_SECURITY_AUDITOR', label: 'Web3 Security Auditor' },
+                                { value: 'BLOCKCHAIN_ARCHITECT', label: 'Blockchain Architect' },
+                                { value: 'OTHER', label: 'Other' }
+                            ]}
+                            value={formData.description}
+                            onChange={(val) => handleSelectChange('description', val)}
+                            placeholder="Select options"
+                        />
+                    </div>
 
-                {/* 6. Hear About Us (Custom Select) */}
-                <div className="space-y-4">
-                    <label htmlFor="source" className="block text-base font-medium text-white/90">How did you hear about this event?</label>
-                    <CustomSelect
-                        id="source"
-                        options={[
-                            { value: 'SOCIAL_MEDIA', label: 'Social Media' },
-                            { value: 'FRIEND_COLLEAGUE', label: 'Friend/Colleague' },
-                            { value: 'ONLINE_SEARCH', label: 'Online Search' },
-                            { value: 'OTHER', label: 'Other' }
-                        ]}
-                        value={formData.source}
-                        onChange={(val) => handleSelectChange('source', val)}
-                        placeholder="Select"
-                    />
-                </div>
+                    {/* 6. Hear About Us (Custom Select) */}
+                    <div className="space-y-4">
+                        <label htmlFor="source" className="block text-base font-medium text-white/90">How did you hear about this event?</label>
+                        <CustomSelect
+                            id="source"
+                            options={[
+                                { value: 'SOCIAL_MEDIA', label: 'Social Media' },
+                                { value: 'FRIEND_COLLEAGUE', label: 'Friend/Colleague' },
+                                { value: 'ONLINE_SEARCH', label: 'Online Search' },
+                                { value: 'OTHER', label: 'Other' }
+                            ]}
+                            value={formData.source}
+                            onChange={(val) => handleSelectChange('source', val)}
+                            placeholder="Select"
+                        />
+                    </div>
 
-                {/* 7. Participate Pipeline (Custom Select) */}
-                <div className="space-y-4">
-                    <label htmlFor="pipeline" className="block text-base font-medium text-white/90">Do you want to participate in our pipeline of open source projects?</label>
-                    <CustomSelect
-                        id="pipeline"
-                        options={[
-                            { value: 'YES', label: 'Yes' },
-                            { value: 'NO', label: 'No' },
-                            { value: 'NOT_SURE', label: 'Not Sure' }
-                        ]}
-                        value={formData.pipeline}
-                        onChange={(val) => handleSelectChange('pipeline', val)}
-                        placeholder="Select"
-                    />
-                </div>
+                    {/* 7. Participate Pipeline (Custom Select) */}
+                    <div className="space-y-4">
+                        <label htmlFor="pipeline" className="block text-base font-medium text-white/90">Do you want to participate in our pipeline of open source projects?</label>
+                        <CustomSelect
+                            id="pipeline"
+                            options={[
+                                { value: 'YES', label: 'Yes' },
+                                { value: 'NO', label: 'No' },
+                                { value: 'NOT_SURE', label: 'Not Sure' }
+                            ]}
+                            value={formData.pipeline}
+                            onChange={(val) => handleSelectChange('pipeline', val)}
+                            placeholder="Select"
+                        />
+                    </div>
 
-                {/* 8. Receive Updates (Custom Select) */}
-                <div className="space-y-4">
-                    <label htmlFor="updates" className="block text-base font-medium text-white/90">Are you interested in receiving updates about Open Source Nest?</label>
-                    <CustomSelect
-                        id="updates"
-                        options={[
-                            { value: 'yes', label: 'Yes' },
-                            { value: 'no', label: 'No' }
-                        ]}
-                        value={formData.updates}
-                        onChange={(val) => handleSelectChange('updates', val)}
-                        placeholder="Select"
-                    />
-                </div>
+                    {/* 8. Receive Updates (Custom Select) */}
+                    <div className="space-y-4">
+                        <label htmlFor="updates" className="block text-base font-medium text-white/90">Are you interested in receiving updates about Open Source Nest?</label>
+                        <CustomSelect
+                            id="updates"
+                            options={[
+                                { value: 'yes', label: 'Yes' },
+                                { value: 'no', label: 'No' }
+                            ]}
+                            value={formData.updates}
+                            onChange={(val) => handleSelectChange('updates', val)}
+                            placeholder="Select"
+                        />
+                    </div>
 
-                {/* 9. Specific Topics (Input) */}
-                <div className="space-y-4">
-                    <label htmlFor="topics" className="block text-base font-medium text-white/90">Any specific topics or technologies you&apos;re interested in for future events?</label>
-                    <input
-                        type="text"
-                        id="topics"
-                        value={formData.topics}
-                        onChange={handleChange}
-                        placeholder="Answer"
-                        className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
-                    />
-                </div>
+                    {/* 9. Specific Topics (Input) */}
+                    <div className="space-y-4">
+                        <label htmlFor="topics" className="block text-base font-medium text-white/90">Any specific topics or technologies you&apos;re interested in for future events?</label>
+                        <input
+                            type="text"
+                            id="topics"
+                            value={formData.topics}
+                            onChange={handleChange}
+                            placeholder="Answer"
+                            className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
+                        />
+                    </div>
 
-                {/* 10. OS Knowledge (Input) */}
-                <div className="space-y-4">
-                    <label htmlFor="knowledge" className="block text-base font-medium text-white/90">How well do you understand open source technology? (1-10 scale)</label>
-                    <input
-                        type="text"
-                        id="knowledge"
-                        value={formData.knowledge}
-                        onChange={handleChange}
-                        placeholder="Answer"
-                        className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
-                    />
-                </div>
+                    {/* 10. OS Knowledge (Input) */}
+                    <div className="space-y-4">
+                        <label htmlFor="knowledge" className="block text-base font-medium text-white/90">How well do you understand open source technology? (1-10 scale)</label>
+                        <input
+                            type="text"
+                            id="knowledge"
+                            value={formData.knowledge}
+                            onChange={handleChange}
+                            placeholder="Answer"
+                            className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
+                        />
+                    </div>
 
-                {/* 11. Community Member (Input) */}
-                <div className="space-y-4">
-                    <label htmlFor="community" className="block text-base font-medium text-white/90">Are you a community member of any open source projects? If yes, please specify.</label>
-                    <input
-                        type="text"
-                        id="community"
-                        value={formData.community}
-                        onChange={handleChange}
-                        placeholder="Answer"
-                        className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
-                    />
-                </div>
+                    {/* 11. Community Member (Input) */}
+                    <div className="space-y-4">
+                        <label htmlFor="community" className="block text-base font-medium text-white/90">Are you a community member of any open source projects? If yes, please specify.</label>
+                        <input
+                            type="text"
+                            id="community"
+                            value={formData.community}
+                            onChange={handleChange}
+                            placeholder="Answer"
+                            className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
+                        />
+                    </div>
 
-                {/* Submit Button */}
-                <div className="pt-8 pb-4 space-y-4">
-                    {status === 'error' && (
-                        <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-200">
-                            {errorMessage}
-                        </div>
-                    )}
-                    <Button
-                        variant="accent"
-                        className="w-[100px] font-semibold py-3 rounded-full text-base transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                        disabled={status === 'loading'}
-                        type="submit"
-                    >
-                        {status === 'loading' ? '...' : 'Register'}
-                    </Button>
-                </div>
+                    {/* Submit Button */}
+                    <div className="pt-8 pb-4 space-y-4">
+                        {status === 'error' && (
+                            <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-200">
+                                {errorMessage}
+                            </div>
+                        )}
+                        <Button
+                            variant="accent"
+                            className="w-[100px] font-semibold py-3 rounded-full text-base transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                            disabled={status === 'loading'}
+                            type="submit"
+                        >
+                            {status === 'loading' ? '...' : 'Register'}
+                        </Button>
+                    </div>
 
-            </form>
-        </SectionBackground>
-    );
+                </form>
+            </section>
+            );
 }
