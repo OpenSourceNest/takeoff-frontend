@@ -3,7 +3,6 @@
 import React from 'react';
 import Button from './ui/Button';
 import CustomSelect from './ui/CustomSelect';
-import SectionBackground from "./ui/SectionBackground";
 import { useRegisterStore } from '../store/useRegisterStore';
 import SectionBackground from './ui/SectionBackground';
 
@@ -329,5 +328,6 @@ export default function RegisterForm() {
 
                 </form>
             </section>
-            );
+        </SectionBackground>
+    );
 }
