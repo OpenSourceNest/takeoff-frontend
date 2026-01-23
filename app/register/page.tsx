@@ -18,7 +18,7 @@ export default function RegisterPage() {
         <div className='min-h-screen w-full flex flex-col items-center justify-start bg-transparent py-10 pt-28'>
             {/* Header Section */}
             <div className="mb-8 w-full">
-                <div className="relative overflow-hidden bg-gradient-to-r from-black-soft to-brown-dark/30 border border-white/5 shadow-2xl">
+                <div className="relative overflow-hidden bg-linear-to-r from-black-soft to-brown-dark/30 border border-white/5 shadow-2xl">
 
                     {/* Main Banner Area */}
                     <div className="relative min-h-[200px] md:min-h-[314px] p-8 md:p-12 z-10 flex flex-col items-center justify-center">
