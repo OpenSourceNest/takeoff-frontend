@@ -12,7 +12,7 @@ export default function SectionBackground({ children, className = "" }: SectionB
             {/* Background Image & Overlay */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/design bg.jpg"
+                    src="/design_bg.jpg"
                     alt="Background Pattern"
                     fill
                     className="object-cover opacity-[0.02]"

@@ -74,7 +74,7 @@ export default function ImpactSection() {
 
                 {/* Impact Description */}
                 <div className="max-w-3xl mx-auto text-center mb-16 relative">
-                    <p className="text-gray-light text-lg md:text-xl leading-relaxed">
+                    <p className="text-white text-lg md:text-xl leading-relaxed">
                         In its first year of independent operation, <span className="text-white font-bold">Open Source Nest</span> recorded tangible community impact across education, contribution, and ecosystem engagement.
                     </p>
                 </div>
@@ -139,7 +139,7 @@ export default function ImpactSection() {
                     {/* Previous Button */}
                     <button
                         onClick={() => swiperRef.current?.slidePrev()}
-                        className={`hidden md:flex absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-[#A9500C] rounded-full items-center justify-center hover:bg-[#D15418]/90 transition-all shadow-lg ${isBeginning ? 'opacity-0 invisible' : 'opacity-100 visible'}`}
+                        className={`hidden md:flex absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-orange rounded-full items-center justify-center hover:bg-[#D15418]/90 transition-all shadow-lg ${isBeginning ? 'opacity-0 invisible' : 'opacity-100 visible'}`}
                         aria-label="Previous slide"
                     >
                         <KeyboardArrowLeftIcon className="text-white" style={{ fontSize: 32 }} />
@@ -148,7 +148,7 @@ export default function ImpactSection() {
                     {/* Next Button */}
                     <button
                         onClick={() => swiperRef.current?.slideNext()}
-                        className="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-[#A9500C] rounded-full items-center justify-center hover:bg-[#D15418]/90 transition-colors shadow-lg"
+                        className="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-orange rounded-full items-center justify-center hover:bg-[#D15418]/90 transition-colors shadow-lg"
                         aria-label="Next slide"
                     >
                         <KeyboardArrowRightIcon className="text-white" style={{ fontSize: 32 }} />

@@ -12,7 +12,7 @@ const RocketIcon = (props: Omit<IconProps, 'icon'>) => (
 
 export default function AboutSection() {
     return (
-        <section className="bg-black py-24 px-6 md:py-32">
+        <section id="about" className="bg-black py-24 px-6 md:py-32">
             <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
                 {/* Section Pill */}
                 <SectionPill
@@ -30,7 +30,8 @@ export default function AboutSection() {
                         global digital infrastructure, yet meaningful participation remains out of reach for many.{" "}
                         <span className="font-bold">TAKEOFF</span> exists to change that narrative by centering
                         people, their learning journeys, contributions, and growth.
-                        <br />
+                    </p>
+                    <p>
                         Through shared stories, real projects, and community connection,{" "}
                         <span className="font-bold">TAKEOFF</span> reinforces a simple truth: sustainable
                         open source ecosystems are built when emerging talent is intentionally

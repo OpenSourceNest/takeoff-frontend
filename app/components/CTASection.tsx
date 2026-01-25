@@ -1,47 +1,48 @@
-import Image from "next/image";
 import Link from "next/link";
+import CTAContainer from "./ui/CTAContainer";
+import Button from "./ui/Button";
 
 export default function CTASection() {
     return (
-        <section className="bg-brown-dark py-12 px-6 relative overflow-hidden">
-            <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
-                {/* Rocket Image */}
-                <div className="shrink-0 w-40 h-40 relative">
-                    <Image
-                        src="/rocket.png"
-                        alt="Rocket"
-                        width={160}
-                        height={160}
-                        className="w-full h-full object-contain"
-                    />
-                </div>
+        <section className="bg-black py-10 px-6">
+            <div className="max-w-6xl mx-auto">
+                <CTAContainer className="rounded-[30px] flex items-center justify-center px-6 py-12">
+                    <div className="text-center flex flex-col items-center py-12">
+                        {/* Headline */}
+                        <h2 className="text-3xl mb-3 font-bold text-white leading-tight">
+                            Ready to <span className="text-highlight-orange">TAKEOFF?</span>
+                        </h2>
 
-                {/* CTA Content */}
-                <div className="text-center md:text-left flex-1">
-                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                        Ready to <span className="text-highlight-orange">TAKEOFF</span>?
-                    </h2>
-                    <p className="text-cream/80 text-sm mb-6">
-                        Be part of the moment that closes one chapter, and<br />
-                        launches the next.
-                    </p>
+                        {/* Subheadline */}
+                        <p className="text-xl text-white mb-10 max-w-md leading-normal">
+                            Be part of the moment that closes one chapter, and launches the next.
+                        </p>
 
-                    {/* CTA Buttons */}
-                    <div className="flex gap-4 justify-center md:justify-start">
-                        <Link
-                            href="#register"
-                            className="bg-black text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-black/80 transition-colors"
-                        >
-                            Register
-                        </Link>
-                        <Link
-                            href="#volunteer"
-                            className="bg-transparent border border-white text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors"
-                        >
-                            Volunteer
-                        </Link>
+                        {/* CTA Buttons */}
+                        <div className="flex flex-row gap-6">
+                            <Link href="/register">
+                                <Button
+                                    rounded="20px"
+                                    className="bg-brown-medium text-brown-dark text-bold text-xl font-medium hover:opacity-90 transition-all text-center"
+                                >
+                                    Register
+                                </Button>
+                            </Link>
+                            <Link
+                                href="https://forms.gle/takeoff2026-volunteer"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <Button
+                                    rounded="20px"
+                                    className="bg-brown-medium text-brown-dark text-bold text-xl font-medium hover:bg-brown-dark transition-all text-center"
+                                >
+                                    Volunteer
+                                </Button>
+                            </Link>
+                        </div>
                     </div>
-                </div>
+                </CTAContainer>
             </div>
         </section>
     );
