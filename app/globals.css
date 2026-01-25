@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+
 @custom-variant dark (&:is(.dark *));
 
 @theme {
@@ -43,100 +44,6 @@ body {
   color: #A9500C;
 }
 
-/* Button styles */
-.btn-primary {
-  background-color: #F0E6DA;
-  color: #060301;
-  padding: 0.75rem 1.5rem;
-  border-radius: 9999px;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.btn-primary:hover {
-  background-color: #F7EEE1;
-  transform: translateY(-1px);
-}
-
-.btn-outline {
-  background-color: transparent;
-  color: #FFFFFF;
-  border: 1px solid #FFFFFF;
-  padding: 0.5rem 1.25rem;
-  border-radius: 9999px;
-  font-weight: 500;
-  transition: all 0.2s ease;
-  cursor: pointer;
-}
-
-.btn-outline:hover {
-  background-color: #FFFFFF;
-  color: #060301;
-}
-
-/* Navbar styles */
-.navbar {
-  background-color: #4C301B;
-  border-radius: 9999px;
-  padding: 0.75rem 1.5rem;
-}
-
-.nav-link {
-  color: #FFFFFF;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-.nav-link:hover {
-  color: #A9500C;
-}
-
-/* Dropdown styles */
-.bg-black-dark {
-  background-color: #1E150E;
-}
-
-.bg-brown-dark {
-  background-color: #4C301B;
-}
-
-.border-brown-dark {
-  border-color: #4C301B;
-}
-
-.text-orange {
-  color: #A9500C;
-}
-
-.hover\:bg-brown-dark:hover {
-  background-color: #4C301B;
-}
-
-.hover\:text-orange:hover {
-  color: #A9500C;
-}
-
-/* Footer styles */
-.bg-cream {
-  background-color: #F0E6DA;
-}
-
-.text-brown-dark {
-  color: #4C301B;
-}
-
-.text-brown-medium {
-  color: #937F70;
-}
-
-.hover\:text-brown-dark:hover {
-  color: #4C301B;
-}
-
-.text-cream {
-  color: #F0E6DA;
+html {
+  scroll-behavior: smooth;
 }

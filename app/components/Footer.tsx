@@ -3,64 +3,74 @@ import Link from "next/link";
 
 export default function Footer() {
     return (
-        <footer className="bg-cream py-12 px-6">
-            <div className="max-w-5xl mx-auto">
-                <div className="flex flex-col md:flex-row items-start justify-between gap-8 mb-8">
+        <footer className="bg-brown-medium px-6 py-7">
+            <div className="max-w-5xl mx-auto mt-10">
+                <div className="flex flex-col md:flex-row items-start justify-between gap-12">
                     {/* Logo Section */}
-                    <div className="flex flex-col items-start">
-                        <Image
-                            src="/Logo.png"
-                            alt="TAKEOFF"
-                            width={180}
-                            height={60}
-                            className="h-14 w-auto mb-2"
-                        />
-                        <span className="text-brown-dark text-xs font-medium tracking-wider">
-                            BY OPENSOURCENEST
-                        </span>
+                    <div className="flex flex-col items-start gap-4">
+                        <Link href="/" className="hover:opacity-80 transition-opacity">
+                            <Image
+                                src="/takeoff_footer.png"
+                                alt="TAKEOFF by OpenSourceNest"
+                                width={240}
+                                height={80}
+                                className="h-auto w-auto"
+                                priority
+                            />
+                        </Link>
                     </div>
 
-                    {/* Links Section */}
-                    <div className="flex gap-16">
-                        {/* GitHub + Links Column */}
-                        <div className="flex items-start gap-4">
-
-                            {/* Links */}
-                            <div className="flex flex-col gap-2">
-                                <span className="text-brown-dark font-semibold text-sm mb-1">Links</span>
-                                <Link href="/sponsorship" className="text-brown-medium text-sm hover:text-brown-dark transition-colors">
+                    {/* Navigation Columns */}
+                    <div className="flex flex-col sm:flex-row gap-10 md:gap-24">
+                        {/* Links Column */}
+                        <div className="flex flex-col gap-2">
+                            <h3 className="text-brown-dark font-bold text-lg">Quick Links</h3>
+                            <nav className="flex flex-col gap-2">
+                                <Link href="mailto:info@opensourcenest.org" className="text-brown-dark/80 hover:text-brown-dark hover:underline transition-colors text-sm md:text-base">
                                     Sponsorship & Partnership
                                 </Link>
-                                <Link href="/about" className="text-brown-medium text-sm hover:text-brown-dark transition-colors">
+                                <Link href="#about" className="text-brown-dark/80 hover:text-brown-dark hover:underline transition-colors text-sm md:text-base">
                                     About TAKEOFF
                                 </Link>
-                                <Link href="/volunteer" className="text-brown-medium text-sm hover:text-brown-dark transition-colors">
+                                <Link
+                                    href="https://forms.gle/takeoff2026-volunteer"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-brown-dark/80 hover:text-brown-dark hover:underline transition-colors text-sm md:text-base"
+                                >
                                     Volunteer
                                 </Link>
-                            </div>
+                            </nav>
                         </div>
 
                         {/* About Column */}
                         <div className="flex flex-col gap-2">
-                            <span className="text-brown-dark font-semibold text-sm mb-1">About</span>
-                            <Link
-                                href="https://opensourcenest.com"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-brown-medium text-sm hover:text-brown-dark transition-colors"
-                            >
-                                Open Source Nest
-                            </Link>
-                            <Link href="/community" className="text-brown-medium text-sm hover:text-brown-dark transition-colors">
-                                Join Community
-                            </Link>
+                            <h3 className="text-brown-dark font-bold text-lg">About</h3>
+                            <nav className="flex flex-col gap-2">
+                                <Link
+                                    href="https://opensourcenest.org/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-brown-dark/80 hover:text-brown-dark hover:underline transition-colors text-sm md:text-base"
+                                >
+                                    Open Source Nest
+                                </Link>
+                                <Link
+                                    href="https://bit.ly/osn-whatsapp"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-brown-dark/80 hover:text-brown-dark hover:underline transition-colors text-sm md:text-base"
+                                >
+                                    Join Community
+                                </Link>
+                            </nav>
                         </div>
                     </div>
                 </div>
 
                 {/* Copyright */}
-                <div className="text-center pt-8 border-t border-brown-dark/20">
-                    <p className="text-brown-medium text-sm">
+                <div className="text-center pt-12">
+                    <p className="text-brown-dark/80 text-sm md:text-base italic">
                         © 2026. Open Source Nest. All Rights Reserved
                     </p>
                 </div>

@@ -3,7 +3,7 @@
 import React from 'react';
 import Button from './ui/Button';
 import CustomSelect from './ui/CustomSelect';
-import { useRegisterStore } from '../store/useRegisterStore';
+import { useRegisterStore, FormData } from '../store/useRegisterStore';
 import SectionBackground from './ui/SectionBackground';
 
 export default function RegisterForm() {
@@ -19,14 +19,11 @@ export default function RegisterForm() {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;
-        // @ts-ignore - Dynamic key access on store
-        setFormData(id as any, value);
+        setFormData(id as keyof FormData, value);
     };
 
-    // Updated to handle both string and string[] values
     const handleSelectChange = (id: string, value: string | string[]) => {
-        // @ts-ignore - Dynamic key access on store
-        setFormData(id as any, value);
+        setFormData(id as keyof FormData, value);
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -34,7 +31,6 @@ export default function RegisterForm() {
         setStatus('loading');
         setErrorMessage('');
 
-        // Basic Client-side Validation
         if (!formData.firstName.trim() || !formData.lastName.trim() || !formData.email.trim()) {
             setStatus('error');
             setErrorMessage('Please fill in all required fields (Name, Email).');
@@ -91,39 +87,39 @@ export default function RegisterForm() {
             }
 
             setStatus('success');
-        } catch (error: any) {
-            console.error('Registration error:', error);
+        } catch (error: unknown) {
+            const err = error as Error;
+            console.error('Registration error:', err);
             setStatus('error');
             // Show user-friendly message if it's a parsing/network error
-            setErrorMessage(error.message || 'Something went wrong. Please try again.');
+            setErrorMessage(err.message || 'Something went wrong. Please try again.');
         }
     };
 
     if (status === 'success') {
         return (
-            <section className="relative w-full max-w-3xl mx-auto px-6 py-12 md:py-20 text-center">
-                <h2 className="text-3xl font-bold text-white mb-4">Registration Successful!</h2>
-                <p className="text-white/80">Thank you for registering. Please check your email for confirmation.</p>
-                <Button
-                    variant="accent"
-                    className="mt-8 px-8 py-3 rounded-full"
-                    onClick={() => {
-                        reset();
-                    }}
-                >
-                    Register Another
-                </Button>
-            </section>
+            <SectionBackground className="py-12 md:py-20">
+                <div className="max-w-3xl mx-auto px-6 text-center">
+                    <h2 className="text-3xl font-bold text-white mb-4">Registration Successful!</h2>
+                    <p className="text-white/80">Thank you for registering. Please check your email for confirmation.</p>
+                    <Button
+                        variant="accent"
+                        className="mt-8 px-8 py-3 rounded-full"
+                        onClick={() => {
+                            reset();
+                        }}
+                    >
+                        Register Another
+                    </Button>
+                </div>
+            </SectionBackground>
         );
     }
 
     return (
-        <SectionBackground className="py-20 md:py-32 px-6 relative z-10">
-            <section className="relative w-full max-w-3xl mx-auto px-6 py-12 md:py-20">
-
-                {/* Form Fields */}
+        <SectionBackground className="py-12 md:py-20">
+            <div className="max-w-3xl mx-auto px-6">
                 <form className="space-y-12" onSubmit={handleSubmit}>
-
                     {/* 1. First Name */}
                     <div className="space-y-4">
                         <label htmlFor="firstName" className="block text-base font-medium text-white/90">What&apos;s your first name?</label>
@@ -133,7 +129,8 @@ export default function RegisterForm() {
                             value={formData.firstName}
                             onChange={handleChange}
                             placeholder="Your first name"
-                            className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
+                            required
+                            className="w-full bg-transparent border-b border-white px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
                         />
                     </div>
 
@@ -145,8 +142,9 @@ export default function RegisterForm() {
                             id="lastName"
                             value={formData.lastName}
                             onChange={handleChange}
+                            required
                             placeholder="Your last name"
-                            className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
+                            className="w-full bg-transparent border-b border-white px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
                         />
                     </div>
 
@@ -158,8 +156,9 @@ export default function RegisterForm() {
                             id="email"
                             value={formData.email}
                             onChange={handleChange}
+                            required
                             placeholder="Your email address"
-                            className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
+                            className="w-full bg-transparent border-b border-white px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
                         />
                     </div>
 
@@ -172,13 +171,13 @@ export default function RegisterForm() {
                             value={formData.location}
                             onChange={handleChange}
                             placeholder="Your location"
-                            className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
+                            className="w-full bg-transparent border-b border-white px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
                         />
                     </div>
 
-                    {/* 5. Describe You (Custom Select - Multi) */}
+                    {/* 5. Describe You */}
                     <div className="space-y-4">
-                        <label htmlFor="description" className="block text-base font-medium text-white/90">Which of the following best describes you? (Select all that apply)</label>
+                        <label htmlFor="description" className="block text-base font-medium text-white">Which of the following best describes you? (Select all that apply)</label>
                         <CustomSelect
                             id="description"
                             multiple={true}
@@ -222,9 +221,9 @@ export default function RegisterForm() {
                         />
                     </div>
 
-                    {/* 6. Hear About Us (Custom Select) */}
+                    {/* 6. Hear About Us */}
                     <div className="space-y-4">
-                        <label htmlFor="source" className="block text-base font-medium text-white/90">How did you hear about this event?</label>
+                        <label htmlFor="source" className="block text-base font-medium text-white">How did you hear about this event?</label>
                         <CustomSelect
                             id="source"
                             options={[
@@ -239,9 +238,9 @@ export default function RegisterForm() {
                         />
                     </div>
 
-                    {/* 7. Participate Pipeline (Custom Select) */}
+                    {/* 7. Participate Pipeline */}
                     <div className="space-y-4">
-                        <label htmlFor="pipeline" className="block text-base font-medium text-white/90">Do you want to participate in our pipeline of open source projects?</label>
+                        <label htmlFor="pipeline" className="block text-base font-medium text-white">Do you want to participate in our pipeline of open source projects?</label>
                         <CustomSelect
                             id="pipeline"
                             options={[
@@ -255,7 +254,7 @@ export default function RegisterForm() {
                         />
                     </div>
 
-                    {/* 8. Receive Updates (Custom Select) */}
+                    {/* 8. Receive Updates */}
                     <div className="space-y-4">
                         <label htmlFor="updates" className="block text-base font-medium text-white/90">Are you interested in receiving updates about Open Source Nest?</label>
                         <CustomSelect
@@ -270,7 +269,7 @@ export default function RegisterForm() {
                         />
                     </div>
 
-                    {/* 9. Specific Topics (Input) */}
+                    {/* 9. Specific Topics */}
                     <div className="space-y-4">
                         <label htmlFor="topics" className="block text-base font-medium text-white/90">Any specific topics or technologies you&apos;re interested in for future events?</label>
                         <input
@@ -279,46 +278,47 @@ export default function RegisterForm() {
                             value={formData.topics}
                             onChange={handleChange}
                             placeholder="Answer"
-                            className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
+                            className="w-full bg-transparent border-b border-white px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
                         />
                     </div>
 
-                    {/* 10. OS Knowledge (Input) */}
+                    {/* 10. OS Knowledge */}
                     <div className="space-y-4">
-                        <label htmlFor="knowledge" className="block text-base font-medium text-white/90">How well do you understand open source technology? (1-10 scale)</label>
+                        <label htmlFor="knowledge" className="block text-base font-medium text-white">How well do you understand open source technology? (1-10 scale)</label>
                         <input
                             type="text"
                             id="knowledge"
                             value={formData.knowledge}
                             onChange={handleChange}
                             placeholder="Answer"
-                            className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
+                            className="w-full bg-transparent border-b border-white px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
                         />
                     </div>
 
-                    {/* 11. Community Member (Input) */}
+                    {/* 11. Community Member */}
                     <div className="space-y-4">
-                        <label htmlFor="community" className="block text-base font-medium text-white/90">Are you a community member of any open source projects? If yes, please specify.</label>
+                        <label htmlFor="community" className="block text-base font-medium text-white">Are you a community member of any open source projects? If yes, please specify.</label>
                         <input
                             type="text"
                             id="community"
                             value={formData.community}
                             onChange={handleChange}
                             placeholder="Answer"
-                            className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
+                            className="w-full bg-transparent border-b border-white px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
                         />
                     </div>
 
                     {/* Submit Button */}
-                    <div className="pt-8 pb-4 space-y-4">
+                    <div className="pt-8 pb-4 flex flex-col items-center">
                         {status === 'error' && (
-                            <div className="p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-200">
+                            <div className="w-full mb-4 p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-200">
                                 {errorMessage}
                             </div>
                         )}
                         <Button
                             variant="accent"
-                            className="w-[100px] font-semibold py-3 rounded-full text-base transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                            rounded="20px"
+                            className="w-[60%] font-semibold py-3 text-md transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                             disabled={status === 'loading'}
                             type="submit"
                         >
@@ -327,7 +327,7 @@ export default function RegisterForm() {
                     </div>
 
                 </form>
-            </section>
+            </div>
         </SectionBackground>
     );
 }

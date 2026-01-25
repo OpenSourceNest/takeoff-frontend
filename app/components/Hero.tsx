@@ -1,20 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import Button from "./ui/Button";
 
 const dropdownOptions = [
-    { label: "Attendee", href: "/attendee" },
+    { label: "Attendee", href: "/register" },
     { label: "Volunteer", href: "/volunteer" },
-    { label: "Sponsorship", href: "/sponsorship" },
-    { label: "Partnership", href: "/partnership" },
+    { label: "Sponsorship", href: "mailto:info@opensourcenest.org" },
+    { label: "Partnership", href: "mailto:info@opensourcenest.org" },
 ];
 
 export default function Hero() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
+
+    // Close dropdown when clicking outside
+    useEffect(() => {
+        function handleClickOutside(event: MouseEvent) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+                setIsDropdownOpen(false);
+            }
+        }
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     return (
         <section className="min-h-screen flex flex-col relative z-10">
@@ -39,10 +53,11 @@ export default function Hero() {
                     </p>
 
                     {/* Get Involved Dropdown */}
-                    <div className="relative z-50">
+                    <div className="relative z-50" ref={dropdownRef}>
                         <Button
                             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
                             icon={KeyboardArrowDownIcon}
+                            rounded="20px"
                             className="px-8 py-3 text-sm"
                             isActive={isDropdownOpen}
                         >
@@ -52,16 +67,22 @@ export default function Hero() {
                         {/* Dropdown Menu */}
                         {isDropdownOpen && (
                             <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-black-soft rounded-2xl py-2 shadow-2xl border border-brown-dark/20 z-100 animate-in fade-in slide-in-from-top-2 duration-200 overflow-hidden">
-                                {dropdownOptions.map((option) => (
-                                    <Link
-                                        key={option.label}
-                                        href={option.href}
-                                        className="block px-6 py-3 text-sm text-white/90 hover:bg-white/5 hover:text-orange transition-colors text-center border-b border-white/5 last:border-0"
-                                        onClick={() => setIsDropdownOpen(false)}
-                                    >
-                                        {option.label}
-                                    </Link>
-                                ))}
+                                {dropdownOptions.map((option) => {
+                                    const isExternal = option.href.startsWith('http');
+
+                                    return (
+                                        <Link
+                                            key={option.label}
+                                            href={option.href}
+                                            target={isExternal ? "_blank" : undefined}
+                                            rel={isExternal ? "noopener noreferrer" : undefined}
+                                            className="block px-6 py-3 text-sm text-white/90 hover:bg-white/5 hover:text-orange transition-colors text-center border-b border-white/5 last:border-0"
+                                            onClick={() => setIsDropdownOpen(false)}
+                                        >
+                                            {option.label}
+                                        </Link>
+                                    );
+                                })}
                             </div>
                         )}
                     </div>
