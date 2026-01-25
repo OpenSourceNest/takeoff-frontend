@@ -25,29 +25,29 @@ const ConnectModal: React.FC = () => {
 
     const connectOptions = [
         {
-            icon: "solar:user-plus-bold",
+            icon: "mdi:register",
             label: "Register",
             href: "/register"
         },
         {
-            icon: "solar:heart-hand-bold",
+            icon: "material-symbols:volunteer-activism",
             label: "Volunteer",
             href: "https://forms.gle/takeoff2026-volunteer"
         },
         {
-            icon: "solar:handshake-bold",
+            icon: "mdi:partnership",
             label: "Partner/\nSupport",
             href: "mailto:info@opensourcenest.org"
         },
         {
-            icon: "solar:users-group-two-rounded-bold",
+            icon: "fluent:people-community-12-filled",
             label: "Join OSN",
             href: "https://bit.ly/osn-whatsapp"
         }
     ];
 
     return (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center px-6">
+        <div className="fixed inset-0 z-100 flex items-center justify-center px-6">
             {/* Backdrop */}
             <div
                 className="absolute inset-0 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300"
@@ -67,7 +67,7 @@ const ConnectModal: React.FC = () => {
                             direction={row % 2 === 0 ? 'right' : 'left'}
                             className="overflow-hidden"
                         >
-                            <span className="text-4xl md:text-7xl font-black text-white/40 tracking-widest whitespace-nowrap uppercase italic">
+                            <span className="text-xl md:text-2xl font-black text-white/40 tracking-widest whitespace-nowrap uppercase italic">
                                 {Array(5).fill(getRowText(row)).join(" ")}
                                 <Icon icon="material-symbols:rocket-outline-rounded" className="inline mx-8 text-white/20" />
                             </span>

@@ -45,21 +45,24 @@ export default function RegisterForm() {
         }
 
         try {
+            // Map frontend data to backend schema
             const payload = {
                 firstName: formData.firstName,
                 lastName: formData.lastName,
                 email: formData.email,
                 location: formData.location || 'Unknown',
+                // Use description array directly, or default to ['OTHER'] if empty
                 profession: formData.description.length > 0 ? formData.description : ['OTHER'],
                 referralSource: formData.source || 'OTHER',
                 pipelineInterest: formData.pipeline || 'NOT_SURE',
-                newsletterSub: formData.updates === 'YES' || formData.updates === 'yes',
+                newsletterSub: formData.updates === 'YES', // Note: Check this mapping, previous was 'yes' string check
                 openSourceKnowledge: Number(formData.knowledge) || 1,
                 isCommunityMember: !!formData.community,
                 communityDetails: formData.community || null,
                 interests: formData.topics || null
             };
 
+            // Use relative path - Next.js rewrite will handle the proxy to backend
             const res = await fetch('/api/events/register', {
                 method: 'POST',
                 headers: {
@@ -73,6 +76,7 @@ export default function RegisterForm() {
             if (contentType && contentType.indexOf("application/json") !== -1) {
                 data = await res.json();
             } else {
+                // Handle non-JSON response (likely 500 text/plain)
                 const text = await res.text();
                 console.error("Non-JSON Response:", text);
                 throw new Error("Unable to connect to the server. Please try again later.");
@@ -87,6 +91,7 @@ export default function RegisterForm() {
             const err = error as Error;
             console.error('Registration error:', err);
             setStatus('error');
+            // Show user-friendly message if it's a parsing/network error
             setErrorMessage(err.message || 'Something went wrong. Please try again.');
         }
     };

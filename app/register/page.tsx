@@ -25,7 +25,7 @@ export default function RegisterPage() {
                 </CTAContainer>
 
                 {/* Info Bar - Outside Banner */}
-                <div className="w-full border-b border-white/10 px-6 py-6 md:py-8 flex flex-col md:flex-row items-center justify-center gap-y-4 md:gap-x-12 text-sm md:text-base text-gray-300 relative z-20">
+                <div className="w-full border-b border-white/10 px-6 py-6 md:py-8 flex flex-col md:flex-row items-center justify-between gap-y-4 text-sm md:text-base text-gray-300 relative z-20">
                     <div className="flex items-center gap-3">
                         <Icon icon="tabler:calendar-event" className="w-5 h-5 text-highlight-orange" />
                         <span className="font-medium">Saturday, 7th February, 2027</span>
