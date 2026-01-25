@@ -29,7 +29,7 @@ export default function Footer() {
                                 <Link href="mailto:info@opensourcenest.org" className="text-brown-dark/80 hover:text-brown-dark hover:underline transition-colors text-sm md:text-base">
                                     Sponsorship & Partnership
                                 </Link>
-                                <Link href="#about" className="text-brown-dark/80 hover:text-brown-dark hover:underline transition-colors text-sm md:text-base">
+                                <Link href="/#about" className="text-brown-dark/80 hover:text-brown-dark hover:underline transition-colors text-sm md:text-base">
                                     About TAKEOFF
                                 </Link>
                                 <Link
