@@ -11,14 +11,13 @@ interface CustomSelectProps {
     id?: string;
     options: Option[] | string[];
     value?: string | string[];
-    onChange?: (value: any) => void;
+    onChange?: (value: string | string[]) => void;
     placeholder?: string;
     className?: string;
     multiple?: boolean;
 }
 
 export default function CustomSelect({
-    id,
     options,
     value,
     onChange,
@@ -127,7 +126,7 @@ export default function CustomSelect({
         <div className={`relative ${className}`} ref={containerRef}>
             {/* Trigger Button */}
             <div
-                className={`w-full bg-transparent border-b border-white/20 py-3 cursor-pointer flex items-center justify-between group transition-colors min-h-[50px] ${isOpen ? 'border-orange' : ''}`}
+                className={`w-full bg-transparent border-b border-white py-3 cursor-pointer flex items-center justify-between group transition-colors min-h-[50px] ${isOpen ? 'border-orange' : ''}`}
                 onClick={() => setIsOpen(!isOpen)}
             >
                 <div className="flex-1 mr-4">

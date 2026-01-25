@@ -12,7 +12,7 @@ const RocketIcon = (props: Omit<IconProps, 'icon'>) => (
 
 export default function AboutSection() {
     return (
-        <section className="bg-black py-24 px-6 md:py-32">
+        <section id="about" className="bg-black py-24 px-6 md:py-32">
             <div className="max-w-4xl mx-auto text-center flex flex-col items-center">
                 {/* Section Pill */}
                 <SectionPill
