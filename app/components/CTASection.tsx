@@ -8,7 +8,7 @@ export default function CTASection() {
                 {/* Rocket Image */}
                 <div className="shrink-0 w-40 h-40 relative">
                     <Image
-                        src="/1d9cd16876d6ff64120bd449f8e5e82f75bc9eb1.png"
+                        src="/rocket.png"
                         alt="Rocket"
                         width={160}
                         height={160}

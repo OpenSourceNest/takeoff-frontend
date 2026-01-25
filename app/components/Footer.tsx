@@ -24,21 +24,6 @@ export default function Footer() {
                     <div className="flex gap-16">
                         {/* GitHub + Links Column */}
                         <div className="flex items-start gap-4">
-                            {/* GitHub Logo */}
-                            <Link
-                                href="https://github.com/opensourcenest"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-10 h-10 bg-black rounded-full flex items-center justify-center shadow-sm hover:shadow-md transition-shadow"
-                            >
-                                <Image
-                                    src="/Github_logo.png"
-                                    alt="GitHub Logo"
-                                    width={24}
-                                    height={24}
-                                    className="w-6 h-6 object-contain"
-                                />
-                            </Link>
 
                             {/* Links */}
                             <div className="flex flex-col gap-2">
