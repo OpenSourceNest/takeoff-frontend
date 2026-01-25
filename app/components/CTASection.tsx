@@ -6,7 +6,7 @@ export default function CTASection() {
     return (
         <section className="bg-black py-10 px-6">
             <div className="max-w-6xl mx-auto">
-                <CTAContainer className="rounded-[30px]">
+                <CTAContainer className="rounded-[30px] flex items-center justify-center px-6 py-12">
                     <div className="text-center flex flex-col items-center py-12">
                         {/* Headline */}
                         <h2 className="text-3xl mb-3 font-bold text-white leading-tight">

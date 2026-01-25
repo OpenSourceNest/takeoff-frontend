@@ -21,22 +21,22 @@ export default function Footer() {
                     </div>
 
                     {/* Navigation Columns */}
-                    <div className="flex flex-col sm:flex-row gap-10 md:gap-45">
+                    <div className="flex flex-col sm:flex-row gap-10 md:gap-24">
                         {/* Links Column */}
                         <div className="flex flex-col gap-2">
                             <h3 className="text-brown-dark font-bold text-lg">Quick Links</h3>
                             <nav className="flex flex-col gap-2">
-                                <Link href="mailto:info@opensourcenest.org" className="text-brown-dark/80 hover:text-brown-dark hover:underline transition-colors">
+                                <Link href="mailto:info@opensourcenest.org" className="text-brown-dark/80 hover:text-brown-dark hover:underline transition-colors text-sm md:text-base">
                                     Sponsorship & Partnership
                                 </Link>
-                                <Link href="#about" className="text-brown-dark/80 hover:text-brown-dark hover:underline transition-colors">
+                                <Link href="#about" className="text-brown-dark/80 hover:text-brown-dark hover:underline transition-colors text-sm md:text-base">
                                     About TAKEOFF
                                 </Link>
                                 <Link
-                                    href="/volunteer"
+                                    href="https://forms.gle/takeoff2026-volunteer"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-brown-dark/80 hover:text-brown-dark hover:underline transition-colors"
+                                    className="text-brown-dark/80 hover:text-brown-dark hover:underline transition-colors text-sm md:text-base"
                                 >
                                     Volunteer
                                 </Link>
@@ -51,7 +51,7 @@ export default function Footer() {
                                     href="https://opensourcenest.org/"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-brown-dark/80 hover:text-brown-dark hover:underline transition-colors"
+                                    className="text-brown-dark/80 hover:text-brown-dark hover:underline transition-colors text-sm md:text-base"
                                 >
                                     Open Source Nest
                                 </Link>
@@ -59,7 +59,7 @@ export default function Footer() {
                                     href="https://bit.ly/osn-whatsapp"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-brown-dark/80 hover:text-brown-dark hover:underline transition-colors"
+                                    className="text-brown-dark/80 hover:text-brown-dark hover:underline transition-colors text-sm md:text-base"
                                 >
                                     Join Community
                                 </Link>

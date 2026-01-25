@@ -22,7 +22,6 @@ export default function RegisterForm() {
         setFormData(id as keyof FormData, value);
     };
 
-    // Updated to handle both string and string[] values
     const handleSelectChange = (id: string, value: string | string[]) => {
         setFormData(id as keyof FormData, value);
     };
@@ -32,7 +31,6 @@ export default function RegisterForm() {
         setStatus('loading');
         setErrorMessage('');
 
-        // Basic Client-side Validation
         if (!formData.firstName.trim() || !formData.lastName.trim() || !formData.email.trim()) {
             setStatus('error');
             setErrorMessage('Please fill in all required fields (Name, Email).');
@@ -47,24 +45,21 @@ export default function RegisterForm() {
         }
 
         try {
-            // Map frontend data to backend schema
             const payload = {
                 firstName: formData.firstName,
                 lastName: formData.lastName,
                 email: formData.email,
                 location: formData.location || 'Unknown',
-                // Use description array directly, or default to ['OTHER'] if empty
                 profession: formData.description.length > 0 ? formData.description : ['OTHER'],
                 referralSource: formData.source || 'OTHER',
                 pipelineInterest: formData.pipeline || 'NOT_SURE',
-                newsletterSub: formData.updates === 'YES', // Note: Check this mapping, previous was 'yes' string check
+                newsletterSub: formData.updates === 'YES' || formData.updates === 'yes',
                 openSourceKnowledge: Number(formData.knowledge) || 1,
                 isCommunityMember: !!formData.community,
                 communityDetails: formData.community || null,
                 interests: formData.topics || null
             };
 
-            // Use relative path - Next.js rewrite will handle the proxy to backend
             const res = await fetch('/api/events/register', {
                 method: 'POST',
                 headers: {
@@ -78,7 +73,6 @@ export default function RegisterForm() {
             if (contentType && contentType.indexOf("application/json") !== -1) {
                 data = await res.json();
             } else {
-                // Handle non-JSON response (likely 500 text/plain)
                 const text = await res.text();
                 console.error("Non-JSON Response:", text);
                 throw new Error("Unable to connect to the server. Please try again later.");
@@ -93,7 +87,6 @@ export default function RegisterForm() {
             const err = error as Error;
             console.error('Registration error:', err);
             setStatus('error');
-            // Show user-friendly message if it's a parsing/network error
             setErrorMessage(err.message || 'Something went wrong. Please try again.');
         }
     };
@@ -121,10 +114,7 @@ export default function RegisterForm() {
     return (
         <SectionBackground className="py-12 md:py-20">
             <div className="max-w-3xl mx-auto px-6">
-
-                {/* Form Fields */}
                 <form className="space-y-12" onSubmit={handleSubmit}>
-
                     {/* 1. First Name */}
                     <div className="space-y-4">
                         <label htmlFor="firstName" className="block text-base font-medium text-white/90">What&apos;s your first name?</label>
@@ -180,7 +170,7 @@ export default function RegisterForm() {
                         />
                     </div>
 
-                    {/* 5. Describe You (Custom Select - Multi) */}
+                    {/* 5. Describe You */}
                     <div className="space-y-4">
                         <label htmlFor="description" className="block text-base font-medium text-white">Which of the following best describes you? (Select all that apply)</label>
                         <CustomSelect
@@ -226,7 +216,7 @@ export default function RegisterForm() {
                         />
                     </div>
 
-                    {/* 6. Hear About Us (Custom Select) */}
+                    {/* 6. Hear About Us */}
                     <div className="space-y-4">
                         <label htmlFor="source" className="block text-base font-medium text-white">How did you hear about this event?</label>
                         <CustomSelect
@@ -243,7 +233,7 @@ export default function RegisterForm() {
                         />
                     </div>
 
-                    {/* 7. Participate Pipeline (Custom Select) */}
+                    {/* 7. Participate Pipeline */}
                     <div className="space-y-4">
                         <label htmlFor="pipeline" className="block text-base font-medium text-white">Do you want to participate in our pipeline of open source projects?</label>
                         <CustomSelect
@@ -259,7 +249,7 @@ export default function RegisterForm() {
                         />
                     </div>
 
-                    {/* 8. Receive Updates (Custom Select) */}
+                    {/* 8. Receive Updates */}
                     <div className="space-y-4">
                         <label htmlFor="updates" className="block text-base font-medium text-white/90">Are you interested in receiving updates about Open Source Nest?</label>
                         <CustomSelect
@@ -274,7 +264,7 @@ export default function RegisterForm() {
                         />
                     </div>
 
-                    {/* 9. Specific Topics (Input) */}
+                    {/* 9. Specific Topics */}
                     <div className="space-y-4">
                         <label htmlFor="topics" className="block text-base font-medium text-white/90">Any specific topics or technologies you&apos;re interested in for future events?</label>
                         <input
@@ -287,7 +277,7 @@ export default function RegisterForm() {
                         />
                     </div>
 
-                    {/* 10. OS Knowledge (Input) */}
+                    {/* 10. OS Knowledge */}
                     <div className="space-y-4">
                         <label htmlFor="knowledge" className="block text-base font-medium text-white">How well do you understand open source technology? (1-10 scale)</label>
                         <input
@@ -300,7 +290,7 @@ export default function RegisterForm() {
                         />
                     </div>
 
-                    {/* 11. Community Member (Input) */}
+                    {/* 11. Community Member */}
                     <div className="space-y-4">
                         <label htmlFor="community" className="block text-base font-medium text-white">Are you a community member of any open source projects? If yes, please specify.</label>
                         <input
