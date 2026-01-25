@@ -15,7 +15,7 @@ export default function SectionBackground({ children, className = "" }: SectionB
                     src="/design bg.jpg"
                     alt="Background Pattern"
                     fill
-                    className="object-cover opacity-[0.02]"
+                    className="object-cover opacity-[0.007]"
                     quality={100}
                     priority
                 />
