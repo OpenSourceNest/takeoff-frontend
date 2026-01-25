@@ -90,7 +90,7 @@ export default function Hero() {
 
                 <div className="absolute bottom-0 left-0 w-full h-full bg-linear-to-t from-black via-transparent to-black z-10">
                     <Image
-                        src="/rocket white.png"
+                        src="/rocket_white.png"
                         alt="Rocket Background"
                         fill
                         className="object-contain object-bottom opacity-40 translate-y-20 lg:translate-y-32 scale-110 lg:scale-100"

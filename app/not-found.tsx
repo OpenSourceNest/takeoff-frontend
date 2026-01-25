@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Button from "./components/ui/Button";
+import { RocketLaunch, Explore, Home, HelpOutline } from "@mui/icons-material";
 
 export default function NotFound() {
     return (

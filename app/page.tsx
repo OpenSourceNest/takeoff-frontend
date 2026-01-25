@@ -4,7 +4,6 @@ import ImpactSection from "./components/ImpactSection";
 import AudienceSection from "./components/AudienceSection";
 import SponsorsSection from "./components/SponsorsSection";
 import CTASection from "./components/CTASection";
-import Footer from "./components/Footer";
 
 
 export default function Home() {
@@ -16,7 +15,6 @@ export default function Home() {
             <AudienceSection />
             <SponsorsSection />
             <CTASection />
-            {/* Footer is now in layout */}
         </div>
     );
 }
