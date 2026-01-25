@@ -1,13 +1,17 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import Button from '../components/ui/Button'
+"use client";
+import Link from 'next/link';
+import Image from 'next/image';
+import { useModalStore } from '@/app/store/useModalStore';
+import Button from '../components/ui/Button';
 
 function Navbar() {
+    const { openConnectModal } = useModalStore();
+
     return (
         <div>
             {/* Header Area - Floating Pill */}
             <header className="fixed top-8 w-full z-50 px-6">
-                <nav className="max-w-6xl mx-auto bg-black-shadow backdrop-blur-md rounded-full px-6 py-3 md:px-15 md:py-4 flex items-center justify-between transition-all">
+                <nav className="max-w-6xl mx-auto bg-brown-dark backdrop-blur-md rounded-full px-6 py-3 md:px-15 md:py-4 flex items-center justify-between transition-all relative">
                     {/* Logo - Left */}
                     <Link href="/" className="shrink-0">
                         <Image
@@ -22,9 +26,12 @@ function Navbar() {
                     {/* Navigation - Right */}
                     <div className="flex items-center gap-4 md:gap-8">
                         <div className="flex items-center gap-4 md:gap-8">
-                            <Link href="/connect" className="text-white hover:text-orange text-sm md:text-md font-medium transition-colors">
+                            <button
+                                onClick={openConnectModal}
+                                className="text-white hover:text-orange text-sm md:text-md font-medium transition-colors cursor-pointer"
+                            >
                                 Connect
-                            </Link>
+                            </button>
                             <Link href="/volunteer" className="text-white hover:text-orange text-sm md:text-md font-medium transition-colors">
                                 Volunteer
                             </Link>
@@ -38,7 +45,7 @@ function Navbar() {
                 </nav>
             </header>
         </div>
-    )
+    );
 }
 
-export default Navbar
+export default Navbar;
