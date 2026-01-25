@@ -30,7 +30,8 @@ export default function AboutSection() {
                         global digital infrastructure, yet meaningful participation remains out of reach for many.{" "}
                         <span className="font-bold">TAKEOFF</span> exists to change that narrative by centering
                         people, their learning journeys, contributions, and growth.
-                        <br />
+                    </p>
+                    <p>
                         Through shared stories, real projects, and community connection,{" "}
                         <span className="font-bold">TAKEOFF</span> reinforces a simple truth: sustainable
                         open source ecosystems are built when emerging talent is intentionally

@@ -1,30 +1,35 @@
 "use client";
 
+import Image from "next/image";
 import Marquee from "react-fast-marquee";
-import GitHubIcon from '@mui/icons-material/GitHub';
 
 export default function SponsorsSection() {
     return (
         <section className="bg-black py-20 px-6">
-            <div className="max-w-5xl mx-auto">
+            <div className="w-full mx-auto">
                 {/* Sponsors */}
                 <div className="text-center mb-16">
-                    <h2 className="text-white text-sm font-semibold tracking-widest uppercase mb-8">
+                    <h2 className="text-white text-2xl font-semibold tracking-widest uppercase mb-8">
                         Sponsors
                     </h2>
 
                     {/* Main Sponsor - GitHub */}
                     <div className="flex justify-center">
                         <div className="flex flex-col items-center">
-                            <GitHubIcon className="text-white mb-2" style={{ fontSize: 80 }} />
-                            <span className="text-white text-2xl font-bold">GitHub</span>
+                            <Image
+                                src="/Github_logo.png"
+                                alt="GitHub Logo"
+                                width={200}
+                                height={80}
+                                className="h-auto object-contain"
+                            />
                         </div>
                     </div>
                 </div>
 
                 {/* Partners */}
                 <div className="text-center">
-                    <h2 className="text-white text-sm font-semibold tracking-widest uppercase mb-8">
+                    <h2 className="text-white text-2xl font-semibold tracking-widest uppercase mb-8">
                         Partners
                     </h2>
 
@@ -35,13 +40,18 @@ export default function SponsorsSection() {
                         pauseOnHover={true}
                         className="py-4"
                     >
-                        {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
+                        {[1, 2, 3, 4, 5, 6].map((item) => (
                             <div
                                 key={item}
-                                className="flex flex-col items-center mx-8"
+                                className="flex flex-col items-center mx-12"
                             >
-                                <GitHubIcon className="text-white mb-2" style={{ fontSize: 48 }} />
-                                <span className="text-white text-sm font-semibold">GitHub</span>
+                                <Image
+                                    src="/Github_logo.png"
+                                    alt="GitHub Logo"
+                                    width={150}
+                                    height={80}
+                                    className="h-auto object-contain"
+                                />
                             </div>
                         ))}
                     </Marquee>

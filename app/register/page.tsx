@@ -39,7 +39,7 @@ export default function RegisterPage() {
                             <h1 className="text-3xl md:text-5xl font-bold text-white mb-2 leading-tight">
                                 Register for <span className="text-orange">TAKEOFF 2026</span>
                             </h1>
-                            <p className="text-gray-400 text-sm md:text-base font-medium tracking-wide text-white/70 max-w-md mx-auto">
+                            <p className="text-sm md:text-base font-medium tracking-wide text-white/70 max-w-md mx-auto">
                                 Secure your spot and be part of the experience.
                             </p>
                         </div>
