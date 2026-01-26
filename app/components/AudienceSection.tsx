@@ -40,7 +40,7 @@ export default function AudienceSection() {
             viewport={{ once: true }}
         >
             <SectionBackground className="w-full">
-                <div className="max-w-6xl mx-auto py-10">
+                <div className="max-w-6xl mx-auto py-10 px-6">
                     {/* Section Header */}
                     <motion.div
                         className="text-center mb-16 md:mb-24"

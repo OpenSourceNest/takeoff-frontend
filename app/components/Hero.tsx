@@ -143,7 +143,7 @@ export default function Hero() {
                     </motion.div>
                 </motion.div>
 
-                <div className="absolute bottom-0 left-0 w-full h-full bg-linear-to-t from-black via-transparent to-black z-10">
+                {/* <div className="absolute bottom-0 left-0 w-full h-full bg-linear-to-t from-black via-transparent to-black z-10">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
                         animate={{ opacity: 0.4, scale: 1 }}
@@ -158,7 +158,7 @@ export default function Hero() {
                             priority
                         />
                     </motion.div>
-                </div>
+                </div> */}
             </div>
         </section>
     );

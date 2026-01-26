@@ -19,7 +19,7 @@ export default function RegisterForm() {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;
-        setFormData(id as keyof FormData, value);
+        setFormData(id as keyof RegisterFormData, value);
     };
 
     const handleSelectChange = (id: string, value: string | string[]) => {
@@ -350,7 +350,7 @@ export default function RegisterForm() {
                             disabled={status === 'loading'}
                             type="submit"
                         >
-                            {status === 'loading' ? '...' : 'Register'}
+                            {status === 'loading' ? 'Submitting...' : 'Register'}
                         </Button>
                     </div>
 
