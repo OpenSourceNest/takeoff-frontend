@@ -3,7 +3,7 @@
 import React from 'react';
 import Button from './ui/Button';
 import CustomSelect from './ui/CustomSelect';
-import { useRegisterStore, FormData } from '../store/useRegisterStore';
+import { useRegisterStore, RegisterFormData } from '../store/useRegisterStore';
 import SectionBackground from './ui/SectionBackground';
 
 export default function RegisterForm() {
@@ -23,7 +23,7 @@ export default function RegisterForm() {
     };
 
     const handleSelectChange = (id: string, value: string | string[]) => {
-        setFormData(id as keyof FormData, value);
+        setFormData(id as keyof RegisterFormData, value);
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -53,7 +53,9 @@ export default function RegisterForm() {
                 location: formData.location || 'Unknown',
                 // Use description array directly, or default to ['OTHER'] if empty
                 profession: formData.description.length > 0 ? formData.description : ['OTHER'],
+                professionOther: formData.description.includes('OTHER') ? formData.professionOther : null,
                 referralSource: formData.source || 'OTHER',
+                referralSourceOther: formData.source === 'OTHER' ? formData.sourceOther : null,
                 pipelineInterest: formData.pipeline || 'NOT_SURE',
                 newsletterSub: formData.updates === 'YES', // Note: Check this mapping, previous was 'yes' string check
                 openSourceKnowledge: Number(formData.knowledge) || 1,
@@ -88,11 +90,11 @@ export default function RegisterForm() {
 
             setStatus('success');
         } catch (error: unknown) {
-            const err = error as Error;
-            console.error('Registration error:', err);
+            console.error('Registration error:', error);
             setStatus('error');
             // Show user-friendly message if it's a parsing/network error
-            setErrorMessage(err.message || 'Something went wrong. Please try again.');
+            const message = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
+            setErrorMessage(message);
         }
     };
 
@@ -117,8 +119,10 @@ export default function RegisterForm() {
     }
 
     return (
-        <SectionBackground className="py-12 md:py-20">
-            <div className="max-w-3xl mx-auto px-6">
+        <SectionBackground className="py-20 md:py-32 px-6 relative z-10">
+            <section className="relative w-full max-w-3xl mx-auto px-6 py-12 md:py-20">
+
+                {/* Form Fields */}
                 <form className="space-y-12" onSubmit={handleSubmit}>
                     {/* 1. First Name */}
                     <div className="space-y-4">
@@ -219,6 +223,16 @@ export default function RegisterForm() {
                             onChange={(val) => handleSelectChange('description', val)}
                             placeholder="Select options"
                         />
+                        {formData.description.includes('OTHER') && (
+                            <input
+                                type="text"
+                                id="professionOther"
+                                value={formData.professionOther}
+                                onChange={handleChange}
+                                placeholder="Please specify"
+                                className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none mt-2"
+                            />
+                        )}
                     </div>
 
                     {/* 6. Hear About Us */}
@@ -236,6 +250,16 @@ export default function RegisterForm() {
                             onChange={(val) => handleSelectChange('source', val)}
                             placeholder="Select"
                         />
+                        {formData.source === 'OTHER' && (
+                            <input
+                                type="text"
+                                id="sourceOther"
+                                value={formData.sourceOther}
+                                onChange={handleChange}
+                                placeholder="Please specify"
+                                className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none mt-2"
+                            />
+                        )}
                     </div>
 
                     {/* 7. Participate Pipeline */}
@@ -331,7 +355,7 @@ export default function RegisterForm() {
                     </div>
 
                 </form>
-            </div>
+            </section>
         </SectionBackground>
     );
 }

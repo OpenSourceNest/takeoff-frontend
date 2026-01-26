@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-export interface FormData {
+export interface RegisterFormData {
     firstName: string;
     lastName: string;
     email: string;
@@ -12,19 +12,21 @@ export interface FormData {
     topics: string;
     knowledge: string;
     community: string;
+    professionOther: string;
+    sourceOther: string;
 }
 
 interface RegisterState {
-    formData: FormData;
+    formData: RegisterFormData;
     status: 'idle' | 'loading' | 'success' | 'error';
     errorMessage: string;
-    setFormData: (id: keyof FormData, value: string | string[]) => void;
+    setFormData: (id: keyof RegisterFormData, value: string | string[]) => void;
     setStatus: (status: 'idle' | 'loading' | 'success' | 'error') => void;
     setErrorMessage: (message: string) => void;
     reset: () => void;
 }
 
-const initialFormData: FormData = {
+const initialFormData: RegisterFormData = {
     firstName: '',
     lastName: '',
     email: '',
@@ -35,7 +37,9 @@ const initialFormData: FormData = {
     updates: '',
     topics: '',
     knowledge: '',
-    community: ''
+    community: '',
+    professionOther: '',
+    sourceOther: ''
 };
 
 export const useRegisterStore = create<RegisterState>((set) => ({
