@@ -3,7 +3,7 @@
 import React from 'react';
 import Button from './ui/Button';
 import CustomSelect from './ui/CustomSelect';
-import { useRegisterStore } from '../store/useRegisterStore';
+import { useRegisterStore, RegisterFormData } from '../store/useRegisterStore';
 import SectionBackground from './ui/SectionBackground';
 
 export default function RegisterForm() {
@@ -18,15 +18,13 @@ export default function RegisterForm() {
     } = useRegisterStore();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { id, value } = e.target;
-        // @ts-ignore - Dynamic key access on store
-        setFormData(id as any, value);
+        // Cast id to keyof RegisterFormData assuming inputs have correct IDs matching the store
+        setFormData(e.target.id as keyof RegisterFormData, e.target.value);
     };
 
     // Updated to handle both string and string[] values
     const handleSelectChange = (id: string, value: string | string[]) => {
-        // @ts-ignore - Dynamic key access on store
-        setFormData(id as any, value);
+        setFormData(id as keyof RegisterFormData, value);
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -57,7 +55,9 @@ export default function RegisterForm() {
                 location: formData.location || 'Unknown',
                 // Use description array directly, or default to ['OTHER'] if empty
                 profession: formData.description.length > 0 ? formData.description : ['OTHER'],
+                professionOther: formData.description.includes('OTHER') ? formData.professionOther : null,
                 referralSource: formData.source || 'OTHER',
+                referralSourceOther: formData.source === 'OTHER' ? formData.sourceOther : null,
                 pipelineInterest: formData.pipeline || 'NOT_SURE',
                 newsletterSub: formData.updates === 'YES', // Note: Check this mapping, previous was 'yes' string check
                 openSourceKnowledge: Number(formData.knowledge) || 1,
@@ -91,11 +91,12 @@ export default function RegisterForm() {
             }
 
             setStatus('success');
-        } catch (error: any) {
+        } catch (error: unknown) {
             console.error('Registration error:', error);
             setStatus('error');
             // Show user-friendly message if it's a parsing/network error
-            setErrorMessage(error.message || 'Something went wrong. Please try again.');
+            const message = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
+            setErrorMessage(message);
         }
     };
 
@@ -118,7 +119,7 @@ export default function RegisterForm() {
     }
 
     return (
-        <SectionBackground className="py-20 md:py-32 px-6 relative z-10">   
+        <SectionBackground className="py-20 md:py-32 px-6 relative z-10">
             <section className="relative w-full max-w-3xl mx-auto px-6 py-12 md:py-20">
 
                 {/* Form Fields */}
@@ -220,6 +221,16 @@ export default function RegisterForm() {
                             onChange={(val) => handleSelectChange('description', val)}
                             placeholder="Select options"
                         />
+                        {formData.description.includes('OTHER') && (
+                            <input
+                                type="text"
+                                id="professionOther"
+                                value={formData.professionOther}
+                                onChange={handleChange}
+                                placeholder="Please specify"
+                                className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none mt-2"
+                            />
+                        )}
                     </div>
 
                     {/* 6. Hear About Us (Custom Select) */}
@@ -237,6 +248,16 @@ export default function RegisterForm() {
                             onChange={(val) => handleSelectChange('source', val)}
                             placeholder="Select"
                         />
+                        {formData.source === 'OTHER' && (
+                            <input
+                                type="text"
+                                id="sourceOther"
+                                value={formData.sourceOther}
+                                onChange={handleChange}
+                                placeholder="Please specify"
+                                className="w-full bg-transparent border-b border-white/20 px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none mt-2"
+                            />
+                        )}
                     </div>
 
                     {/* 7. Participate Pipeline (Custom Select) */}
@@ -328,6 +349,6 @@ export default function RegisterForm() {
 
                 </form>
             </section>
-        </SectionBackground>    
+        </SectionBackground>
     );
 }

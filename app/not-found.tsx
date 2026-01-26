@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import Button from "./components/ui/Button";
 
 export default function NotFound() {
     return (
@@ -29,13 +28,14 @@ export default function NotFound() {
                 </h2>
                 <p className="text-lg text-white/60 mb-10 max-w-md mx-auto">
                     The page you are looking for seems to have drifted away into the void.
-                    Let's get you back on course.
+                    Let&apos;s get you back on course.
                 </p>
 
-                <Link href="/">
-                    <Button variant="accent" className="px-8 py-3 rounded-full font-semibold">
-                        Return to Home
-                    </Button>
+                <Link
+                    href="/"
+                    className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full font-semibold transition-all duration-200 cursor-pointer text-sm bg-orange text-white hover:bg-orange/90 border border-orange"
+                >
+                    Return to Home
                 </Link>
             </div>
         </div>

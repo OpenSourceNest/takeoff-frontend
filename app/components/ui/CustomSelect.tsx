@@ -11,7 +11,7 @@ interface CustomSelectProps {
     id?: string;
     options: Option[] | string[];
     value?: string | string[];
-    onChange?: (value: any) => void;
+    onChange?: (value: string | string[]) => void;
     placeholder?: string;
     className?: string;
     multiple?: boolean;
@@ -127,6 +127,7 @@ export default function CustomSelect({
         <div className={`relative ${className}`} ref={containerRef}>
             {/* Trigger Button */}
             <div
+                id={id}
                 className={`w-full bg-transparent border-b border-white/20 py-3 cursor-pointer flex items-center justify-between group transition-colors min-h-[50px] ${isOpen ? 'border-orange' : ''}`}
                 onClick={() => setIsOpen(!isOpen)}
             >
