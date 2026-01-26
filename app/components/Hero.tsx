@@ -32,7 +32,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <section className="min-h-screen flex flex-col relative z-10">
+        <section className="min-h-fit mt-10 md:min-h-screen flex flex-col relative z-10">
 
             {/* Hero Body */}
             <div className="relative flex-1 w-full flex flex-col items-center justify-start md:justify-center pt-36 md:pt-32">
