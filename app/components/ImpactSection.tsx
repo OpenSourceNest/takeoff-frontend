@@ -8,6 +8,7 @@ import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
 import { Swiper as SwiperType } from 'swiper';
+import { motion } from "framer-motion";
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -62,25 +63,49 @@ export default function ImpactSection() {
     const [isBeginning, setIsBeginning] = useState(true);
 
     return (
-        <section className="bg-black py-20 px-6">
+        <motion.section
+            className="bg-black py-20 px-6"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+        >
             <div className="max-w-6xl mx-auto">
                 {/* Section Badge */}
-                <div className="flex justify-center mb-8">
+                <motion.div
+                    className="flex justify-center mb-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    viewport={{ once: true }}
+                >
                     <SectionPill
                         title="Our Impact"
                         icon={ImpactIcon}
                     />
-                </div>
+                </motion.div>
 
                 {/* Impact Description */}
-                <div className="max-w-3xl mx-auto text-center mb-16 relative">
+                <motion.div
+                    className="max-w-3xl mx-auto text-center mb-16 relative"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.4 }}
+                    viewport={{ once: true }}
+                >
                     <p className="text-white text-lg md:text-xl leading-relaxed">
                         In its first year of independent operation, <span className="text-white font-bold">Open Source Nest</span> recorded tangible community impact across education, contribution, and ecosystem engagement.
                     </p>
-                </div>
+                </motion.div>
 
                 {/* Stats Carousel */}
-                <div className="relative group px-4 md:px-0">
+                <motion.div
+                    className="relative group px-4 md:px-0"
+                    initial={{ opacity: 0, x: 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                    viewport={{ once: true }}
+                >
                     <Swiper
                         modules={[Navigation, Autoplay]}
                         spaceBetween={24}
@@ -136,7 +161,24 @@ export default function ImpactSection() {
                         ))}
                     </Swiper>
 
-                    {/* Previous Button */}
+                    {/* Mobile Navigation Buttons */}
+                    <button
+                        onClick={() => swiperRef.current?.slidePrev()}
+                        className={`md:hidden flex absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-orange rounded-full items-center justify-center hover:bg-[#D15418]/90 transition-all shadow-lg ${isBeginning ? 'opacity-0 invisible' : 'opacity-100 visible'}`}
+                        aria-label="Previous slide"
+                    >
+                        <KeyboardArrowLeftIcon className="text-white" style={{ fontSize: 24 }} />
+                    </button>
+
+                    <button
+                        onClick={() => swiperRef.current?.slideNext()}
+                        className="md:hidden flex absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-orange rounded-full items-center justify-center hover:bg-[#D15418]/90 transition-colors shadow-lg"
+                        aria-label="Next slide"
+                    >
+                        <KeyboardArrowRightIcon className="text-white" style={{ fontSize: 24 }} />
+                    </button>
+
+                    {/* Desktop Navigation Buttons */}
                     <button
                         onClick={() => swiperRef.current?.slidePrev()}
                         className={`hidden md:flex absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-orange rounded-full items-center justify-center hover:bg-[#D15418]/90 transition-all shadow-lg ${isBeginning ? 'opacity-0 invisible' : 'opacity-100 visible'}`}
@@ -145,7 +187,6 @@ export default function ImpactSection() {
                         <KeyboardArrowLeftIcon className="text-white" style={{ fontSize: 32 }} />
                     </button>
 
-                    {/* Next Button */}
                     <button
                         onClick={() => swiperRef.current?.slideNext()}
                         className="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-orange rounded-full items-center justify-center hover:bg-[#D15418]/90 transition-colors shadow-lg"
@@ -153,13 +194,19 @@ export default function ImpactSection() {
                     >
                         <KeyboardArrowRightIcon className="text-white" style={{ fontSize: 32 }} />
                     </button>
-                </div>
+                </motion.div>
 
                 {/* Bottom Text */}
-                <p className="text-center text-gray-400 text-sm md:text-base mt-4 font-normal">
+                <motion.p
+                    className="text-center text-gray-400 text-sm md:text-base mt-4 font-normal"
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.8 }}
+                    viewport={{ once: true }}
+                >
                     <span className="text-white font-bold">TAKEOFF 2026</span> celebrates this progress, and sets the stage for what comes next.
-                </p>
+                </motion.p>
             </div>
-        </section>
+        </motion.section>
     );
 }

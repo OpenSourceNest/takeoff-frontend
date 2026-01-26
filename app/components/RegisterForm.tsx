@@ -311,7 +311,11 @@ export default function RegisterForm() {
                     {/* Submit Button */}
                     <div className="pt-8 pb-4 flex flex-col items-center">
                         {status === 'error' && (
-                            <div className="w-full mb-4 p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-200">
+                            <div
+                                className="w-full mb-4 p-4 bg-red-500/10 border border-red-500/20 rounded-lg text-red-200"
+                                role="alert"
+                                aria-live="polite"
+                            >
                                 {errorMessage}
                             </div>
                         )}
