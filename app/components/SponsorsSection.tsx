@@ -2,14 +2,27 @@
 
 import Image from "next/image";
 import Marquee from "react-fast-marquee";
+import { motion } from "framer-motion";
 
 export default function SponsorsSection() {
     return (
-        <section className="bg-black py-20 px-6">
+        <motion.section
+            className="bg-black py-20"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+        >
             <div className="w-full mx-auto">
                 {/* Sponsors */}
-                <div className="text-center mb-16">
-                    <h2 className="text-white text-2xl font-semibold tracking-widest uppercase mb-8">
+                <motion.div
+                    className="text-center mb-30"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                    viewport={{ once: true }}
+                >
+                    <h2 className="text-white text-4xl font-semibold tracking-widest uppercase mb-10">
                         Sponsors
                     </h2>
 
@@ -19,17 +32,23 @@ export default function SponsorsSection() {
                             <Image
                                 src="/Github_logo.png"
                                 alt="GitHub Logo"
-                                width={200}
-                                height={80}
+                                width={250}
+                                height={250}
                                 className="h-auto object-contain"
                             />
                         </div>
                     </div>
-                </div>
+                </motion.div>
 
                 {/* Partners */}
-                <div className="text-center">
-                    <h2 className="text-white text-2xl font-semibold tracking-widest uppercase mb-8">
+                <motion.div
+                    className="text-center"
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    viewport={{ once: true }}
+                >
+                    <h2 className="text-white text-4xl font-semibold tracking-widest uppercase mb-10">
                         Partners
                     </h2>
 
@@ -48,15 +67,15 @@ export default function SponsorsSection() {
                                 <Image
                                     src="/Github_logo.png"
                                     alt="GitHub Logo"
-                                    width={150}
-                                    height={80}
+                                    width={200}
+                                    height={200}
                                     className="h-auto object-contain"
                                 />
                             </div>
                         ))}
                     </Marquee>
-                </div>
+                </motion.div>
             </div>
-        </section>
+        </motion.section>
     );
 }

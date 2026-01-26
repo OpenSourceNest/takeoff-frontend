@@ -33,7 +33,7 @@ export default function Footer() {
                                     About TAKEOFF
                                 </Link>
                                 <Link
-                                    href="https://forms.gle/takeoff2026-volunteer"
+                                    href="/volunteer"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="text-brown-dark/80 hover:text-brown-dark hover:underline transition-colors text-sm md:text-base"

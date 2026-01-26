@@ -39,6 +39,7 @@ function Navbar() {
                             alt="TAKEOFF Logo"
                             width={110}
                             height={34}
+                            loading="eager"
                             className="h-8 md:h-10 w-auto"
                         />
                     </Link>
@@ -53,7 +54,7 @@ function Navbar() {
                                 Connect
                             </button>
                             <Link
-                                href="https://forms.gle/takeoff2026-volunteer"
+                                href="/volunteer"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-white hover:text-orange text-md font-medium transition-colors"

@@ -32,7 +32,7 @@ const ConnectModal: React.FC = () => {
         {
             icon: "material-symbols:volunteer-activism",
             label: "Volunteer",
-            href: "https://forms.gle/takeoff2026-volunteer"
+            href: "/volunteer"
         },
         {
             icon: "mdi:partnership",
@@ -58,7 +58,7 @@ const ConnectModal: React.FC = () => {
             <div className="relative w-full max-w-4xl bg-brown-dark rounded-[40px] overflow-hidden shadow-2xl border border-white/5 min-h-[500px] flex flex-col items-center justify-center p-8 md:p-16 animate-in zoom-in-95 fade-in duration-300">
 
                 {/* Marquee Background Layers */}
-                <div className="absolute inset-0 z-0 flex flex-col justify-around py-4 pointer-events-none opacity-5">
+                <div className="absolute inset-0 z-0 flex flex-col justify-around py-4 pointer-events-none opacity-40">
                     {[0, 1, 2, 3, 4, 5].map((row) => (
                         <Marquee
                             key={row}
@@ -67,7 +67,7 @@ const ConnectModal: React.FC = () => {
                             direction={row % 2 === 0 ? 'right' : 'left'}
                             className="overflow-hidden"
                         >
-                            <span className="text-xl md:text-2xl font-black text-white/40 tracking-widest whitespace-nowrap uppercase italic">
+                            <span className="text-xl md:text-2xl text-black-shadow tracking-[30] whitespace-nowrap uppercase">
                                 {Array(5).fill(getRowText(row)).join(" ")}
                                 <Icon icon="material-symbols:rocket-outline-rounded" className="inline mx-8 text-white/20" />
                             </span>
@@ -107,13 +107,13 @@ const ConnectModal: React.FC = () => {
                                         closeConnectModal();
                                     }
                                 }}
-                                className="group bg-cream-light hover:bg-[#FDF9F3] transition-all duration-300 rounded-[20px] p-6 flex flex-col items-center justify-center gap-4 shadow-lg hover:scale-105"
+                                className="group bg-cream-light hover:bg-[#FDF9F3] transition-all duration-300 rounded-[20px] p-4 flex flex-col items-center justify-center gap-2 shadow-lg hover:scale-105"
                             >
                                 <Icon
                                     icon={opt.icon}
                                     className="w-10 h-10 md:w-12 md:h-12 text-brown-dark group-hover:text-orange transition-colors"
                                 />
-                                <span className="text-brown-dark font-bold text-sm md:text-base leading-tight whitespace-pre-line text-center">
+                                <span className="text-brown-dark font-semibold text-sm md:text-base leading-normal whitespace-pre-line text-center">
                                     {opt.label}
                                 </span>
                             </a>

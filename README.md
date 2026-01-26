@@ -1,50 +1,169 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TAKEOFF - Open Source Nest's Flagship Event
 
-## Getting Started
+TAKEOFF is Open Source Nest's flagship annual event; celebrating real community impact, spotlighting emerging contributors, and setting the direction for the year ahead in open source.
 
-First, run the development server:
+## 🚀 Features
 
+- **Mobile-First Responsive Design**
+- **Smooth Animations**
+- **Accessibility Compliant**
+- **Performance Optimized**
+- **Modern UI**
+
+## 🛠 Tech Stack
+
+- **Framework**: Next.js 16 with App Router
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **Animations**: Framer Motion
+- **State Management**: Zustand
+- **Icons**: Material-UI Icons, Iconify
+- **Forms**: Custom form handling with validation
+- **Deployment**: Optimized for Vercel
+
+## 📁 Project Structure
+
+```
+takeoff-open-souce-nest/
+├── app/
+│   ├── components/
+│   │   ├── ui/                 # Reusable UI components
+│   │   │   ├── Button.tsx
+│   │   │   ├── CTAContainer.tsx
+│   │   │   ├── CustomSelect.tsx
+│   │   │   ├── SectionBackground.tsx
+│   │   │   └── SectionPill.tsx
+│   │   ├── AboutSection.tsx
+│   │   ├── AudienceSection.tsx
+│   │   ├── ConnectModal.tsx
+│   │   ├── CTASection.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Hero.tsx
+│   │   ├── ImpactSection.tsx
+│   │   ├── Navbar.tsx
+│   │   ├── RegisterForm.tsx
+│   │   └── SponsorsSection.tsx
+│   ├── globals.css            # Global styles and Tailwind config
+│   ├── layout.tsx             # Root layout with metadata
+│   ├── not-found.tsx          # 404 page
+│   ├── page.tsx               # Home page
+│   ├── register/              # Registration page
+│   └── store/                 # State management
+│       ├── useModalStore.ts
+│       └── useRegisterStore.ts
+├── public/                    # Static assets
+├── next.config.ts             # Next.js configuration
+├── package.json
+├── tailwind.config.js
+└── tsconfig.json
+```
+
+## 🏗 Architecture
+
+### Component Architecture
+- **Layout Components**: Navbar, Footer, ConnectModal for consistent navigation
+- **Section Components**: Modular sections (Hero, About, Impact, etc.) for easy maintenance
+- **UI Components**: Reusable elements like Button, CTAContainer for consistency
+- **Form Components**: RegisterForm with validation and state management
+
+### State Management
+- **Zustand Stores**: useModalStore for modal states, useRegisterStore for form data
+- **Local State**: React hooks for component-specific state
+
+### Styling Approach
+- **Tailwind CSS**: Utility-first CSS with custom theme colors
+- **Responsive Design**: Mobile-first approach with sm/md/lg breakpoints
+- **Dark Theme**: Consistent dark color scheme with accent colors
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+cd takeoff-open-souce-nest
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Run the development server:
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Connect to Backend
- 
-To connect the frontend to the backend, you need to configure the API URL.
- 
-1. Create a `.env.local` file in the root directory if it doesn't exist.
-2. Add the `NEXT_PUBLIC_API_URL` variable pointing to your backend events endpoint.
- 
-```bash
-NEXT_PUBLIC_API_URL=http://localhost:4000/api/events
 ```
- 
-The application uses Next.js rewrites to proxy requests from `/api/events/*` to the configured backend URL to avoid CORS issues.
- 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
+## 🔧 Available Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🎨 Design System
 
-## Deploy on Vercel
+### Colors
+- Primary: Dark theme with cream/beige accents
+- Accent: Orange (#A9500C) for highlights
+- Text: White on dark backgrounds
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Typography
+- Font: Montserrat (weights 400-800)
+- Responsive sizing: Smaller on mobile, larger on desktop
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# takeoff-frontend
+### Animations
+- Framer Motion for smooth transitions
+- Scroll-triggered animations
+- Interactive hover effects
+
+## ♿ Accessibility
+
+- Semantic HTML structure
+- ARIA labels and roles
+- Keyboard navigation support
+- Screen reader compatibility
+- Color contrast compliance
+
+## 📱 Mobile Optimization
+
+- Mobile-first responsive design
+- Touch-friendly interactions
+- Optimized text sizes and spacing
+- Fast loading on mobile networks
+
+## 🚀 Performance
+
+- Next.js Image optimization
+- Code splitting and lazy loading
+- Compressed assets
+- Efficient bundling with SWC
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## 📄 License
+
+This project is part of Open Source Nest's initiatives.
+
+## 📞 Contact
+
+For questions or support, contact the Open Source Nest team at info@opensourcenest.org
+
+---
+
+Built for the open source community
