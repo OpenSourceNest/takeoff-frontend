@@ -1,47 +1,75 @@
-import Image from "next/image";
+"use client";
+
 import Link from "next/link";
+import CTAContainer from "./ui/CTAContainer";
+import Button from "./ui/Button";
+import { motion } from "framer-motion";
 
 export default function CTASection() {
     return (
-        <section className="bg-brown-dark py-12 px-6 relative overflow-hidden">
-            <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-8">
-                {/* Rocket Image */}
-                <div className="shrink-0 w-40 h-40 relative">
-                    <Image
-                        src="/rocket.png"
-                        alt="Rocket"
-                        width={160}
-                        height={160}
-                        className="w-full h-full object-contain"
-                    />
-                </div>
-
-                {/* CTA Content */}
-                <div className="text-center md:text-left flex-1">
-                    <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
-                        Ready to <span className="text-highlight-orange">TAKEOFF</span>?
-                    </h2>
-                    <p className="text-cream/80 text-sm mb-6">
-                        Be part of the moment that closes one chapter, and<br />
-                        launches the next.
-                    </p>
-
-                    {/* CTA Buttons */}
-                    <div className="flex gap-4 justify-center md:justify-start">
-                        <Link
-                            href="#register"
-                            className="bg-black text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-black/80 transition-colors"
+        <section className="bg-black py-6 sm:py-10 px-6">
+            <div className="max-w-6xl mx-auto">
+                <CTAContainer className="rounded-[30px] flex items-center justify-center px-6 py-8 sm:py-12">
+                    <motion.div
+                        className="text-center flex flex-col items-center md:py-10"
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        viewport={{ once: true }}
+                    >
+                        {/* Headline */}
+                        <motion.h2
+                            className="md:text-4xl text-3xl mb-3 font-bold text-white leading-relaxed"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.2 }}
+                            viewport={{ once: true }}
                         >
-                            Register
-                        </Link>
-                        <Link
-                            href="#volunteer"
-                            className="bg-transparent border border-white text-white px-6 py-2 rounded-full text-sm font-medium hover:bg-white/10 transition-colors"
+                            Ready to <span className="text-highlight-orange">TAKEOFF?</span>
+                        </motion.h2>
+
+                        {/* Subheadline */}
+                        <motion.p
+                            className="md:text-2xl text-xl text-white mb-10 max-w-md leading-tight"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.4 }}
+                            viewport={{ once: true }}
                         >
-                            Volunteer
-                        </Link>
-                    </div>
-                </div>
+                            Be part of the moment that closes one chapter, and launches the next.
+                        </motion.p>
+
+                        {/* CTA Buttons */}
+                        <motion.div
+                            className="flex flex-row gap-6"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.6 }}
+                            viewport={{ once: true }}
+                        >
+                            <Link href="/register">
+                                <Button
+                                    rounded="20px"
+                                    className="bg-brown-medium text-brown-dark text-bold text-xl font-medium hover:bg-brown-dark hover:text-white transition-all text-center"
+                                >
+                                    Register
+                                </Button>
+                            </Link>
+                            <Link
+                                href="/volunteer"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <Button
+                                    rounded="20px"
+                                    className="bg-brown-medium text-brown-dark text-bold text-xl font-medium hover:bg-brown-dark hover:text-white transition-all text-center"
+                                >
+                                    Volunteer
+                                </Button>
+                            </Link>
+                        </motion.div>
+                    </motion.div>
+                </CTAContainer>
             </div>
         </section>
     );

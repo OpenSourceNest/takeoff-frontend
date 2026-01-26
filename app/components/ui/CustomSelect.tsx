@@ -18,7 +18,6 @@ interface CustomSelectProps {
 }
 
 export default function CustomSelect({
-    id,
     options,
     value,
     onChange,

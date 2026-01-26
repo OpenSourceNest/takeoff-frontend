@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
         destination: `${process.env.BACKEND_URL || 'http://localhost:4500'}/api/:path*`, // Proxy to Backend
       },
     ];
+  images: {
+    qualities: [100, 75],
+  },
+  compress: true,
+  experimental: {
+    optimizeCss: true,
   },
 };
 
