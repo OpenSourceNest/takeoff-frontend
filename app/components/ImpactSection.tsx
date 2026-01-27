@@ -164,7 +164,7 @@ export default function ImpactSection() {
                     {/* Mobile Navigation Buttons */}
                     <button
                         onClick={() => swiperRef.current?.slidePrev()}
-                        className={`md:hidden flex absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-orange rounded-full items-center justify-center hover:bg-[#D15418]/90 transition-all shadow-lg ${isBeginning ? 'opacity-0 invisible' : 'opacity-100 visible'}`}
+                        className={`md:hidden flex absolute -left-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-orange rounded-full items-center justify-center transition-all shadow-lg ${isBeginning ? 'opacity-0 invisible' : 'opacity-100 visible'}`}
                         aria-label="Previous slide"
                     >
                         <KeyboardArrowLeftIcon className="text-white" style={{ fontSize: 24 }} />
@@ -172,7 +172,7 @@ export default function ImpactSection() {
 
                     <button
                         onClick={() => swiperRef.current?.slideNext()}
-                        className="md:hidden flex absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-orange rounded-full items-center justify-center hover:bg-[#D15418]/90 transition-colors shadow-lg"
+                        className="md:hidden flex absolute -right-2 top-1/2 -translate-y-1/2 z-10 w-10 h-10 bg-orange rounded-full items-center justify-center transition-colors shadow-lg"
                         aria-label="Next slide"
                     >
                         <KeyboardArrowRightIcon className="text-white" style={{ fontSize: 24 }} />
@@ -181,7 +181,7 @@ export default function ImpactSection() {
                     {/* Desktop Navigation Buttons */}
                     <button
                         onClick={() => swiperRef.current?.slidePrev()}
-                        className={`hidden md:flex absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-orange rounded-full items-center justify-center hover:bg-[#D15418]/90 transition-all shadow-lg ${isBeginning ? 'opacity-0 invisible' : 'opacity-100 visible'}`}
+                        className={`hidden md:flex absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-orange rounded-full items-center justify-center transition-all shadow-lg ${isBeginning ? 'opacity-0 invisible' : 'opacity-100 visible'}`}
                         aria-label="Previous slide"
                     >
                         <KeyboardArrowLeftIcon className="text-white" style={{ fontSize: 32 }} />
@@ -189,7 +189,7 @@ export default function ImpactSection() {
 
                     <button
                         onClick={() => swiperRef.current?.slideNext()}
-                        className="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-orange rounded-full items-center justify-center hover:bg-[#D15418]/90 transition-colors shadow-lg"
+                        className="hidden md:flex absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-12 h-12 bg-orange rounded-full items-center justify-center transition-colors shadow-lg"
                         aria-label="Next slide"
                     >
                         <KeyboardArrowRightIcon className="text-white" style={{ fontSize: 32 }} />
