@@ -22,7 +22,7 @@ export default function SponsorsSection() {
                     transition={{ duration: 0.8, delay: 0.2 }}
                     viewport={{ once: true }}
                 >
-                    <h2 className="text-white text-4xl font-semibold tracking-widest uppercase mb-10">
+                    <h2 className="text-white text-2xl md:text-4xl font-semibold tracking-widest uppercase mb-10">
                         Sponsors
                     </h2>
 
@@ -32,9 +32,9 @@ export default function SponsorsSection() {
                             <Image
                                 src="/Github_logo.png"
                                 alt="GitHub Logo"
-                                width={250}
-                                height={250}
-                                className="h-auto object-contain"
+                                width={170}
+                                height={170}
+                                className="w-[170px] md:w-[220px] h-auto object-contain"
                             />
                         </div>
                     </div>
@@ -48,7 +48,7 @@ export default function SponsorsSection() {
                     transition={{ duration: 0.8, delay: 0.4 }}
                     viewport={{ once: true }}
                 >
-                    <h2 className="text-white text-4xl font-semibold tracking-widest uppercase mb-10">
+                    <h2 className="text-white text-2xl md:text-4xl font-semibold tracking-widest uppercase mb-10">
                         Partners
                     </h2>
 
@@ -59,7 +59,7 @@ export default function SponsorsSection() {
                         pauseOnHover={true}
                         className="py-4"
                     >
-                        {[1, 2, 3, 4, 5, 6].map((item) => (
+                        {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
                             <div
                                 key={item}
                                 className="flex flex-col items-center mx-12"
@@ -67,9 +67,9 @@ export default function SponsorsSection() {
                                 <Image
                                     src="/Github_logo.png"
                                     alt="GitHub Logo"
-                                    width={200}
-                                    height={200}
-                                    className="h-auto object-contain"
+                                    width={120}
+                                    height={120}
+                                    className="w-[120px] md:w-[180px] h-auto object-contain"
                                 />
                             </div>
                         ))}
