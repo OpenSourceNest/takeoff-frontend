@@ -3,5 +3,7 @@
     "name": "takeoff-frontend",
     "pages_build_output_dir": "./dist",
     "compatibility_date": "2026-01-28",
-    "main": "dist/index.js"
+    "assets": {
+        "directory": "dist/index.js"
+    }
 }
