@@ -1,9 +1,13 @@
 {
-    "$schema": "node_modules/wrangler/config-schema.json",
-    "name": "takeoff-frontend",
-    "pages_build_output_dir": "./dist",
+    "$schema": "./node_modules/wrangler/config-schema.json",
+    "main": ".open-next/worker.js",
+    "name": "task-manager",
     "compatibility_date": "2026-01-28",
+    "compatibility_flags": [
+        "nodejs_compat"
+    ],
     "assets": {
-        "directory": "dist/index.js"
+        "directory": ".open-next/assets",
+        "binding": "ASSETS"
     }
 }
