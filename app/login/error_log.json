@@ -1,0 +1,23 @@
+[
+    {
+        "path": "c:\\Users\\HomePC\\Desktop\\Takeoff\\takeoff-frontend\\app\\login\\layout.tsx",
+        "message": "Cannot find module './components/Navbar' or its corresponding type declarations.",
+        "severity": "error",
+        "startLine": 4,
+        "endLine": 4
+    },
+    {
+        "path": "c:\\Users\\HomePC\\Desktop\\Takeoff\\takeoff-frontend\\app\\login\\layout.tsx",
+        "message": "Cannot find module './components/Footer' or its corresponding type declarations.",
+        "severity": "error",
+        "startLine": 5,
+        "endLine": 5
+    },
+    {
+        "path": "c:\\Users\\HomePC\\Desktop\\Takeoff\\takeoff-frontend\\app\\login\\layout.tsx",
+        "message": "Cannot find module './components/ConnectModal' or its corresponding type declarations.",
+        "severity": "error",
+        "startLine": 6,
+        "endLine": 6
+    }
+]
