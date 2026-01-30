@@ -14,6 +14,8 @@ interface AuthState {
     login: (email: string, password: string) => Promise<any>;
     logout: () => void;
     setUser: (user: User, token: string) => void;
+    hydrated: boolean;
+    setHydrated: () => void;
 }
 
 export const useAuthStore = create<AuthState>()(
@@ -70,14 +72,20 @@ export const useAuthStore = create<AuthState>()(
                     isAuthenticated: true,
                 });
             },
+
+            // Hydration logic
+            hydrated: false,
+            setHydrated: () => set({ hydrated: true }),
         }),
         {
             name: 'auth-storage',
             partialize: (state) => ({
                 user: state.user,
                 isAuthenticated: state.isAuthenticated
-                // We don't need to persist 'token' anymore as it's a cookie
             }),
+            onRehydrateStorage: () => (state) => {
+                state?.setHydrated();
+            }
         }
     )
 );

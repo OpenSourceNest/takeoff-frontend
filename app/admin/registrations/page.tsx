@@ -54,9 +54,13 @@ export default function RegistrationsPage() {
                 const data = await res.json();
                 console.log("DEBUG: Data received:", data);
                 setRegistrations(data.data);
-            } catch (err: any) {
+            } catch (err: unknown) {
                 console.error("Registrations details fetch failed:", err);
-                setError(err.message);
+                if (err instanceof Error) {
+                    setError(err.message);
+                } else {
+                    setError("An unknown error occurred");
+                }
             } finally {
                 setLoading(false);
             }
