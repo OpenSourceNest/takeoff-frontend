@@ -19,7 +19,7 @@ export default function RegisterForm() {
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { id, value } = e.target;
-        setFormData(id as keyof FormData, value);
+        setFormData(id as keyof RegisterFormData, value);
     };
 
     const handleSelectChange = (id: string, value: string | string[]) => {
@@ -31,9 +31,9 @@ export default function RegisterForm() {
         setStatus('loading');
         setErrorMessage('');
 
-        if (!formData.firstName.trim() || !formData.lastName.trim() || !formData.email.trim()) {
+        if (!formData.firstName.trim() || !formData.lastName.trim() || !formData.gender || !formData.email.trim()) {
             setStatus('error');
-            setErrorMessage('Please fill in all required fields (Name, Email).');
+            setErrorMessage('Please fill in all required fields (First Name, Last Name, Gender, Email).');
             return;
         }
 
@@ -49,6 +49,7 @@ export default function RegisterForm() {
             const payload = {
                 firstName: formData.firstName,
                 lastName: formData.lastName,
+                gender: formData.gender,
                 email: formData.email,
                 location: formData.location || 'Unknown',
                 // Use description array directly, or default to ['OTHER'] if empty
@@ -85,6 +86,7 @@ export default function RegisterForm() {
             }
 
             if (!res.ok) {
+                console.error('Backend error response:', data);
                 throw new Error(data.message || 'Registration failed. Please check your details.');
             }
 
@@ -152,7 +154,22 @@ export default function RegisterForm() {
                         />
                     </div>
 
-                    {/* 3. Email */}
+                    {/* 3. Gender */}
+                    <div className="space-y-4">
+                        <label htmlFor="gender" className="block text-base font-medium text-white/90">What's your gender? *</label>
+                        <CustomSelect
+                            id="gender"
+                            options={[
+                                { value: 'MALE', label: 'Male' },
+                                { value: 'FEMALE', label: 'Female' }
+                            ]}
+                            value={formData.gender}
+                            onChange={(val) => handleSelectChange('gender', val)}
+                            placeholder="Select gender"
+                        />
+                    </div>
+
+                    {/* 4. Email */}
                     <div className="space-y-4">
                         <label htmlFor="email" className="block text-base font-medium text-white/90">What&apos;s your email address?</label>
                         <input
@@ -166,7 +183,7 @@ export default function RegisterForm() {
                         />
                     </div>
 
-                    {/* 4. Location */}
+                    {/* 5. Location */}
                     <div className="space-y-4">
                         <label htmlFor="location" className="block text-base font-medium text-white/90">Where are you located (city, state, country)?</label>
                         <input
@@ -179,7 +196,7 @@ export default function RegisterForm() {
                         />
                     </div>
 
-                    {/* 5. Describe You */}
+                    {/* 6. Describe You */}
                     <div className="space-y-4">
                         <label htmlFor="description" className="block text-base font-medium text-white">Which of the following best describes you? (Select all that apply)</label>
                         <CustomSelect
@@ -235,7 +252,7 @@ export default function RegisterForm() {
                         )}
                     </div>
 
-                    {/* 6. Hear About Us */}
+                    {/* 7. Hear About Us */}
                     <div className="space-y-4">
                         <label htmlFor="source" className="block text-base font-medium text-white">How did you hear about this event?</label>
                         <CustomSelect
@@ -262,7 +279,7 @@ export default function RegisterForm() {
                         )}
                     </div>
 
-                    {/* 7. Participate Pipeline */}
+                    {/* 8. Participate Pipeline */}
                     <div className="space-y-4">
                         <label htmlFor="pipeline" className="block text-base font-medium text-white">Do you want to participate in our pipeline of open source projects?</label>
                         <CustomSelect
@@ -278,7 +295,7 @@ export default function RegisterForm() {
                         />
                     </div>
 
-                    {/* 8. Receive Updates */}
+                    {/* 9. Receive Updates */}
                     <div className="space-y-4">
                         <label htmlFor="updates" className="block text-base font-medium text-white/90">Are you interested in receiving updates about Open Source Nest?</label>
                         <CustomSelect
@@ -293,7 +310,7 @@ export default function RegisterForm() {
                         />
                     </div>
 
-                    {/* 9. Specific Topics */}
+                    {/* 10. Specific Topics */}
                     <div className="space-y-4">
                         <label htmlFor="topics" className="block text-base font-medium text-white/90">Any specific topics or technologies you&apos;re interested in for future events?</label>
                         <input
@@ -306,7 +323,7 @@ export default function RegisterForm() {
                         />
                     </div>
 
-                    {/* 10. OS Knowledge */}
+                    {/* 11. OS Knowledge */}
                     <div className="space-y-4">
                         <label htmlFor="knowledge" className="block text-base font-medium text-white">How well do you understand open source technology? (1-10 scale)</label>
                         <input
@@ -314,12 +331,15 @@ export default function RegisterForm() {
                             id="knowledge"
                             value={formData.knowledge}
                             onChange={handleChange}
-                            placeholder="Answer"
+                            placeholder="1-10"
+                            pattern="[0-9]*"
+                            inputMode="numeric"
+                            maxLength={2}
                             className="w-full bg-transparent border-b border-white px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
                         />
                     </div>
 
-                    {/* 11. Community Member */}
+                    {/* 12. Community Member */}
                     <div className="space-y-4">
                         <label htmlFor="community" className="block text-base font-medium text-white">Are you a community member of any open source projects? If yes, please specify.</label>
                         <input

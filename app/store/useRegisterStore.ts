@@ -3,6 +3,7 @@ import { create } from 'zustand';
 export interface RegisterFormData {
     firstName: string;
     lastName: string;
+    gender: string;
     email: string;
     location: string;
     description: string[];
@@ -29,6 +30,7 @@ interface RegisterState {
 const initialFormData: RegisterFormData = {
     firstName: '',
     lastName: '',
+    gender: '',
     email: '',
     location: '',
     description: [],
