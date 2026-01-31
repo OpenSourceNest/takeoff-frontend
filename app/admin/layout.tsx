@@ -9,7 +9,7 @@ import { useRouter } from 'next/navigation';
 import { useAuthStore } from '@/app/store/useAuthStore';
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
-    const { checkSession, isAuthenticated, hydrated } = useAuthStore();
+    const { checkSession, isAuthenticated, user, hydrated } = useAuthStore();
     const router = useRouter();
     const [isChecking, setIsChecking] = useState(true);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -25,10 +25,15 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
     }, [hydrated, checkSession]);
 
     useEffect(() => {
-        if (hydrated && !isChecking && !isAuthenticated) {
-            router.push('/login');
+        if (hydrated && !isChecking) {
+            if (!isAuthenticated) {
+                router.push('/login');
+            } else if (user?.role !== 'ADMIN') {
+                // If authenticated but NOT an admin, redirect to home
+                router.push('/');
+            }
         }
-    }, [hydrated, isChecking, isAuthenticated, router]);
+    }, [hydrated, isChecking, isAuthenticated, user, router]);
 
     if (!hydrated || isChecking) {
         return <AdminLoading />;
