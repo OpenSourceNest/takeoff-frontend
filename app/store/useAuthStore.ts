@@ -14,6 +14,7 @@ interface AuthState {
     login: (email: string, password: string) => Promise<any>;
     logout: () => void;
     setUser: (user: User, token: string) => void;
+    checkSession: () => Promise<void>;
     hydrated: boolean;
     setHydrated: () => void;
 }
@@ -68,9 +69,28 @@ export const useAuthStore = create<AuthState>()(
             setUser: (user: User, token: string) => {
                 set({
                     user,
-                    token,
+                    token, // Legacy/State only
                     isAuthenticated: true,
                 });
+            },
+
+            checkSession: async () => {
+                try {
+                    const res = await fetch('/api/auth/me');
+                    if (res.ok) {
+                        const data = await res.json();
+                        set({
+                            user: data.data.user,
+                            isAuthenticated: true,
+                            token: "cookie-handled"
+                        });
+                    } else {
+                        // If check fails (401), clear state
+                        set({ user: null, isAuthenticated: false, token: null });
+                    }
+                } catch (err) {
+                    set({ user: null, isAuthenticated: false, token: null });
+                }
             },
 
             // Hydration logic

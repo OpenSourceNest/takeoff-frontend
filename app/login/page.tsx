@@ -29,7 +29,14 @@ export default function LoginPage() {
         try {
             await login(email, password);
         } catch (err) {
-            setError(err instanceof Error ? err.message : 'Login failed. Please try again.');
+            // Improved error parsing
+            let message = 'Login failed. Please try again.';
+            if (err instanceof Error) {
+                message = err.message;
+            } else if (typeof err === 'string') {
+                message = err;
+            }
+            setError(message);
         } finally {
             setIsLoading(false);
         }
@@ -83,7 +90,8 @@ export default function LoginPage() {
 
                         {/* Error Message */}
                         {error && (
-                            <div className="p-4 bg-orange/10 border border-orange/30 rounded-lg text-white text-sm">
+                            <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-500 text-sm flex items-center gap-2">
+                                <span className="text-lg">⚠️</span>
                                 {error}
                             </div>
                         )}
@@ -98,6 +106,16 @@ export default function LoginPage() {
                             {isLoading ? 'Signing in...' : 'Sign In'}
                         </Button>
                     </form>
+
+                    {/* Sign Up Link */}
+                    <div className="mt-8 text-center">
+                        <p className="text-white/60">
+                            Don't have an account?{' '}
+                            <a href="/signup" className="text-orange hover:text-white transition-colors font-medium">
+                                Sign up
+                            </a>
+                        </p>
+                    </div>
                 </div>
             </SectionBackground>
         </div>

@@ -9,11 +9,29 @@ export default function CheckInPage() {
     const handleCheckIn = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            const res = await fetch(`/api/events/${registrationId}/checkin`, { method: 'POST' });
-            if (!res.ok) throw new Error('Check-in failed');
+            // Attempt to handle if user scanned a JSON QR code
+            let finalId = registrationId.trim();
+            if (finalId.startsWith('{') && finalId.endsWith('}')) {
+                try {
+                    const parsed = JSON.parse(finalId);
+                    if (parsed.id) finalId = parsed.id;
+                } catch (e) {
+                    console.log("Failed to parse QR JSON, using raw value");
+                }
+            }
+
+            const res = await fetch(`/api/events/registrations/${finalId}/checkin`, { method: 'POST' });
+
+            if (!res.ok) {
+                const errData = await res.json().catch(() => ({}));
+                console.error("Checkin Failed:", res.status, errData);
+                throw new Error('Check-in failed');
+            }
+
             setStatus('success');
             setRegistrationId('');
         } catch (error) {
+            console.error(error);
             setStatus('error');
         }
     };

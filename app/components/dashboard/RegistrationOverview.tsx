@@ -22,7 +22,7 @@ export default function RegistrationOverview({ stats }: { stats: RegistrationSta
         },
         {
             label: "Capacity Filled",
-            value: `${stats.percentageFilled}%`,
+            value: `${Number(stats.percentageFilled).toFixed(2)}%`,
             subtext: `${stats.remainingSpots} spots remaining`,
             color: "text-orange"
         },

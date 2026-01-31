@@ -14,6 +14,14 @@ export interface VelocityData {
 export interface DemographicsData {
     professions: { name: string; value: number }[];
     genders: { name: string; value: number }[];
+    locations: { name: string; value: number }[];
+    referrals: { name: string; value: number }[];
+    statuses: { name: string; value: number }[];
+    checkins: { name: string; value: number }[];
+    openSource: {
+        average: string;
+        distribution: { name: string; value: number }[];
+    };
 }
 
 export const getRegistrationStats = async (): Promise<RegistrationStats> => {
