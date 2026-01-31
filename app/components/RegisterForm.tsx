@@ -45,57 +45,59 @@ export default function RegisterForm() {
         }
 
         try {
-            // Map frontend data to backend schema
             const payload = {
                 firstName: formData.firstName,
                 lastName: formData.lastName,
                 gender: formData.gender,
                 email: formData.email,
                 location: formData.location || 'Unknown',
-                // Use description array directly, or default to ['OTHER'] if empty
                 profession: formData.description.length > 0 ? formData.description : ['OTHER'],
                 professionOther: formData.description.includes('OTHER') ? formData.professionOther : null,
                 referralSource: formData.source || 'OTHER',
                 referralSourceOther: formData.source === 'OTHER' ? formData.sourceOther : null,
                 pipelineInterest: formData.pipeline || 'NOT_SURE',
-                newsletterSub: formData.updates === 'YES', // Note: Check this mapping, previous was 'yes' string check
+                newsletterSub: formData.updates === 'yes',
                 openSourceKnowledge: Number(formData.knowledge) || 1,
                 isCommunityMember: !!formData.community,
                 communityDetails: formData.community || null,
                 interests: formData.topics || null
             };
 
-            // Use relative path - Next.js rewrite will handle the proxy to backend
             const res = await fetch('/api/events/register', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(payload),
             });
 
+            const text = await res.text();
             let data;
-            const contentType = res.headers.get("content-type");
-            if (contentType && contentType.indexOf("application/json") !== -1) {
-                data = await res.json();
-            } else {
-                // Handle non-JSON response (likely 500 text/plain)
-                const text = await res.text();
-                console.error("Non-JSON Response:", text);
-                throw new Error("Unable to connect to the server. Please try again later.");
+            try {
+                data = JSON.parse(text);
+            } catch (err) {
+                console.error('Failed to parse response:', text.slice(0, 200));
+                // Throw a user-friendly error that will be caught by the outer catch
+                throw new Error('Server error: Unable to process response. Please try again.');
             }
 
             if (!res.ok) {
-                console.error('Backend error response:', data);
-                throw new Error(data.message || 'Registration failed. Please check your details.');
+                throw new Error(data.message || 'Registration failed. Please try again.');
             }
 
             setStatus('success');
-        } catch (error: unknown) {
+        } catch (error) {
             console.error('Registration error:', error);
             setStatus('error');
-            // Show user-friendly message if it's a parsing/network error
-            const message = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
+
+            // Provide user-friendly error message
+            let message = 'Unable to connect to the server. Please try again.';
+            if (error instanceof Error) {
+                // Don't show technical JSON parsing errors to users
+                if (error.message.includes('Unexpected token') || error.message.includes('JSON')) {
+                    message = 'Server error. Please try again or contact support.';
+                } else {
+                    message = error.message;
+                }
+            }
             setErrorMessage(message);
         }
     };

@@ -12,10 +12,10 @@ export default function DemographicsCharts({ data }: { data: DemographicsData | 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
 
             {/* 1. Professions (Horizontal Bar) - Solves overflow issue */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 xl:col-span-1">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 xl:col-span-1 min-w-0">
                 <h3 className="text-lg font-bold text-white mb-6">Top Professions</h3>
                 <div className="h-[250px] w-full">
-                    <ResponsiveContainer width="100%" height="100%">
+                    <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                         <BarChart data={data.professions} layout="vertical" margin={{ left: 10 }}>
                             <XAxis type="number" hide />
                             <YAxis
@@ -34,10 +34,10 @@ export default function DemographicsCharts({ data }: { data: DemographicsData | 
             </div>
 
             {/* 2. Gender (Pie) */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 min-w-0">
                 <h3 className="text-lg font-bold text-white mb-6">Gender Distribution</h3>
                 <div className="h-[250px] w-full">
-                    <ResponsiveContainer width="100%" height="100%">
+                    <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                         <PieChart>
                             <Pie
                                 data={data.genders}
@@ -60,10 +60,10 @@ export default function DemographicsCharts({ data }: { data: DemographicsData | 
             </div>
 
             {/* 3. Check-in Status (Pie) */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 min-w-0">
                 <h3 className="text-lg font-bold text-white mb-6">Check-in Status</h3>
                 <div className="h-[250px] w-full">
-                    <ResponsiveContainer width="100%" height="100%">
+                    <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                         <PieChart>
                             <Pie
                                 data={data.checkins}
@@ -84,13 +84,13 @@ export default function DemographicsCharts({ data }: { data: DemographicsData | 
             </div>
 
             {/* 4. Open Source Knowledge (Bar) */}
-            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 xl:col-span-2">
+            <div className="bg-white/5 border border-white/10 rounded-2xl p-6 xl:col-span-2 min-w-0">
                 <div className="flex justify-between items-center mb-6">
                     <h3 className="text-lg font-bold text-white">Open Source Knowledge</h3>
                     <div className="text-orange font-mono text-sm">Avg Score: {data.openSource.average}/10</div>
                 </div>
                 <div className="h-[200px] w-full">
-                    <ResponsiveContainer width="100%" height="100%">
+                    <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                         <BarChart data={data.openSource.distribution}>
                             <CartesianGrid strokeDasharray="3 3" stroke="#333" vertical={false} />
                             <XAxis dataKey="name" stroke="#666" fontSize={12} tickLine={false} axisLine={false} />

@@ -2,9 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { useAuthStore } from '@/app/store/useAuthStore';
+import { useToast } from "@/app/context/ToastContext";
 
 export default function SettingsPage() {
-    const { token } = useAuthStore();
     const [targetCapacity, setTargetCapacity] = useState<number>(500);
     const [eventId, setEventId] = useState<string>('');
     const [loadingConfig, setLoadingConfig] = useState(true);
@@ -21,10 +21,9 @@ export default function SettingsPage() {
     // Fetch Event Config
     useEffect(() => {
         const fetchConfig = async () => {
-            if (!token) return;
             try {
                 const res = await fetch('/api/events/config', {
-                    headers: { 'Authorization': `Bearer ${token}` }
+                    credentials: 'include'
                 });
                 const data = await res.json();
                 if (data.success && data.data) {
@@ -38,7 +37,11 @@ export default function SettingsPage() {
             }
         };
         fetchConfig();
-    }, [token]);
+    }, []);
+
+    const { success, error } = useToast();
+
+    // ... (fetchConfig useEffect remains same)
 
     const handleSaveConfig = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -48,20 +51,20 @@ export default function SettingsPage() {
             const res = await fetch('/api/events/config', {
                 method: 'PUT',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    'Content-Type': 'application/json'
                 },
+                credentials: 'include',
                 body: JSON.stringify({ eventId, targetCapacity })
             });
             const data = await res.json();
             if (data.success) {
-                alert("Event settings updated successfully!");
+                success("Event settings updated successfully!");
             } else {
-                alert("Failed to update settings.");
+                error("Failed to update settings.");
             }
         } catch (err) {
             console.error(err);
-            alert("Error saving settings.");
+            error("Error saving settings.");
         } finally {
             setSavingConfig(false);
         }
@@ -77,9 +80,9 @@ export default function SettingsPage() {
             const res = await fetch('/api/auth/change-password', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    'Content-Type': 'application/json'
                 },
+                credentials: 'include',
                 body: JSON.stringify({ oldPassword, newPassword })
             });
             const data = await res.json();

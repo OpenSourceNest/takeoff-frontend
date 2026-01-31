@@ -1,10 +1,16 @@
+'use client';
+
 import React from 'react';
 import RegisterForm from '../components/RegisterForm';
 import { Icon } from '@iconify/react';
 import CTAContainer from '../components/ui/CTAContainer';
+import { usePageTracking } from '../hooks/usePageTracking';
 
 
 export default function RegisterPage() {
+    // Track page visits for conversion rate
+    usePageTracking('register');
+
     return (
         <div className='min-h-screen w-full flex flex-col items-center justify-start bg-transparent py-10 pt-32'>
             {/* Header Section */}
@@ -34,10 +40,15 @@ export default function RegisterPage() {
                         <Icon icon="tabler:clock" className="w-5 h-5 text-highlight-orange" />
                         <span className="font-medium">9:00 AM - 5:00 PM GMT +1</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                        <Icon icon="tabler:map-pin" className="w-5 h-5 text-highlight-orange" />
-                        <span className="font-medium text-center md:text-left">Princess Alexandria Auditorium, UNN</span>
-                    </div>
+                    <a
+                        href="https://www.google.com/maps/search/?api=1&query=Princess+Alexandria+Auditorium,+UNN"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-3 hover:opacity-80 transition-opacity cursor-pointer group"
+                    >
+                        <Icon icon="tabler:map-pin" className="w-5 h-5 text-highlight-orange group-hover:scale-110 transition-transform animate-pulse" />
+                        <span className="font-medium text-center md:text-left underline decoration-white/30 underline-offset-4">Princess Alexandria Auditorium, UNN</span>
+                    </a>
                 </div>
             </div>
 

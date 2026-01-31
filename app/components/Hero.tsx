@@ -185,10 +185,15 @@ export default function Hero() {
                             <span>Saturday, 7th February, 2026</span>
                         </div>
                         <div className="hidden sm:block w-px h-4 bg-white/10" />
-                        <div className="flex items-center gap-2">
-                            <Icon icon="tabler:map-pin" className="w-5 h-5 text-white/90" />
-                            <span>Princess Alexandria Auditorium, UNN</span>
-                        </div>
+                        <a
+                            href="https://www.google.com/maps/search/?api=1&query=Princess+Alexandria+Auditorium,+UNN"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 hover:text-orange transition-colors group cursor-pointer"
+                        >
+                            <Icon icon="tabler:map-pin" className="w-5 h-5 text-white/90 group-hover:text-orange transition-colors animate-pulse" />
+                            <span className="underline decoration-white/30 underline-offset-4 group-hover:decoration-orange">Princess Alexandria Auditorium, UNN</span>
+                        </a>
                     </motion.div>
 
                     {/* Flagship Event Badge */}

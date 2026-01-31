@@ -4,6 +4,9 @@ export interface RegistrationStats {
     percentageFilled: number;
     recentRegistrations: number;
     remainingSpots: number;
+    conversionRate: number;
+    totalVisits: number;
+    uniqueVisits: number;
 }
 
 export interface VelocityData {
@@ -25,7 +28,9 @@ export interface DemographicsData {
 }
 
 export const getRegistrationStats = async (): Promise<RegistrationStats> => {
-    const response = await fetch('/api/analytics/overview'); // Using proxy path
+    const response = await fetch('/api/analytics/overview', {
+        credentials: 'include'
+    });
     if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
         console.error(`Stats fetch failed: ${response.status} ${response.statusText}`, errorData);
@@ -36,7 +41,9 @@ export const getRegistrationStats = async (): Promise<RegistrationStats> => {
 };
 
 export const getRegistrationVelocity = async (days = 30): Promise<VelocityData[]> => {
-    const response = await fetch(`/api/analytics/velocity?days=${days}`);
+    const response = await fetch(`/api/analytics/velocity?days=${days}`, {
+        credentials: 'include'
+    });
     if (!response.ok) {
         console.error(`Velocity fetch failed: ${response.status} ${response.statusText}`);
         throw new Error('Failed to fetch velocity data');
@@ -46,11 +53,33 @@ export const getRegistrationVelocity = async (days = 30): Promise<VelocityData[]
 };
 
 export const getDemographics = async (): Promise<DemographicsData> => {
-    const response = await fetch('/api/analytics/demographics');
+    const response = await fetch('/api/analytics/demographics', {
+        credentials: 'include'
+    });
     if (!response.ok) {
         console.error(`Demographics fetch failed: ${response.status} ${response.statusText}`);
         throw new Error('Failed to fetch demographics');
     }
     const data = await response.json();
     return data.data;
+};
+
+export const trackPageVisit = async (page: string, sessionId: string, referrer?: string): Promise<void> => {
+    try {
+        await fetch('/api/analytics/track-visit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                page,
+                sessionId,
+                referrer,
+                userAgent: navigator.userAgent
+            })
+        });
+    } catch (error) {
+        // Silent fail for analytics to not disrupt user experience
+        console.error('Analytics tracking failed', error);
+    }
 };

@@ -10,6 +10,7 @@ import SectionBackground from '../components/ui/SectionBackground';
 export default function SignupPage() {
     const router = useRouter();
     const login = useAuthStore((state) => state.login);
+    const setUser = useAuthStore((state) => state.setUser);
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -43,14 +44,34 @@ export default function SignupPage() {
                 }),
             });
 
-            const data = await res.json();
+            const text = await res.text();
+            let data;
+
+            try {
+                // Try to parse JSON response
+                data = text ? JSON.parse(text) : {};
+            } catch (err) {
+                console.error('Failed to parse response:', text.slice(0, 200));
+                // Throw user-friendly error for HTML/non-JSON responses
+                throw new Error('Server error: Unable to process response. Please try again.');
+            }
 
             if (!res.ok) {
                 throw new Error(data.message || 'Registration failed');
             }
 
-            // Auto login after signup
-            login(data.data.token, data.data.user);
+            // Show success logic (could be a toast, but for now just console or specific UI state if requested)
+            // The user asked: "if signup successful add a created successful"
+            // We can set a success message via error/status or just rely on redirect.
+            // But since redirect is fast, maybe we delay it slightly?
+            // Actually, let's just use the setUser and redirect.
+            // Ideally we'd have a toast system. I'll rely on the redirect for now 
+            // but ensuring NO ERROR is shown is key.
+
+            // Auto login after signup (update state directly, don't call API again)
+            setUser(data.data.user, data.data.token);
+
+            alert("Registration successful! Redirecting to dashboard...");
             router.push('/admin/dashboard');
 
         } catch (err: any) {
@@ -63,6 +84,12 @@ export default function SignupPage() {
             } else if (err.message) {
                 message = err.message;
             }
+
+            // Filter out technical "Unexpected token" messages if they slip through
+            if (message.includes('Unexpected token') || message.includes('JSON')) {
+                message = 'Server error. Please try again later.';
+            }
+
             setError(message);
         } finally {
             setLoading(false);

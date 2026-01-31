@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { RegistrationStats, VelocityData, DemographicsData, getRegistrationStats, getRegistrationVelocity, getDemographics } from '@/app/lib/analytics';
 import RegistrationOverview from '@/app/components/dashboard/RegistrationOverview';
 import VelocityChart from '@/app/components/dashboard/VelocityChart';
+import ConversionFunnelChart from '@/app/components/dashboard/ConversionFunnelChart';
 import DemographicsCharts from '@/app/components/dashboard/DemographicsCharts';
 
 export default function AdminDashboardPage() {
@@ -53,13 +54,15 @@ export default function AdminDashboardPage() {
 
                     {/* Main Charts Area */}
                     <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-                        {/* Velocity Chart - Takes up 2 columns on large screens */}
-                        <div className="xl:col-span-2">
+                        {/* Velocity Chart - Takes up 2 columns */}
+                        <div className="xl:col-span-2 min-w-0">
                             <VelocityChart data={velocity} />
                         </div>
 
-                        {/* Empty slot or additional widget could go here, 
-                            for now extending velocity or leaving for check-in rate */}
+                        {/* Conversion Funnel - Takes up 1 column */}
+                        <div className="xl:col-span-1 min-w-0">
+                            <ConversionFunnelChart stats={stats} />
+                        </div>
                     </div>
 
                     {/* Demographics Row */}

@@ -15,8 +15,8 @@ export default function CheckInPage() {
                 try {
                     const parsed = JSON.parse(finalId);
                     if (parsed.id) finalId = parsed.id;
-                } catch (e) {
-                    console.log("Failed to parse QR JSON, using raw value");
+                } catch {
+                    console.warn("Failed to parse QR JSON, using raw value");
                 }
             }
 

@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 import { Icon } from '@iconify/react';
 import Button from '../components/ui/Button';
@@ -11,6 +12,7 @@ function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const { openConnectModal } = useModalStore();
     const navRef = useRef<HTMLDivElement>(null);
+    const pathname = usePathname();
 
     // Close menu when clicking outside
     useEffect(() => {
@@ -27,6 +29,9 @@ function Navbar() {
         };
     }, [isOpen]);
 
+    // Hide Navbar on admin pages
+    if (pathname?.startsWith('/admin')) return null;
+
     return (
         <div ref={navRef}>
             {/* Header Area - Floating Pill */}
@@ -41,6 +46,7 @@ function Navbar() {
                             height={34}
                             loading="eager"
                             className="h-8 md:h-10 w-auto"
+                            style={{ width: 'auto' }}
                         />
                     </Link>
 

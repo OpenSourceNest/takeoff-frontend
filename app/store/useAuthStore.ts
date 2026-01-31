@@ -11,7 +11,7 @@ interface AuthState {
     user: User | null;
     token: string | null;
     isAuthenticated: boolean;
-    login: (email: string, password: string) => Promise<any>;
+    login: (email: string, password: string) => Promise<unknown>;
     logout: () => void;
     setUser: (user: User, token: string) => void;
     checkSession: () => Promise<void>;
