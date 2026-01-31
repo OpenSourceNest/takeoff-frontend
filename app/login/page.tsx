@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuthStore } from '../store/useAuthStore';
 import Button from '../components/ui/Button';
 import SectionBackground from '../components/ui/SectionBackground';
+import { Icon } from '@iconify/react';
 
 export default function LoginPage() {
     const router = useRouter();
@@ -91,7 +92,7 @@ export default function LoginPage() {
                         {/* Error Message */}
                         {error && (
                             <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-lg text-red-500 text-sm flex items-center gap-2">
-                                <span className="text-lg">⚠️</span>
+                                <Icon icon="tabler:alert-triangle" className="w-5 h-5" />
                                 {error}
                             </div>
                         )}

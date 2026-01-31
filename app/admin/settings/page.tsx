@@ -98,8 +98,14 @@ export default function SettingsPage() {
                 setShowPasswordModal(false);
                 setPasswordSuccess('');
             }, 2000);
-        } catch (err: any) {
-            setPasswordError(err.message);
+        } catch (err) {
+            let message = 'Failed to change password';
+            if (err instanceof Error) {
+                message = err.message;
+            } else if (typeof err === 'object' && err !== null && 'message' in err) {
+                message = String((err as { message: unknown }).message);
+            }
+            setPasswordError(message);
         } finally {
             setSavingPassword(false);
         }

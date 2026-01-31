@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from 'react';
+import { Icon } from '@iconify/react';
 
 export type ToastType = 'success' | 'error' | 'info';
 
@@ -39,9 +40,9 @@ export default function Toast({ toast, onClose }: ToastProps) {
     };
 
     const icons = {
-        success: '✅',
-        error: '⚠️',
-        info: 'ℹ️'
+        success: 'tabler:check',
+        error: 'tabler:alert-triangle',
+        info: 'tabler:info-circle'
     };
 
     return (
@@ -53,7 +54,7 @@ export default function Toast({ toast, onClose }: ToastProps) {
                 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}
             `}
         >
-            <span className="text-lg">{icons[toast.type]}</span>
+            <Icon icon={icons[toast.type]} className="w-6 h-6" />
             <span>{toast.message}</span>
             <button
                 onClick={() => {

@@ -11,7 +11,6 @@ export default function AdminDashboardPage() {
     const [stats, setStats] = useState<RegistrationStats | null>(null);
     const [velocity, setVelocity] = useState<VelocityData[] | null>(null);
     const [demographics, setDemographics] = useState<DemographicsData | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -27,8 +26,6 @@ export default function AdminDashboardPage() {
                 setDemographics(demogData);
             } catch (error) {
                 console.error('Failed to fetch analytics:', error);
-            } finally {
-                setIsLoading(false);
             }
         };
 

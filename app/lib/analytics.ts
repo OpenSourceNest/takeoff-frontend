@@ -83,3 +83,53 @@ export const trackPageVisit = async (page: string, sessionId: string, referrer?:
         console.error('Analytics tracking failed', error);
     }
 };
+
+export interface FilteredRegistrationData {
+    totalCount: number;
+    registrations: any[];
+    breakdowns: {
+        gender: { name: string; count: number }[];
+        checkedIn: { name: string; count: number }[];
+        newsletterSub: { name: string; count: number }[];
+        profession: { name: string; count: number }[];
+    };
+}
+
+export const getFilteredRegistrations = async (filters: {
+    gender?: string;
+    profession?: string[];
+    checkedIn?: boolean;
+    newsletterSub?: boolean;
+}): Promise<FilteredRegistrationData> => {
+    const params = new URLSearchParams();
+
+    if (filters.gender && filters.gender !== 'all') {
+        params.append('gender', filters.gender);
+    }
+
+    if (filters.profession && filters.profession.length > 0) {
+        params.append('profession', filters.profession.join(','));
+    }
+
+    if (filters.checkedIn !== undefined) {
+        params.append('checkedIn', String(filters.checkedIn));
+    }
+
+    if (filters.newsletterSub !== undefined) {
+        params.append('newsletterSub', String(filters.newsletterSub));
+    }
+
+    const url = `/api/analytics/filtered?${params.toString()}`;
+
+    const response = await fetch(url, {
+        credentials: 'include'
+    });
+
+    if (!response.ok) {
+        console.error(`Filtered registrations fetch failed: ${response.status} ${response.statusText}`);
+        throw new Error('Failed to fetch filtered registrations');
+    }
+
+    const data = await response.json();
+    return data.data;
+};

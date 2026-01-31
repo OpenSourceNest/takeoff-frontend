@@ -5,6 +5,8 @@ import { useAuthStore } from '@/app/store/useAuthStore';
 import { useToast } from "@/app/context/ToastContext";
 import { Icon } from '@iconify/react';
 import NextImage from 'next/image';
+import FilterPanel from '@/app/components/dashboard/FilterPanel';
+import { getFilteredRegistrations } from '@/app/lib/analytics';
 
 interface Registration {
     id: string;
@@ -36,13 +38,21 @@ interface Registration {
 
 export default function RegistrationsPage() {
     const [registrations, setRegistrations] = useState<Registration[]>([]);
+    const [allRegistrations, setAllRegistrations] = useState<Registration[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedQr, setSelectedQr] = useState<string | null>(null);
     const [selectedRegistration, setSelectedRegistration] = useState<Registration | null>(null);
-    const [showToast, setShowToast] = useState(false);
     const { token, hydrated } = useAuthStore();
+
+    // Filter State
+    const [filters, setFilters] = useState({
+        gender: 'all',
+        profession: [] as string[],
+        checkedIn: 'all',
+        newsletterSub: 'all'
+    });
 
     // Pagination State
     const [currentPage, setCurrentPage] = useState(1);
@@ -61,22 +71,15 @@ export default function RegistrationsPage() {
         success("ID copied to clipboard!");
     };
 
+    // Fetch all registrations (for total count)
     useEffect(() => {
         if (!hydrated) return;
 
-        const fetchRegistrations = async () => {
-            // Need token (handled by layout/middleware usually, but good to check)
-            if (!token) {
-                // checking session in layout handles redirect, but we might be in transition
-                // so just don't fetch yet
-            }
+        const fetchAllRegistrations = async () => {
+            if (!token) return;
 
             try {
-                const endpoint = searchQuery.trim()
-                    ? `/api/events/search?search=${encodeURIComponent(searchQuery)}`
-                    : '/api/events/registrations';
-
-                const res = await fetch(endpoint, {
+                const res = await fetch('/api/events/registrations', {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -86,16 +89,98 @@ export default function RegistrationsPage() {
                 });
 
                 const data = await res.json();
-
                 if (data.success) {
-                    setRegistrations(data.data);
-                    setError('');
-                } else {
-                    // If 401/403, might be session issue
-                    if (res.status === 401 || res.status === 403) {
-                        setError("SESSION_EXPIRED");
+                    setAllRegistrations(data.data);
+                }
+            } catch (err) {
+                console.error(err);
+            }
+        };
+
+        fetchAllRegistrations();
+    }, [token, hydrated]);
+
+    // Fetch filtered registrations based on searchQuery and filters
+    useEffect(() => {
+        if (!hydrated) return;
+
+        const fetchRegistrations = async () => {
+            if (!token) return;
+
+            try {
+                // If there's a search query, use the search endpoint
+                if (searchQuery.trim()) {
+                    const res = await fetch(`/api/events/search?search=${encodeURIComponent(searchQuery)}`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        },
+                        credentials: 'include'
+                    });
+
+                    const data = await res.json();
+                    if (data.success) {
+                        setRegistrations(data.data);
+                        setError('');
                     } else {
-                        setError(data.message || 'Failed to fetch registrations');
+                        if (res.status === 401 || res.status === 403) {
+                            setError("SESSION_EXPIRED");
+                        } else {
+                            setError(data.message || 'Failed to fetch registrations');
+                        }
+                    }
+                } else {
+                    // Use filtered endpoint if any filters are active
+                    const hasActiveFilters = filters.gender !== 'all' ||
+                        filters.profession.length > 0 ||
+                        filters.checkedIn !== 'all' ||
+                        filters.newsletterSub !== 'all';
+
+                    if (hasActiveFilters) {
+                        const parsedFilters: any = {};
+
+                        if (filters.gender !== 'all') {
+                            parsedFilters.gender = filters.gender;
+                        }
+
+                        if (filters.profession.length > 0) {
+                            parsedFilters.profession = filters.profession;
+                        }
+
+                        if (filters.checkedIn !== 'all') {
+                            parsedFilters.checkedIn = filters.checkedIn === 'true';
+                        }
+
+                        if (filters.newsletterSub !== 'all') {
+                            parsedFilters.newsletterSub = filters.newsletterSub === 'true';
+                        }
+
+                        const data = await getFilteredRegistrations(parsedFilters);
+                        setRegistrations(data.registrations);
+                        setError('');
+                    } else {
+                        // No filters, use regular endpoint
+                        const res = await fetch('/api/events/registrations', {
+                            method: 'GET',
+                            headers: {
+                                'Authorization': `Bearer ${token}`,
+                                'Content-Type': 'application/json'
+                            },
+                            credentials: 'include'
+                        });
+
+                        const data = await res.json();
+                        if (data.success) {
+                            setRegistrations(data.data);
+                            setError('');
+                        } else {
+                            if (res.status === 401 || res.status === 403) {
+                                setError("SESSION_EXPIRED");
+                            } else {
+                                setError(data.message || 'Failed to fetch registrations');
+                            }
+                        }
                     }
                 }
             } catch (err) {
@@ -112,7 +197,7 @@ export default function RegistrationsPage() {
         }, 500);
 
         return () => clearTimeout(debounce);
-    }, [token, hydrated, searchQuery]);
+    }, [token, hydrated, searchQuery, filters]);
 
     const handleViewQR = async (id: string) => {
         try {
@@ -165,7 +250,7 @@ export default function RegistrationsPage() {
             <div className="flex flex-col items-center justify-center min-h-[400px] text-center p-8">
                 <div className="bg-red-500/10 border border-red-500/20 rounded-2xl p-8 max-w-md w-full backdrop-blur-sm">
                     <div className="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <span className="text-2xl">🔒</span>
+                        <Icon icon="heroicons:lock-closed" className="text-2xl text-red-500" />
                     </div>
                     <h3 className="text-xl font-bold text-white mb-2">Session Expired</h3>
                     <p className="text-white/60 mb-6">Your session has expired. Please log in again to view registrations.</p>
@@ -184,7 +269,7 @@ export default function RegistrationsPage() {
         return (
             <div className="p-8">
                 <div className="bg-red-500/10 border border-red-500/20 text-red-400 p-4 rounded-lg flex items-center gap-3">
-                    <span>⚠️</span>
+                    <Icon icon="heroicons:exclamation-triangle" className="text-xl" />
                     <span>Error: {error}</span>
                 </div>
             </div>
@@ -196,7 +281,7 @@ export default function RegistrationsPage() {
             <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-6">
                 <h1 className="text-3xl font-bold text-white">Registrations</h1>
                 <div className="relative w-full md:w-auto">
-                    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40">🔍</span>
+                    <Icon icon="heroicons:magnifying-glass" className="absolute left-3 top-1/2 -translate-y-1/2 text-white/40" />
                     <input
                         type="text"
                         placeholder="Search attendees..."
@@ -205,6 +290,16 @@ export default function RegistrationsPage() {
                         className="bg-white/5 border border-white/10 rounded-full pl-10 pr-4 py-2 text-white placeholder-white/40 focus:outline-none focus:border-orange w-full md:w-80 transition-all"
                     />
                 </div>
+            </div>
+
+            {/* Filters */}
+            <div className="mb-6">
+                <FilterPanel
+                    filters={filters}
+                    onFilterChange={setFilters}
+                    filteredCount={registrations.length}
+                    totalCount={allRegistrations.length}
+                />
             </div>
 
             <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden min-h-[400px]">
@@ -259,7 +354,7 @@ export default function RegistrationsPage() {
                                             <td className="p-4">
                                                 {reg.checkedIn ? (
                                                     <span className="text-green-400 flex items-center gap-1">
-                                                        ✅ <span className="text-xs">Yes</span>
+                                                        <Icon icon="heroicons:check-circle" className="text-sm" /> <span className="text-xs">Yes</span>
                                                     </span>
                                                 ) : (
                                                     <span className="text-white/40">No</span>
@@ -300,8 +395,8 @@ export default function RegistrationsPage() {
                             <div className="flex flex-col items-center justify-center p-12 text-center text-white/40">
                                 {searchQuery ? (
                                     <>
-                                        <span className="text-4xl mb-3">🔍</span>
-                                        <p>No registrations found matching "{searchQuery}"</p>
+                                        <Icon icon="heroicons:magnifying-glass" className="text-4xl text-white/20 mb-3" />
+                                        <p>No registrations found matching &quot;{searchQuery}&quot;</p>
                                     </>
                                 ) : (
                                     <>
@@ -380,14 +475,14 @@ export default function RegistrationsPage() {
                                         onClick={() => handleCopyId(selectedRegistration.id)}
                                         title="Click to copy ID"
                                     >
-                                        ID: {selectedRegistration.id} 📋
+                                        ID: {selectedRegistration.id} <Icon icon="heroicons:clipboard" className="text-sm" />
                                     </div>
                                 </div>
                                 <button
                                     onClick={() => setSelectedRegistration(null)}
                                     className="text-white/40 hover:text-white transition-colors"
                                 >
-                                    ✕
+                                    <Icon icon="heroicons:x-mark" className="text-xl" />
                                 </button>
                             </div>
 
@@ -398,7 +493,7 @@ export default function RegistrationsPage() {
                                         <div className="text-white flex items-center gap-2">
                                             <span className={`px-2 py-0.5 rounded text-xs ${selectedRegistration.status === 'CONFIRMED' ? 'bg-green-500/20 text-green-400' : 'bg-yellow-500/20 text-yellow-400'
                                                 }`}>{selectedRegistration.status}</span>
-                                            {selectedRegistration.checkedIn && <span className="text-green-400 text-xs">✅ Checked In</span>}
+                                            {selectedRegistration.checkedIn && <span className="text-green-400 text-xs flex items-center gap-1"><Icon icon="heroicons:check-circle" /> Checked In</span>}
                                         </div>
                                     </div>
                                     <div>
@@ -441,7 +536,13 @@ export default function RegistrationsPage() {
                                     </div>
                                     <div>
                                         <label className="block text-white/40 text-xs uppercase tracking-wider mb-1">Newsletter</label>
-                                        <div className="text-white">{selectedRegistration.newsletterSub ? 'Subscribed ✅' : 'Not Subscribed'}</div>
+                                        <div className="text-white flex items-center gap-1">
+                                            {selectedRegistration.newsletterSub ? (
+                                                <>Subscribed <Icon icon="heroicons:check-circle" className="text-green-400" /></>
+                                            ) : (
+                                                'Not Subscribed'
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -469,9 +570,9 @@ export default function RegistrationsPage() {
                                             // Close modal after checkin if desired, or keep open to see status change
                                             // setSelectedRegistration(null); 
                                         }}
-                                        className="px-6 py-2 bg-green-600 text-white font-bold rounded-lg hover:bg-green-500 transition-colors shadow-lg shadow-green-900/20"
+                                        className="px-6 py-2 bg-green-600 text-white font-bold rounded-lg hover:bg-green-500 transition-colors shadow-lg shadow-green-900/20 flex items-center gap-2"
                                     >
-                                        ✅ Check In Attendee
+                                        <Icon icon="heroicons:check" className="text-lg" /> Check In Attendee
                                     </button>
                                 ) : (
                                     <div className="px-6 py-2 bg-green-900/30 text-green-400 font-bold rounded-lg border border-green-500/30">

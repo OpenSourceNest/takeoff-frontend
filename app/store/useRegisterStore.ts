@@ -15,7 +15,6 @@ export interface RegisterFormData {
     community: string;
     professionOther: string;
     sourceOther: string;
-    gender: string;
 }
 
 interface RegisterState {
@@ -43,7 +42,6 @@ const initialFormData: RegisterFormData = {
     community: '',
     professionOther: '',
     sourceOther: '',
-    gender: ''
 };
 
 export const useRegisterStore = create<RegisterState>((set) => ({

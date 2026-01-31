@@ -12,6 +12,7 @@ interface AuthState {
     token: string | null;
     isAuthenticated: boolean;
     login: (email: string, password: string) => Promise<unknown>;
+    register: (email: string, password: string) => Promise<unknown>;
     logout: () => void;
     setUser: (user: User, token: string) => void;
     checkSession: () => Promise<void>;
@@ -35,10 +36,17 @@ export const useAuthStore = create<AuthState>()(
                         body: JSON.stringify({ email, password }),
                     });
 
+                    // Check if response is JSON before parsing
+                    const contentType = response.headers.get('content-type');
+                    if (!contentType || !contentType.includes('application/json')) {
+                        // Server returned non-JSON (likely an error page)
+                        throw new Error('Unable to connect to the server. Please try again later.');
+                    }
+
                     const data = await response.json();
 
                     if (!response.ok) {
-                        throw new Error(data.message || 'Login failed');
+                        throw new Error(data.message || 'Invalid email or password');
                     }
 
                     set({
@@ -52,9 +60,52 @@ export const useAuthStore = create<AuthState>()(
                     return data;
                 } catch (error) {
                     console.error('Login error:', error);
-                    throw error;
+                    // Re-throw with user-friendly message
+                    if (error instanceof Error) {
+                        throw error;
+                    }
+                    throw new Error('Login failed. Please check your internet connection and try again.');
                 }
             },
+
+            register: async (email: string, password: string) => {
+                try {
+                    const response = await fetch('/api/auth/signup', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email, password }),
+                    });
+
+                    // Check if response is JSON before parsing
+                    const contentType = response.headers.get('content-type');
+                    if (!contentType || !contentType.includes('application/json')) {
+                        // Server returned non-JSON (likely an error page)
+                        throw new Error('Unable to connect to the server. Please try again later.');
+                    }
+
+                    const data = await response.json();
+
+                    if (!response.ok) {
+                        throw new Error(data.message || 'Registration failed. Please try again.');
+                    }
+
+                    set({
+                        user: data.data.user,
+                        isAuthenticated: true,
+                        token: "cookie-handled"
+                    });
+
+                    return data;
+                } catch (error) {
+                    console.error('Registration error:', error);
+                    // Re-throw with user-friendly message
+                    if (error instanceof Error) {
+                        throw error;
+                    }
+                    throw new Error('Registration failed. Please check your internet connection and try again.');
+                }
+            },
+
 
             logout: async () => {
                 try {
@@ -88,7 +139,7 @@ export const useAuthStore = create<AuthState>()(
                         // If check fails (401), clear state
                         set({ user: null, isAuthenticated: false, token: null });
                     }
-                } catch (err) {
+                } catch {
                     set({ user: null, isAuthenticated: false, token: null });
                 }
             },
