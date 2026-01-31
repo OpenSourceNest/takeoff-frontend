@@ -62,7 +62,8 @@ export default function RegisterForm() {
                 openSourceKnowledge: Number(formData.knowledge) || 1,
                 isCommunityMember: !!formData.community,
                 communityDetails: formData.community || null,
-                interests: formData.topics || null
+                interests: formData.topics || null,
+                gender: formData.gender
             };
 
             // Use relative path - Next.js rewrite will handle the proxy to backend
@@ -184,6 +185,25 @@ export default function RegisterForm() {
                     </div>
 
                     {/* 5. Location */}
+                    {/* 4. Gender */}
+                    <div className="space-y-4">
+                        <label htmlFor="gender" className="block text-base font-medium text-white/90">Gender</label>
+                        <CustomSelect
+                            id="gender"
+                            options={[
+                                { value: 'MALE', label: 'Male' },
+                                { value: 'FEMALE', label: 'Female' },
+                                { value: 'OTHER', label: 'Other' },
+                                { value: 'PREFER_NOT_TO_SAY', label: 'Prefer not to say' }
+                            ]}
+                            value={formData.gender}
+                            onChange={(val) => handleSelectChange('gender', val)}
+                            placeholder="Select Gender"
+                            multiple={false}
+                        />
+                    </div>
+
+                    {/* 4b. Location */}
                     <div className="space-y-4">
                         <label htmlFor="location" className="block text-base font-medium text-white/90">Where are you located (city, state, country)?</label>
                         <input
@@ -370,7 +390,7 @@ export default function RegisterForm() {
                             disabled={status === 'loading'}
                             type="submit"
                         >
-                            {status === 'loading' ? '...' : 'Register'}
+                            {status === 'loading' ? 'Submitting...' : 'Register'}
                         </Button>
                     </div>
 

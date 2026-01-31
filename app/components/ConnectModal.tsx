@@ -63,7 +63,7 @@ const ConnectModal: React.FC = () => {
                         <Marquee
                             key={row}
                             gradient={false}
-                            speed={30 + row * 10}
+                            speed={15 + row * 5}
                             direction={row % 2 === 0 ? 'right' : 'left'}
                             className="overflow-hidden"
                         >

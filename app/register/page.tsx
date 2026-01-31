@@ -25,7 +25,7 @@ export default function RegisterPage() {
                 </CTAContainer>
 
                 {/* Info Bar - Outside Banner */}
-                <div className="w-full border-b border-white/10 px-6 py-6 md:py-5 flex flex-col md:flex-row items-center justify-between gap-y-4 text-sm md:text-base text-gray-300 relative z-20">
+                <div className="max-w-7xl mx-auto border-b border-white/10 px-6 py-6 md:py-5 flex flex-col md:flex-row items-center justify-between gap-y-4 text-sm md:text-base text-gray-300 relative z-20">
                     <div className="flex items-center gap-3">
                         <Icon icon="tabler:calendar-event" className="w-5 h-5 text-highlight-orange" />
                         <span className="font-medium">Saturday, 7th February, 2026</span>
@@ -36,7 +36,7 @@ export default function RegisterPage() {
                     </div>
                     <div className="flex items-center gap-3">
                         <Icon icon="tabler:map-pin" className="w-5 h-5 text-highlight-orange" />
-                        <span className="font-medium text-center md:text-left">Roar Hub UNN Enugu State, Nigeria</span>
+                        <span className="font-medium text-center md:text-left">Princess Alexandria Auditorium, UNN</span>
                     </div>
                 </div>
             </div>
