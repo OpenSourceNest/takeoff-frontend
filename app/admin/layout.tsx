@@ -5,7 +5,7 @@ import Link from 'next/link';
 import AdminLoading from '@/app/components/ui/AdminLoading';
 import Sidebar from '../components/admin/Sidebar';
 import { ReactNode, useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, notFound } from 'next/navigation';
 import { useAuthStore } from '@/app/store/useAuthStore';
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
@@ -28,12 +28,9 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
         if (hydrated && !isChecking) {
             if (!isAuthenticated) {
                 router.push('/login');
-            } else if (user?.role !== 'ADMIN') {
-                // If authenticated but NOT an admin, redirect to home
-                router.push('/');
             }
         }
-    }, [hydrated, isChecking, isAuthenticated, user, router]);
+    }, [hydrated, isChecking, isAuthenticated, router]);
 
     if (!hydrated || isChecking) {
         return <AdminLoading />;
@@ -41,6 +38,10 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
 
     if (!isAuthenticated) {
         return null; // Will redirect via useEffect
+    }
+
+    if (user?.role !== 'ADMIN') {
+        notFound();
     }
 
     return (
