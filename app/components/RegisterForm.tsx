@@ -62,8 +62,7 @@ export default function RegisterForm() {
                 openSourceKnowledge: Number(formData.knowledge) || 1,
                 isCommunityMember: !!formData.community,
                 communityDetails: formData.community || null,
-                interests: formData.topics || null,
-                gender: formData.gender
+                interests: formData.topics || null
             };
 
             // Use relative path - Next.js rewrite will handle the proxy to backend
@@ -155,22 +154,7 @@ export default function RegisterForm() {
                         />
                     </div>
 
-                    {/* 3. Gender */}
-                    <div className="space-y-4">
-                        <label htmlFor="gender" className="block text-base font-medium text-white/90">What's your gender? *</label>
-                        <CustomSelect
-                            id="gender"
-                            options={[
-                                { value: 'MALE', label: 'Male' },
-                                { value: 'FEMALE', label: 'Female' }
-                            ]}
-                            value={formData.gender}
-                            onChange={(val) => handleSelectChange('gender', val)}
-                            placeholder="Select gender"
-                        />
-                    </div>
-
-                    {/* 4. Email */}
+                    {/* 3. Email */}
                     <div className="space-y-4">
                         <label htmlFor="email" className="block text-base font-medium text-white/90">What&apos;s your email address?</label>
                         <input
@@ -184,7 +168,7 @@ export default function RegisterForm() {
                         />
                     </div>
 
-                    {/* 5. Location */}
+                    {/* 4. Gender */}
                     {/* 4. Gender */}
                     <div className="space-y-4">
                         <label htmlFor="gender" className="block text-base font-medium text-white/90">Gender</label>
