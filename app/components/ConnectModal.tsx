@@ -77,14 +77,6 @@ const ConnectModal: React.FC = () => {
 
                 {/* Content Overlay */}
                 <div className="relative z-10 w-full flex flex-col items-center text-center">
-                    {/* Close Button */}
-                    <button
-                        onClick={closeConnectModal}
-                        className="absolute -top-4 -right-4 md:-top-10 md:-right-10 text-white/60 hover:text-white transition-colors p-2"
-                        aria-label="Close modal"
-                    >
-                        <Icon icon="heroicons:x-mark" className="w-8 h-8" />
-                    </button>
 
                     <h2 className="text-4xl md:text-6xl font-bold text-cream-light mb-6 tracking-tight">
                         Connect With Us
