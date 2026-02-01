@@ -5,6 +5,7 @@ import Button from '@/components/ui/Button';
 import CustomSelect from '@/components/ui/CustomSelect';
 import { useRegisterStore, RegisterFormData } from '@/store/useRegisterStore';
 import SectionBackground from '@/components/ui/SectionBackground';
+import { apiClient } from '@/lib/apiClient';
 
 export default function RegisterForm() {
     const {
@@ -63,42 +64,14 @@ export default function RegisterForm() {
                 interests: formData.topics || null
             };
 
-            const res = await fetch('/api/events/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload),
-            });
-
-            const text = await res.text();
-            let data;
-            try {
-                data = JSON.parse(text);
-            } catch {
-                console.error('Failed to parse response:', text.slice(0, 200));
-                // Throw a user-friendly error that will be caught by the outer catch
-                throw new Error('Server error: Unable to process response. Please try again.');
-            }
-
-            if (!res.ok) {
-                throw new Error(data.message || 'Registration failed. Please try again.');
-            }
+            const res = await apiClient.post<{ success: boolean; message: string }>('/api/events/register', payload);
 
             setStatus('success');
-        } catch (error) {
+        } catch (error: unknown) {
             console.error('Registration error:', error);
             setStatus('error');
-
-            // Provide user-friendly error message
-            let message = 'Unable to connect to the server. Please try again.';
-            if (error instanceof Error) {
-                // Don't show technical JSON parsing errors to users
-                if (error.message.includes('Unexpected token') || error.message.includes('JSON')) {
-                    message = 'Server error. Please try again or contact support.';
-                } else {
-                    message = error.message;
-                }
-            }
-            setErrorMessage(message);
+            const err = error as Error;
+            setErrorMessage(err.message || 'Registration failed. Please try again.');
         }
     };
 
@@ -177,9 +150,7 @@ export default function RegisterForm() {
                             id="gender"
                             options={[
                                 { value: 'MALE', label: 'Male' },
-                                { value: 'FEMALE', label: 'Female' },
-                                { value: 'OTHER', label: 'Other' },
-                                { value: 'PREFER_NOT_TO_SAY', label: 'Prefer not to say' }
+                                { value: 'FEMALE', label: 'Female' }
                             ]}
                             value={formData.gender}
                             onChange={(val) => handleSelectChange('gender', val)}
