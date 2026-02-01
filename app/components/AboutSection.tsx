@@ -15,7 +15,7 @@ export default function AboutSection() {
     return (
         <motion.section
             id="about"
-            className="bg-black mt-10 pt-8 pb-16 sm:py-20 md:py-24 lg:py-32 px-4 sm:px-6"
+            className="bg-black py-10 px-6"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8 }}
@@ -38,7 +38,7 @@ export default function AboutSection() {
 
                 {/* Main Description */}
                 <motion.div
-                    className="space-y-6 sm:space-y-7 text-white leading-[1.8] text-sm sm:text-base md:text-lg lg:text-xl font-normal tracking-tight text-justify"
+                    className="space-y-6 px-2 text-white leading-[1.8] text-sm sm:text-base md:text-lg lg:text-xl font-normal tracking-tight text-justify"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: 0.4 }}

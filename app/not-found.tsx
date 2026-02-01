@@ -6,7 +6,7 @@ import { RocketLaunch, Explore, Home, HelpOutline } from "@mui/icons-material";
 
 export default function NotFound() {
     return (
-        <main className="grow mt-40 py-10 flex flex-col items-center justify-center text-center px-6 relative overflow-hidden">
+        <main className="grow py-10 flex flex-col items-center justify-center text-center px-6 relative overflow-hidden">
             {/* Background Elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
                 {/* Floating Icons */}
