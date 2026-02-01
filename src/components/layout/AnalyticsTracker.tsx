@@ -1,12 +1,11 @@
 "use client";
 
-import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 import { AnalyticsService } from "@/services/analytics.service";
 
 export default function AnalyticsTracker() {
     const pathname = usePathname();
-    const searchParams = useSearchParams();
     useEffect(() => {
         // Generate or retrieve session ID
         let sessionId = "";
@@ -29,7 +28,7 @@ export default function AnalyticsTracker() {
         }, 1000);
 
         return () => clearTimeout(timeoutId);
-    }, [pathname, searchParams]); // Track on path or query param change
+    }, [pathname]); // Track on path change
 
     return null; // This component renders nothing
 }

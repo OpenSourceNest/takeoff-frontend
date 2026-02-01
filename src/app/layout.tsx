@@ -3,9 +3,8 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import ConnectModal from "@/components/auth/ConnectModal";
+import ConnectModal from "@/components/layout/ConnectModal";
 import AnalyticsTracker from "@/components/layout/AnalyticsTracker";
-import { ToastProvider } from "@/context/ToastContext";
 import { Suspense } from "react";
 
 const montserrat = Montserrat({
@@ -31,17 +30,15 @@ export default function RootLayout({
         className={`${montserrat.variable} antialiased min-h-screen flex flex-col`}
         suppressHydrationWarning
       >
-        <ToastProvider>
-          <Navbar />
-          <main className="flex-1 w-full">
-            {children}
-          </main>
-          <Footer />
-          <ConnectModal />
-          <Suspense fallback={null}>
-            <AnalyticsTracker />
-          </Suspense>
-        </ToastProvider>
+        <Navbar />
+        <main className="flex-1 w-full">
+          {children}
+        </main>
+        <Footer />
+        <ConnectModal />
+        <Suspense fallback={null}>
+          <AnalyticsTracker />
+        </Suspense>
       </body>
     </html>
   );

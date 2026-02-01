@@ -171,7 +171,6 @@ export default function RegisterForm() {
                     </div>
 
                     {/* 4. Gender */}
-                    {/* 4. Gender */}
                     <div className="space-y-4">
                         <label htmlFor="gender" className="block text-base font-medium text-white/90">Gender</label>
                         <CustomSelect

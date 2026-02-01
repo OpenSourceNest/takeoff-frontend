@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 import { useState, useRef, useEffect } from 'react';
 import { Icon } from '@iconify/react';
 import Button from '@/components/ui/Button';
@@ -12,7 +11,6 @@ function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
     const { openConnectModal } = useModalStore();
     const navRef = useRef<HTMLDivElement>(null);
-    const pathname = usePathname();
 
     // Close menu when clicking outside
     useEffect(() => {

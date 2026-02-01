@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import RegisterForm from '@/components/auth/RegisterForm';
+import RegisterForm from '@/components/features/RegisterForm';
 import { Icon } from '@iconify/react';
 import CTAContainer from '@/components/ui/CTAContainer';
 import { usePageTracking } from '@/hooks/usePageTracking';
