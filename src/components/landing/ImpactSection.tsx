@@ -2,7 +2,7 @@
 
 import { useRef, useState } from "react";
 import { Icon, IconProps } from "@iconify/react";
-import SectionPill from "./ui/SectionPill";
+import SectionPill from "@/components/ui/SectionPill";
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { Swiper, SwiperSlide } from 'swiper/react';

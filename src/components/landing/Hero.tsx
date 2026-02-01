@@ -4,8 +4,13 @@ import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+<<<<<<<< HEAD:src/components/Hero.tsx
 import Button from "./ui/Button";
 import { motion, AnimatePresence } from "framer-motion";
+========
+import Button from "@/components/ui/Button";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+>>>>>>>> feature/analytics-and-checkin:src/components/landing/Hero.tsx
 import { Icon } from "@iconify/react";
 
 const dropdownOptions = [
@@ -144,10 +149,15 @@ export default function Hero() {
                             <span>Saturday, 28th February, 2026</span>
                         </div>
                         <div className="hidden sm:block w-px h-4 bg-white/10" />
-                        <div className="flex items-center gap-2">
-                            <Icon icon="tabler:map-pin" className="w-5 h-5 text-white/90" />
-                            <span>Princess Alexandria Auditorium, UNN</span>
-                        </div>
+                        <a
+                            href="https://www.google.com/maps/search/?api=1&query=Princess+Alexandria+Auditorium,+UNN"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 hover:text-orange transition-colors group cursor-pointer"
+                        >
+                            <Icon icon="tabler:map-pin" className="w-5 h-5 text-white/90 group-hover:text-orange transition-colors animate-pulse" />
+                            <span className="underline decoration-white/30 underline-offset-4 group-hover:decoration-orange">Princess Alexandria Auditorium, UNN</span>
+                        </a>
                     </motion.div>
 
                     {/* Flagship Event Badge */}

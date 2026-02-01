@@ -25,7 +25,7 @@ export default function SectionBackground({ children, className = "" }: SectionB
             </div>
 
             {/* Content */}
-            <div className="relative z-10 w-full h-full">
+            <div className="relative z-10 w-full h-full flex flex-col justify-center items-center">
                 {children}
             </div>
         </section>

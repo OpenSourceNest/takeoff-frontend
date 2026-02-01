@@ -3,7 +3,7 @@
 import React from 'react';
 import Marquee from 'react-fast-marquee';
 import { Icon } from '@iconify/react';
-import { useModalStore } from '../store/useModalStore';
+import { useModalStore } from '@/store/useModalStore';
 
 const ConnectModal: React.FC = () => {
     const { isConnectModalOpen, closeConnectModal } = useModalStore();

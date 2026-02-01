@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import CTAContainer from "./ui/CTAContainer";
-import Button from "./ui/Button";
+import CTAContainer from "@/components/ui/CTAContainer";
+import Button from "@/components/ui/Button";
 import { motion } from "framer-motion";
 
 export default function CTASection() {

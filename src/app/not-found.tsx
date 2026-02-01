@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Button from "./components/ui/Button";
+import Button from "@/components/ui/Button";
 import { RocketLaunch, Explore, Home, HelpOutline } from "@mui/icons-material";
 
 export default function NotFound() {

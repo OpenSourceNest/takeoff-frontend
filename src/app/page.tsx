@@ -1,9 +1,9 @@
-import Hero from "./components/Hero";
-import AboutSection from "./components/AboutSection";
-import ImpactSection from "./components/ImpactSection";
-import AudienceSection from "./components/AudienceSection";
-import SponsorsSection from "./components/SponsorsSection";
-import CTASection from "./components/CTASection";
+import Hero from "@/components/landing/Hero";
+import AboutSection from "@/components/landing/AboutSection";
+import ImpactSection from "@/components/landing/ImpactSection";
+import AudienceSection from "@/components/landing/AudienceSection";
+import SponsorsSection from "@/components/landing/SponsorsSection";
+import CTASection from "@/components/landing/CTASection";
 
 
 export default function Home() {

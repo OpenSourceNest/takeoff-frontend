@@ -96,11 +96,11 @@ export default function RegisterForm() {
     }
 
     return (
-        <SectionBackground className="px-6 relative z-10">
+        <SectionBackground className="py-20 md:py-32 px-6 relative z-10">
             <section className="relative w-full max-w-3xl mx-auto px-6 py-12 md:py-20">
 
                 {/* Form Fields */}
-                <form className="space-y-10" onSubmit={handleSubmit}>
+                <form className="space-y-12" onSubmit={handleSubmit}>
                     {/* 1. First Name */}
                     <div className="space-y-4">
                         <label htmlFor="firstName" className="block text-base font-medium text-white/90">What&apos;s your first name?</label>
@@ -111,7 +111,6 @@ export default function RegisterForm() {
                             onChange={handleChange}
                             placeholder="Your first name"
                             required
-                            autoComplete="first-name"
                             className="w-full bg-transparent border-b border-white px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
                         />
                     </div>
@@ -126,7 +125,6 @@ export default function RegisterForm() {
                             onChange={handleChange}
                             required
                             placeholder="Your last name"
-                            autoComplete="last-name"
                             className="w-full bg-transparent border-b border-white px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
                         />
                     </div>
@@ -141,7 +139,6 @@ export default function RegisterForm() {
                             onChange={handleChange}
                             required
                             placeholder="Your email address"
-                            autoComplete="email"
                             className="w-full bg-transparent border-b border-white px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
                         />
                     </div>
@@ -171,7 +168,6 @@ export default function RegisterForm() {
                             value={formData.location}
                             onChange={handleChange}
                             placeholder="Your location"
-                            autoComplete="address-level2"
                             className="w-full bg-transparent border-b border-white px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
                         />
                     </div>
@@ -305,24 +301,6 @@ export default function RegisterForm() {
 
                     {/* 11. OS Knowledge */}
                     <div className="space-y-4">
-<<<<<<<< HEAD:src/components/RegisterForm.tsx
-                        <label className="block text-base font-medium text-white">How well do you understand open source technology? (1-10 scale)</label>
-                        <div className="grid grid-cols-5 sm:grid-cols-10 gap-3 sm:gap-2 w-full">
-                            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
-                                <button
-                                    key={num}
-                                    type="button"
-                                    onClick={() => handleSelectChange('knowledge', String(num))}
-                                    className={`w-12 h-12 mx-auto rounded-full border-2 font-semibold transition-all duration-200 ${formData.knowledge === String(num)
-                                        ? 'bg-orange border-orange text-white'
-                                        : 'border-white text-white hover:border-orange hover:text-orange'
-                                        }`}
-                                >
-                                    {num}
-                                </button>
-                            ))}
-                        </div>
-========
                         <label htmlFor="knowledge" className="block text-base font-medium text-white">How well do you understand open source technology? (1-10 scale)</label>
                         <input
                             type="text"
@@ -335,7 +313,6 @@ export default function RegisterForm() {
                             maxLength={2}
                             className="w-full bg-transparent border-b border-white px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
                         />
->>>>>>>> feature/analytics-and-checkin:src/components/features/RegisterForm.tsx
                     </div>
 
                     {/* 12. Community Member */}

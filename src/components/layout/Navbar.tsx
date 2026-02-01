@@ -4,8 +4,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useRef, useEffect } from 'react';
 import { Icon } from '@iconify/react';
-import Button from '../components/ui/Button';
-import { useModalStore } from '../store/useModalStore';
+import Button from '@/components/ui/Button';
+import { useModalStore } from '@/store/useModalStore';
 
 function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
@@ -27,6 +27,7 @@ function Navbar() {
         };
     }, [isOpen]);
 
+
     return (
         <div ref={navRef}>
             {/* Header Area - Floating Pill */}
@@ -41,6 +42,7 @@ function Navbar() {
                             height={34}
                             loading="eager"
                             className="h-8 md:h-10 w-auto"
+                            style={{ width: 'auto' }}
                         />
                     </Link>
 

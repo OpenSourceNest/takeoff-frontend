@@ -1,7 +1,7 @@
 "use client";
 
 import { Icon, IconProps } from '@iconify/react';
-import SectionPill from "./ui/SectionPill";
+import SectionPill from "@/components/ui/SectionPill";
 import { motion } from "framer-motion";
 
 const RocketIcon = (props: Omit<IconProps, 'icon'>) => (

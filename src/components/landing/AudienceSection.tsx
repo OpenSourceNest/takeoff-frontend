@@ -1,7 +1,7 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import SectionBackground from "./ui/SectionBackground";
+import SectionBackground from "@/components/ui/SectionBackground";
 import { motion } from "framer-motion";
 
 const audienceCards = [

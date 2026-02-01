@@ -1,7 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Footer() {
+const Footer = () => {
+
     return (
         <footer className="bg-brown-medium px-6 py-7">
             <div className="max-w-5xl mx-auto mt-10">
@@ -78,3 +81,5 @@ export default function Footer() {
         </footer>
     );
 }
+
+export default Footer;
