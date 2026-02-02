@@ -5,77 +5,108 @@ import Marquee from "react-fast-marquee";
 import { motion } from "framer-motion";
 
 export default function SponsorsSection() {
-    return (
-        <motion.section
-            className="bg-black py-20"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
+  return (
+    <motion.section
+      className="bg-black py-20"
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+    >
+      <div className="w-full mx-auto">
+        {/* Sponsors */}
+        <motion.div
+          className="text-center mb-30"
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
         >
-            <div className="w-full mx-auto">
-                {/* Sponsors */}
-                <motion.div
-                    className="text-center mb-30"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.8, delay: 0.2 }}
-                    viewport={{ once: true }}
-                >
-                    <h2 className="text-white text-2xl md:text-4xl font-semibold tracking-widest uppercase mb-10">
-                        Sponsors
-                    </h2>
+          <h2 className="text-white text-2xl md:text-4xl font-semibold tracking-widest uppercase mb-10">
+            Sponsors
+          </h2>
 
-                    {/* Main Sponsor - GitHub */}
-                    <div className="flex justify-center">
-                        <div className="flex flex-col items-center">
-                            <Image
-                                src="/Github_logo.png"
-                                alt="GitHub Logo"
-                                width={170}
-                                height={170}
-                                className="w-[170px] md:w-[220px] h-auto object-contain"
-                            />
-                        </div>
-                    </div>
-                </motion.div>
-
-                {/* Partners */}
-                <motion.div
-                    className="text-center"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.4 }}
-                    viewport={{ once: true }}
-                >
-                    <h2 className="text-white text-2xl md:text-4xl font-semibold tracking-widest uppercase mb-10">
-                        Partners
-                    </h2>
-
-                    {/* Partners Marquee */}
-                    <Marquee
-                        gradient={false}
-                        speed={40}
-                        pauseOnHover={true}
-                        className="py-4"
-                    >
-                        {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-                            <div
-                                key={item}
-                                className="flex flex-col items-center mx-12"
-                            >
-                                <Image
-                                    src="/Github_logo.png"
-                                    alt="GitHub Logo"
-                                    width={120}
-                                    height={120}
-                                    className="w-[120px] md:w-[180px] h-auto object-contain"
-                                />
-                            </div>
-                        ))}
-                    </Marquee>
-                </motion.div>
+          {/* Main Sponsor - GitHub */}
+          <div className="flex justify-center">
+            <div className="flex flex-col items-center">
+              <Image
+                src="/partners/github.png"
+                alt="GitHub Logo"
+                width={170}
+                height={170}
+                title="GitHub"
+                className="w-[170px] md:w-[220px] h-auto object-contain"
+              />
             </div>
-        </motion.section>
-    );
+          </div>
+        </motion.div>
+
+        {/* Partners */}
+        <motion.div
+          className="text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-white text-2xl md:text-4xl font-semibold tracking-widest uppercase mb-10">
+            Partners
+          </h2>
+
+          {/* Partners Marquee */}
+          <Marquee
+            gradient={false}
+            speed={40}
+            pauseOnHover={true}
+            className="py-4"
+          >
+            {Sponsors.map((sponsor, index) => (
+              <div
+                key={sponsor.name + index}
+                className="flex flex-col items-center mx-12"
+              >
+                <Image
+                  src={sponsor.logo}
+                  alt={sponsor.name}
+                  width={sponsor.width}
+                  height={sponsor.height}
+                  className="h-[80px] md:h-[100px] w-auto object-contain"
+                  title={sponsor.name}
+                />
+              </div>
+            ))}
+          </Marquee>
+        </motion.div>
+      </div>
+    </motion.section>
+  );
 }
+
+const Sponsors = Array(10)
+  .fill([
+    {
+      name: "She Code Africa - University of Nigeria Nsukka Chapter",
+      logo: "/partners/sca_unn.png",
+      width: 170,
+      height: 170,
+    },
+    {
+      name: "Anambra Techies",
+      logo: "/partners/anambra_techies.png",
+      width: 170,
+      height: 493,
+    },
+    {
+      name: "Google Developer Groups On Campus - University of Nigeria Nsukka",
+      logo: "/partners/gdg_unn.png",
+      width: 1920,
+      height: 390,
+    },
+    {
+      name: "Netmifi",
+      logo: "/partners/netmifi.png",
+      width: 200,
+      height: 60,
+    },
+  ])
+  .flat();
