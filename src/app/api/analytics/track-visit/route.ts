@@ -7,8 +7,7 @@ export async function POST(request: Request) {
     const body = await request.json();
 
     // Use process.env.NEXT_PUBLIC_API_URL or default to localhost:4500
-    const backendUrl =
-      process.env.NEXT_PUBLIC_API_URL || "http://localhost:4500";
+    const backendUrl = process.env.NEXT_PUBLIC_API_URL || "";
     const targetUrl = `${backendUrl}/api/analytics/track-visit`;
 
     console.log(`[Analytics Proxy] Forwarding to: ${targetUrl}`);
