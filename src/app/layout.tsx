@@ -1,10 +1,11 @@
+import ConnectModal from "@/components/layout/ConnectModal";
+import Footer from "@/components/layout/Footer";
+import Navbar from "@/components/layout/Navbar";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
-import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
-import ConnectModal from "@/components/layout/ConnectModal";
 import { Suspense } from "react";
+import "./globals.css";
+import OG from "./open-graph.png";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -13,9 +14,28 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "TAKEOFF | Open Source Nest's Flagship Annual Event",
+  title: "TAKEOFF By OpenSourceNest",
   description:
-    "TAKEOFF is Open Source Nest's flagship annual event; celebrating real community impact, spotlighting emerging contributors, and setting the direction for the year ahead in open source.",
+    "Discover open source for everyone at Takeoff by Open Source Nest on Feb 28th, 2026 in Nsukka. Hands-on sessions, panels, networking for beginners & enthusiasts. Join the nest! 🚀",
+  metadataBase: new URL("https://takeoff.opensourcenest.org/"),
+  openGraph: {
+    images: [
+      {
+        url: OG.src,
+        width: OG.width,
+        height: OG.height,
+      },
+    ],
+  },
+  twitter: {
+    images: [
+      {
+        url: OG.src,
+        width: OG.width,
+        height: OG.height,
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
