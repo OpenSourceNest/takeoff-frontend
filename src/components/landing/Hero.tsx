@@ -50,7 +50,7 @@ export default function Hero() {
             </div> */}
 
       {/* Hero Content Body (On Top) */}
-      <div className="relative flex-1 w-full flex flex-col items-center justify-center px-4 z-20">
+      <div className="relative flex-1 w-full flex flex-col items-center justify-center px-4 z-20 pt-12">
         {/* A. Headline Area */}
         <motion.div
           className="w-full text-center mb-6 sm:mb-8"
@@ -99,7 +99,8 @@ export default function Hero() {
             <AnimatePresence>
               {isDropdownOpen && (
                 <motion.div
-                  className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-black-soft/95 backdrop-blur-sm rounded-2xl py-2 shadow-2xl border border-brown-dark/20 overflow-hidden"
+                  className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-black-soft/95 backdrop-blur-sm
+                  rounded-2xl py-2 shadow-2xl border border-brown-dark/20 overflow-hidden"
                   style={{ zIndex: 9999 }}
                   role="menu"
                   aria-label="Get involved menu"
@@ -138,7 +139,8 @@ export default function Hero() {
 
           {/* Event Details Addition */}
           <motion.div
-            className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 px-6 py-3 bg-orange/30 border border-brown-dark/30 rounded-[20px] text-xs sm:text-sm font-medium text-white/90"
+            className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 px-6 py-3 bg-orange/30 border border-brown-dark/30 rounded-[20px] text-xs
+            sm:text-sm font-medium text-white/90 mt-8 mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
