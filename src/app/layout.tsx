@@ -18,6 +18,28 @@ export const metadata: Metadata = {
   description:
     "Discover open source for everyone at Takeoff by Open Source Nest on Feb 28th, 2026 in Nsukka. Hands-on sessions, panels, networking for beginners & enthusiasts. Join the nest! 🚀",
   metadataBase: new URL("https://takeoff.opensourcenest.org/"),
+  keywords: [
+    "open source",
+    "takeoff",
+    "opensourcenest",
+    "nsukka",
+    "tech event",
+    "enugu",
+    "github",
+    "developer",
+    "software",
+    "community",
+    "networking",
+    "learning",
+    "technology",
+    "conference",
+    "workshops",
+    "panels",
+    "hackathon",
+    "collaboration",
+    "foss",
+    "free",
+  ],
   openGraph: {
     images: [
       {
