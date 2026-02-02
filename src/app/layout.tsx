@@ -4,7 +4,6 @@ import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ConnectModal from "@/components/layout/ConnectModal";
-import AnalyticsTracker from "@/components/layout/AnalyticsTracker";
 import { Suspense } from "react";
 
 const montserrat = Montserrat({
@@ -25,20 +24,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" style={{ scrollBehavior: 'smooth' }} data-scroll-behavior="smooth">
+    <html
+      lang="en"
+      style={{ scrollBehavior: "smooth" }}
+      data-scroll-behavior="smooth"
+    >
       <body
         className={`${montserrat.variable} antialiased min-h-screen flex flex-col`}
         suppressHydrationWarning
       >
         <Navbar />
         <div className="h-20 md:h-24" />
-        <main className="flex-1 w-full">
-          {children}
-        </main>
+        <main className="flex-1 w-full">{children}</main>
         <Footer />
         <ConnectModal />
         <Suspense fallback={null}>
-          <AnalyticsTracker />
+          {/* <AnalyticsTracker /> TEMPORARY SUSPENSION */}
         </Suspense>
       </body>
     </html>
