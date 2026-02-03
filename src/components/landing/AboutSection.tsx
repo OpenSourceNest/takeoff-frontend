@@ -12,7 +12,7 @@ export default function AboutSection() {
   return (
     <motion.section
       id="about"
-      className="bg-black py-10 px-6 pt-[100px]"
+      className="bg-black py-10 px-6 pt-[50px]"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.8 }}

@@ -31,7 +31,10 @@ function Navbar() {
     <div ref={navRef}>
       {/* Header Area - Floating Pill */}
       <header className="fixed top-8 w-full z-50 px-6">
-        <nav className="max-w-6xl mx-auto bg-brown-dark backdrop-blur-md rounded-full px-6 py-3 md:px-15 md:py-4 flex items-center justify-between transition-all relative">
+        <nav
+          className="max-w-6xl mx-auto bg-brown-dark backdrop-blur-md rounded-full px-6 py-2
+        md:px-15 md:py-4 flex items-center justify-between transition-all relative"
+        >
           {/* Logo - Left */}
           <Link href="/" className="shrink-0" onClick={() => setIsOpen(false)}>
             <Image
