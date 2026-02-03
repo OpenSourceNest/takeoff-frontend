@@ -6,6 +6,7 @@ import { Montserrat } from "next/font/google";
 import { Suspense } from "react";
 import "./globals.css";
 import OG from "./open-graph.png";
+import Script from "next/script";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -75,8 +76,16 @@ export default function RootLayout({
         className={`${montserrat.variable} antialiased min-h-screen flex flex-col`}
         suppressHydrationWarning
       >
+        <Script
+          src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"
+          strategy="beforeInteractive"
+        />
+        <Script
+          src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"
+          strategy="beforeInteractive"
+        />
+
         <Navbar />
-        <div className="h-20 md:h-24" />
         <main className="flex-1 w-full">{children}</main>
         <Footer />
         <ConnectModal />

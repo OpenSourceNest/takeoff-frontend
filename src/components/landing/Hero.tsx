@@ -1,17 +1,21 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import Button from "@/components/ui/Button";
+import { Icon } from "@iconify/react";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { AnimatePresence, motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import Button from "@/components/ui/Button";
-import { motion, AnimatePresence } from "framer-motion";
-import { Icon } from "@iconify/react";
+import { useEffect, useRef, useState } from "react";
+
+const HeroBG = dynamic(() => import("@/components/landing/HeroBG"), {
+  ssr: false,
+});
 
 const dropdownOptions = [
   { label: "Attendee", href: "/register" },
   { label: "Volunteer", href: "/volunteer" },
-  { label: "Sponsorship", href: "mailto:info@opensourcenest.org" },
   { label: "Partnership", href: "mailto:info@opensourcenest.org" },
 ];
 
@@ -36,18 +40,8 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative mt-15 flex flex-col bg-black overflow-hidden z-10">
-      {/* Rocket Background - Absolute positioned at bottom, behind content */}
-      {/* <div className="absolute bottom-0 left-0 right-0 h-[60%] z-10 pointer-events-none">
-                <Image
-                    src="/rocket_white.png"
-                    alt=""
-                    fill
-                    sizes="100vw"
-                    className="object-cover object-bottom opacity-60"
-                    priority
-                />
-            </div> */}
+    <section className="relative pt-30 sm:pt-40 pb-20 flex flex-col bg-black overflow-hidden z-10">
+      <HeroBG />
 
       {/* Hero Content Body (On Top) */}
       <div className="relative flex-1 w-full flex flex-col items-center justify-center px-4 z-20 pt-12">
@@ -58,7 +52,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] max-w-5xl mx-auto tracking-tight">
+          <h2 className="text-[33px] sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] max-w-5xl mx-auto tracking-tight">
             A Year Of{" "}
             <span className="text-highlight-orange">Contribution.</span>
             <br />A <span className="text-highlight-orange">Launch</span> Into
@@ -139,7 +133,7 @@ export default function Hero() {
 
           {/* Event Details Addition */}
           <motion.div
-            className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 px-6 py-3 bg-orange/30 border border-brown-dark/30 rounded-[20px] text-xs
+            className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 px-6 py-3 bg-orange/20 border border-brown-dark/30 rounded-[20px] text-xs
             sm:text-sm font-medium text-white/90 mt-8 mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -194,6 +188,11 @@ export default function Hero() {
           </motion.div>
         </motion.div>
       </div>
+
+      <div
+        className="absolute bottom-0 left-0 bg-linear-to-b from-transparent to-black
+         w-full z-10 block h-[70px]"
+      ></div>
     </section>
   );
 }

@@ -11,7 +11,10 @@ export default function RegisterPage() {
   usePageTracking("register");
 
   return (
-    <div className="min-h-screen w-full flex flex-col items-center justify-start bg-transparent py-10">
+    <div
+      className="min-h-screen w-full flex flex-col items-center justify-start bg-transparent py-10
+    pt-30 sm:pt-40"
+    >
       {/* Header Section */}
       <div className="mb-6 w-full mx-auto px-6">
         <CTAContainer className="rounded-[30px] shadow-2xl relative overflow-hidden">
