@@ -301,18 +301,22 @@ export default function RegisterForm() {
 
                     {/* 11. OS Knowledge */}
                     <div className="space-y-4">
-                        <label htmlFor="knowledge" className="block text-base font-medium text-white">How well do you understand open source technology? (1-10 scale)</label>
-                        <input
-                            type="text"
-                            id="knowledge"
-                            value={formData.knowledge}
-                            onChange={handleChange}
-                            placeholder="1-10"
-                            pattern="[0-9]*"
-                            inputMode="numeric"
-                            maxLength={2}
-                            className="w-full bg-transparent border-b border-white px-0 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-orange transition-colors rounded-none"
-                        />
+                        <label className="block text-base font-medium text-white">How well do you understand open source technology? (1-10 scale)</label>
+                        <div className="grid grid-cols-5 sm:grid-cols-10 gap-3 sm:gap-2 w-full">
+                            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((num) => (
+                                <button
+                                    key={num}
+                                    type="button"
+                                    onClick={() => handleSelectChange('knowledge', String(num))}
+                                    className={`w-12 h-12 mx-auto rounded-full border-2 font-semibold transition-all duration-200 ${formData.knowledge === String(num)
+                                        ? 'bg-orange border-orange text-white'
+                                        : 'border-white text-white hover:border-orange hover:text-orange'
+                                        }`}
+                                >
+                                    {num}
+                                </button>
+                            ))}
+                        </div>
                     </div>
 
                     {/* 12. Community Member */}
