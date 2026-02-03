@@ -13,7 +13,7 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-start bg-transparent py-10">
       {/* Header Section */}
-      <div className="mb-12 w-full mx-auto px-6">
+      <div className="mb-6 w-full mx-auto px-6">
         <CTAContainer className="rounded-[30px] shadow-2xl relative overflow-hidden">
           <div className="relative z-10 md:py-24 flex flex-col items-center text-center">
             {/* Headline */}
@@ -31,9 +31,9 @@ export default function RegisterPage() {
 
         {/* Info Bar - Outside Banner */}
         <div
-          className="max-w-7xl mx-auto border-b border-white/10 p-5 md:py-5 flex flex-col
-        md:flex-row items-center justify-between gap-y-4 text-sm md:text-base text-gray-300
-        relative z-20 gap-5"
+          className="max-w-7xl mx-auto border-b border-white/0 pt-15 pb-9 flex flex-col
+        md:flex-row items-start justify-between gap-y-4 text-sm md:text-base text-gray-300
+        relative z-20 gap-5 md:w-full w-fit"
         >
           <div className="flex items-center gap-3">
             <Icon

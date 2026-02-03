@@ -139,7 +139,7 @@ export default function Hero() {
 
           {/* Event Details Addition */}
           <motion.div
-            className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 px-6 py-3 bg-orange/30 border border-brown-dark/30 rounded-[20px] text-xs
+            className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 px-6 py-3 bg-orange/30 border border-brown-dark/30 rounded-[20px] text-xs
             sm:text-sm font-medium text-white/90 mt-8 mb-4"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
