@@ -3,6 +3,7 @@
 import Button from "@/components/ui/Button";
 import { Icon } from "@iconify/react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { AnimatePresence, motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -16,7 +17,7 @@ const HeroBG = dynamic(() => import("@/components/landing/HeroBG"), {
 const dropdownOptions = [
   { label: "Attendee", href: "/register" },
   { label: "Volunteer", href: "/volunteer" },
-  { label: "Partnership", href: "mailto:info@opensourcenest.org" },
+  { label: "Sponsorhip & Partnership", href: "mailto:info@opensourcenest.org" },
 ];
 
 export default function Hero() {
@@ -78,10 +79,12 @@ export default function Hero() {
           <div className="relative z-50 mb-5" ref={dropdownRef}>
             <Button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              icon={KeyboardArrowDownIcon}
+              icon={
+                isDropdownOpen ? KeyboardArrowUpIcon : KeyboardArrowDownIcon
+              }
               rounded="20px"
               className="px-8 py-3 text-sm shadow-xl"
-              isActive={isDropdownOpen}
+              //   isActive={isDropdownOpen}
               aria-expanded={isDropdownOpen}
               aria-haspopup="menu"
               aria-label="Get involved options"
@@ -94,7 +97,7 @@ export default function Hero() {
               {isDropdownOpen && (
                 <motion.div
                   className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 bg-black-soft/95 backdrop-blur-sm
-                  rounded-2xl py-2 shadow-2xl border border-brown-dark/20 overflow-hidden"
+                  rounded-2xl py-2 shadow-2xl border border-cream/30 overflow-hidden"
                   style={{ zIndex: 9999 }}
                   role="menu"
                   aria-label="Get involved menu"
