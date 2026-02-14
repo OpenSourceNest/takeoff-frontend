@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import "./globals.css";
 import OG from "./open-graph.png";
 import Script from "next/script";
+import { eventJsonLd } from "@/schema/eventSchema";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -17,7 +18,7 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "TAKEOFF By OpenSourceNest",
   description:
-    "Discover open source for everyone at Takeoff by Open Source Nest on Feb 28th, 2026 in Nsukka. Hands-on sessions, panels, networking for beginners & enthusiasts. Join the nest! 🚀",
+    "Discover open source for everyone at Takeoff by Open Source Nest on March 21st, 2026 in Nsukka, Enugu State. Hands-on sessions, panels, networking for beginners & enthusiasts. Join the nest! 🚀",
   metadataBase: new URL("https://takeoff.opensourcenest.org/"),
   keywords: [
     "open source",
@@ -40,6 +41,7 @@ export const metadata: Metadata = {
     "collaboration",
     "foss",
     "free",
+    "takeoff2026",
   ],
   openGraph: {
     images: [
@@ -76,6 +78,14 @@ export default function RootLayout({
         className={`${montserrat.variable} antialiased min-h-screen flex flex-col`}
         suppressHydrationWarning
       >
+        <script
+          id="event-json-ld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(eventJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
+
         <Script
           src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"
           strategy="beforeInteractive"

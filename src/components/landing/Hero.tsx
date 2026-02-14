@@ -147,7 +147,7 @@ export default function Hero() {
                 icon="tabler:calendar-event"
                 className="w-5 h-5 text-white/90"
               />
-              <span>Saturday, 28th February, 2026</span>
+              <span>Saturday, 21st March, 2026</span>
             </div>
             <div className="hidden sm:block w-px h-4 bg-white/10" />
             <a

@@ -43,14 +43,14 @@ export default function RegisterPage() {
               icon="tabler:calendar-event"
               className="w-5 h-5 text-highlight-orange"
             />
-            <span className="font-medium">Saturday, 28th February, 2026</span>
+            <span className="font-medium">Saturday, 21st March, 2026</span>
           </div>
           <div className="flex items-center gap-3">
             <Icon
               icon="tabler:clock"
               className="w-5 h-5 text-highlight-orange"
             />
-            <span className="font-medium">9:00 AM - 5:00 PM GMT +1</span>
+            <span className="font-medium">9:00 AM - 5:00 PM (GMT +1)</span>
           </div>
           <a
             href="https://www.google.com/maps/search/?api=1&query=Princess+Alexandria+Auditorium,+UNN"

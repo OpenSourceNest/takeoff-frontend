@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Marquee from "react-fast-marquee";
 import { motion } from "framer-motion";
 
 export default function SponsorsSection() {
@@ -26,17 +25,20 @@ export default function SponsorsSection() {
             Sponsors
           </h2>
 
-          {/* Main Sponsor - GitHub */}
+          {/* Sponsors */}
           <div className="flex justify-center">
-            <div className="flex flex-col items-center">
-              <Image
-                src="/partners/github.png"
-                alt="GitHub Logo"
-                width={170}
-                height={170}
-                title="GitHub"
-                className="w-[170px] md:w-[220px] h-auto object-contain"
-              />
+            <div className="flex flex-wrap items-center justify-center gap-10">
+              {Sponsors.map((sponsor) => (
+                <Image
+                  key={sponsor.name}
+                  src={sponsor.logo}
+                  alt={sponsor.name}
+                  width={sponsor.width}
+                  height={sponsor.height}
+                  className="h-[150px] md:h-[180px] w-auto object-contain"
+                  title={sponsor.name}
+                />
+              ))}
             </div>
           </div>
         </motion.div>
@@ -54,35 +56,59 @@ export default function SponsorsSection() {
           </h2>
 
           {/* Partners Marquee */}
-          <Marquee
-            gradient={false}
-            speed={40}
-            pauseOnHover={true}
-            className="py-4"
+
+          <div
+            className="wrapper w-full flex items-center justify-center overflow-x-hidden
+       pb-6 relative mx-auto"
           >
-            {Sponsors.map((sponsor, index) => (
-              <div
-                key={sponsor.name + index}
-                className="flex flex-col items-center mx-12"
-              >
-                <Image
-                  src={sponsor.logo}
-                  alt={sponsor.name}
-                  width={sponsor.width}
-                  height={sponsor.height}
-                  className="h-[80px] md:h-[100px] w-auto object-contain"
-                  title={sponsor.name}
-                />
+            <div className="carousel">
+              <div className="carouselInner">
+                {Partners.map((partner, index) => (
+                  <div
+                    key={index}
+                    className="imageParent"
+                    style={{
+                      transform: `rotateY(${
+                        (index + 1) * (360 / Partners.length)
+                      }deg) translateZ(1500px)`,
+                    }}
+                  >
+                    <Image
+                      key={index}
+                      src={partner.logo}
+                      alt={partner.name}
+                      width={partner.width}
+                      height={partner.height}
+                      className="h-[80px] md:h-[100px] w-auto object-contain"
+                      title={partner.name}
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
-          </Marquee>
+            </div>
+          </div>
         </motion.div>
       </div>
     </motion.section>
   );
 }
 
-const Sponsors = Array(10)
+const Sponsors = [
+  {
+    name: "Github",
+    logo: "/partners/github.png",
+    width: 170,
+    height: 170,
+  },
+  {
+    name: "Lenz Visual",
+    logo: "/partners/lenz_visual.png",
+    width: 1044,
+    height: 555,
+  },
+];
+
+const Partners = Array(3)
   .fill([
     {
       name: "She Code Africa - University of Nigeria Nsukka Chapter",
@@ -97,8 +123,20 @@ const Sponsors = Array(10)
       height: 493,
     },
     {
+      name: "Office of the Director of Information, Student Union Government - University of Nigeria Nsukka",
+      logo: "/partners/sug_doi.png",
+      width: 354,
+      height: 354,
+    },
+    {
       name: "Google Developer Groups On Campus - University of Nigeria Nsukka",
       logo: "/partners/gdg_unn.png",
+      width: 1920,
+      height: 390,
+    },
+    {
+      name: "Nigeria Association of Physical Sciences Student - University of Nigeria Nsukka",
+      logo: "/partners/napss.png",
       width: 1920,
       height: 390,
     },
@@ -107,6 +145,18 @@ const Sponsors = Array(10)
       logo: "/partners/netmifi.png",
       width: 200,
       height: 60,
+    },
+    {
+      name: "Nigeria Association of Computing Students - University of Nigeria Nsukka",
+      logo: "/partners/nacos_unn.png",
+      width: 1200,
+      height: 412,
+    },
+    {
+      name: "Caritas Couture",
+      logo: "/partners/caritas_couture.png",
+      width: 1200,
+      height: 412,
     },
   ])
   .flat();
