@@ -7,6 +7,7 @@ import { Suspense } from "react";
 import "./globals.css";
 import OG from "./open-graph.png";
 import Script from "next/script";
+import { eventJsonLd } from "@/schema/eventSchema";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -77,6 +78,14 @@ export default function RootLayout({
         className={`${montserrat.variable} antialiased min-h-screen flex flex-col`}
         suppressHydrationWarning
       >
+        <script
+          id="event-json-ld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(eventJsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
+
         <Script
           src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"
           strategy="beforeInteractive"
