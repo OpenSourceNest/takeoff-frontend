@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Marquee from "react-fast-marquee";
 import { motion } from "framer-motion";
 
 export default function SponsorsSection() {
@@ -36,7 +35,7 @@ export default function SponsorsSection() {
                   alt={sponsor.name}
                   width={sponsor.width}
                   height={sponsor.height}
-                  className="h-[150px] md:h-[200px] w-auto object-contain"
+                  className="h-[150px] md:h-[180px] w-auto object-contain"
                   title={sponsor.name}
                 />
               ))}
@@ -57,29 +56,37 @@ export default function SponsorsSection() {
           </h2>
 
           {/* Partners Marquee */}
-          <Marquee
-            // gradient={false}
-            speed={40}
-            pauseOnHover={true}
-            className="py-4"
-            loop={0}
+
+          <div
+            className="wrapper w-full flex items-center justify-center overflow-x-hidden
+       pb-6 relative mx-auto"
           >
-            {Partners.map((partner, index) => (
-              <div
-                key={partner.name + index}
-                className="flex flex-col items-center mx-12 w-fit"
-              >
-                <Image
-                  src={partner.logo}
-                  alt={partner.name}
-                  width={partner.width}
-                  height={partner.height}
-                  className="h-[80px] md:h-[100px] w-auto object-contain"
-                  title={partner.name}
-                />
+            <div className="carousel">
+              <div className="carouselInner">
+                {Partners.map((partner, index) => (
+                  <div
+                    key={index}
+                    className="imageParent"
+                    style={{
+                      transform: `rotateY(${
+                        (index + 1) * (360 / Partners.length)
+                      }deg) translateZ(1500px)`,
+                    }}
+                  >
+                    <Image
+                      key={index}
+                      src={partner.logo}
+                      alt={partner.name}
+                      width={partner.width}
+                      height={partner.height}
+                      className="h-[80px] md:h-[100px] w-auto object-contain"
+                      title={partner.name}
+                    />
+                  </div>
+                ))}
               </div>
-            ))}
-          </Marquee>
+            </div>
+          </div>
         </motion.div>
       </div>
     </motion.section>
@@ -101,7 +108,7 @@ const Sponsors = [
   },
 ];
 
-const Partners = Array(1)
+const Partners = Array(3)
   .fill([
     {
       name: "She Code Africa - University of Nigeria Nsukka Chapter",

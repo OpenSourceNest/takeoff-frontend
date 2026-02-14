@@ -1,32 +1,38 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
 
 @custom-variant dark (&:is(.dark *));
 
 @theme {
   /* Cream/Beige tones */
-  --color-cream: #F0E6DA;
-  --color-cream-light: #F7EEE1;
+  --color-cream: #f0e6da;
+  --color-cream-light: #f7eee1;
 
   /* Brown tones */
-  --color-brown-dark: #4C301B;
-  --color-brown-deep: #553A26;
-  --color-brown-medium: #937F70;
+  --color-brown-dark: #4c301b;
+  --color-brown-deep: #553a26;
+  --color-brown-medium: #937f70;
 
   /* Orange accent */
-  --color-orange: #A9500C;
+  --color-orange: #a9500c;
 
   /* Black variations */
   --color-black: #060301;
-  --color-black-soft: #170E07;
-  --color-black-dark: #1E150E;
-  --color-black-charcoal: #1E1A17;
+  --color-black-soft: #170e07;
+  --color-black-dark: #1e150e;
+  --color-black-charcoal: #1e1a17;
   --color-black-shadow: #211812;
 
   /* Gray tones */
-  --color-gray: #4B4B4B;
-  --color-gray-light: #A6A4A4;
+  --color-gray: #4b4b4b;
+  --color-gray-light: #a6a4a4;
 
   /* Font family */
   --font-sans: var(--font-montserrat), system-ui, sans-serif;
@@ -35,15 +41,93 @@
 
 body {
   background-color: #060301;
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: var(--font-family-montserrat);
 }
 
 /* Typography utilities */
 .text-highlight-orange {
-  color: #A9500C;
+  color: #a9500c;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                      -                                     */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                   SLIDER                                   */
+/* -------------------------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
+/*                                      -                                     */
+/* -------------------------------------------------------------------------- */
+
+.carousel {
+  width: 1500px;
+  height: 200px;
+  perspective: 30000px; /* Creates the 3D perspective */
+}
+
+.carouselInner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d; /* Enable 3D transforms for child elements */
+  animation: rotateY 100s infinite linear reverse;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+.carouselInner .imageParent {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  backface-visibility: hidden; /* Hide back face of the images */
+  transform-origin: center;
+  height: fit-content;
+  width: fit-content;
+}
+
+@keyframes rotateY {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+.wrapper {
+  --bg: #080808;
+}
+
+.wrapper:before {
+  position: absolute;
+  height: 100%;
+  width: 100px;
+  content: "";
+  left: 0;
+  background: linear-gradient(to right, var(--bg), var(--bg), transparent);
+  z-index: 2;
+}
+
+.wrapper:after {
+  position: absolute;
+  height: 100%;
+  width: 100px;
+  content: "";
+  display: block;
+  right: 0;
+  background: linear-gradient(to left, var(--bg), var(--bg), transparent);
+  z-index: 1;
 }
