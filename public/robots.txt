@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://takeoff.opensourcenest.org
+
+# Sitemaps
+Sitemap: https://takeoff.opensourcenest.org/sitemap.xml
