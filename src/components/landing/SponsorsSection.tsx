@@ -70,17 +70,17 @@ export default function SponsorsSection() {
                     style={{
                       transform: `rotateY(${
                         (index + 1) * (360 / Partners.length)
-                      }deg) translateZ(1500px)`,
+                      }deg) translateZ(1200px)`,
                     }}
                   >
                     <Image
+                      title={partner.name}
                       key={index}
                       src={partner.logo}
                       alt={partner.name}
                       width={partner.width}
                       height={partner.height}
                       className="h-[80px] md:h-[100px] w-auto object-contain"
-                      title={partner.name}
                     />
                   </div>
                 ))}
@@ -108,14 +108,21 @@ const Sponsors = [
   },
 ];
 
-const Partners = Array(3)
+const Partners = Array(2)
   .fill([
+    {
+      name: "Google Developer Groups On Campus - University of Nigeria Nsukka",
+      logo: "/partners/gdg_unn.png",
+      width: 1724,
+      height: 320,
+    },
     {
       name: "She Code Africa - University of Nigeria Nsukka Chapter",
       logo: "/partners/sca_unn.png",
       width: 170,
       height: 170,
     },
+
     {
       name: "Anambra Techies",
       logo: "/partners/anambra_techies.png",
@@ -129,16 +136,10 @@ const Partners = Array(3)
       height: 354,
     },
     {
-      name: "Google Developer Groups On Campus - University of Nigeria Nsukka",
-      logo: "/partners/gdg_unn.png",
-      width: 1920,
-      height: 390,
-    },
-    {
       name: "Nigeria Association of Physical Sciences Student - University of Nigeria Nsukka",
       logo: "/partners/napss.png",
-      width: 1920,
-      height: 390,
+      width: 410,
+      height: 410,
     },
     {
       name: "Netmifi",
@@ -148,15 +149,27 @@ const Partners = Array(3)
     },
     {
       name: "Nigeria Association of Computing Students - University of Nigeria Nsukka",
-      logo: "/partners/nacos_unn.png",
-      width: 1200,
-      height: 412,
+      logo: "/partners/nacos.png",
+      width: 500,
+      height: 500,
     },
     {
       name: "Caritas Couture",
       logo: "/partners/caritas_couture.png",
       width: 1200,
       height: 412,
+    },
+    {
+      name: "GIDA",
+      logo: "/partners/gida.png",
+      width: 782,
+      height: 448,
+    },
+    {
+      name: "Women Tech Makers",
+      logo: "/partners/wtm.png",
+      width: 465,
+      height: 465,
     },
   ])
   .flat();
