@@ -43,7 +43,7 @@ export default function RegisterPage() {
               icon="tabler:calendar-event"
               className="w-5 h-5 text-highlight-orange"
             />
-            <span className="font-medium">Saturday, 21st March, 2026</span>
+            <span className="font-medium">Saturday, 11th April, 2026</span>
           </div>
           <div className="flex items-center gap-3">
             <Icon
@@ -63,7 +63,7 @@ export default function RegisterPage() {
               className="w-5 h-5 text-highlight-orange group-hover:scale-110 transition-transform animate-pulse"
             />
             <span className="font-medium text-center md:text-left underline decoration-white/30 underline-offset-4">
-              Princess Alexandria Auditorium, UNN
+              Nsukka, Enugu State, Nigeria
             </span>
           </a>
         </div>
