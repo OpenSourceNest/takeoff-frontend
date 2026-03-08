@@ -147,21 +147,22 @@ export default function Hero() {
                 icon="tabler:calendar-event"
                 className="w-5 h-5 text-white/90"
               />
-              <span>Saturday, 21st March, 2026</span>
+              <span>Saturday, 11th April, 2026</span>
             </div>
             <div className="hidden sm:block w-px h-4 bg-white/10" />
             <a
-              href="https://www.google.com/maps/search/?api=1&query=Princess+Alexandria+Auditorium,+UNN"
+              href="https://maps.app.goo.gl/vP3qStGYXNvHou7UA?g_st=ic"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:text-orange transition-colors group cursor-pointer"
+              title="The Block Hive, Nsukka, Enugu State, Nigeria"
             >
               <Icon
                 icon="tabler:map-pin"
                 className="w-5 h-5 text-white/90 group-hover:text-orange transition-colors animate-pulse"
               />
               <span className="underline decoration-white/30 underline-offset-4 group-hover:decoration-orange">
-                Princess Alexandria Auditorium, UNN
+                The Block Hive
               </span>
             </a>
           </motion.div>
