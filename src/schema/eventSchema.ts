@@ -4,16 +4,17 @@ export const eventJsonLd = {
   name: "TAKEOFF by Open Source Nest",
   description:
     "The flagship annual gathering of the Open Source Nest community — celebrating contributions, workshops, networking, and making open source accessible to everyone in Nigeria.",
-  startDate: "2026-03-21T09:00:00+01:00", // Adjust exact time + timezone (WAT is +01:00)
-  endDate: "2026-03-21T18:00:00+01:00", // Or make it a full-day if no end time
+  startDate: "2026-04-11T09:00:00+01:00",
+  endDate: "2026-04-11T18:00:00+01:00",
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
   location: {
     "@type": "Place",
-    name: "Princess Alexandra Auditorium",
+    name: "The Block Hive",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "University of Nigeria",
+      streetAddress:
+        "25 University Rd, opp. UNN Main Gate & beside MTN Office, UC Network House",
       addressLocality: "Nsukka",
       addressRegion: "Enugu",
       postalCode: "410101",
@@ -39,7 +40,29 @@ export const eventJsonLd = {
     availability: "https://schema.org/InStock",
   },
   performer: [
-    // Optional: add speakers if listed
-    // { "@type": "Person", "name": "Speaker Name" }
+    {
+      "@type": "Person",
+      name: "Francis Onukwu",
+      jobTitle: "Software Engineer & Open Source Advocate",
+      sameAs: [
+        "https://www.linkedin.com/in/onfranciis/",
+        "https://www.x.com/onfranciis",
+      ],
+    },
+    {
+      "@type": "Person",
+      name: "Precious Onyewuchi",
+      jobTitle: "Open Source Manager",
+      sameAs: ["https://www.linkedin.com/in/precious-onyewuchi/"],
+    },
+    {
+      "@type": "Person",
+      name: "Ezeugwu Romanus",
+      jobTitle: "Software Engineer",
+      sameAs: [
+        "https://www.linkedin.com/in/ezeugwuromanus/",
+        "https://x.com/romeoscript1",
+      ],
+    },
   ],
 };

@@ -34,7 +34,7 @@ export default function RegisterPage() {
 
         {/* Info Bar - Outside Banner */}
         <div
-          className="max-w-7xl mx-auto border-b border-white/0 pt-15 pb-9 flex flex-col
+          className="max-w-[1000px] mx-auto border-b border-white/0 pt-15 pb-9 flex flex-col
         md:flex-row items-start justify-between gap-y-4 text-sm md:text-base text-gray-300
         relative z-20 gap-5 md:w-full w-fit"
         >
@@ -63,7 +63,7 @@ export default function RegisterPage() {
               className="w-5 h-5 text-highlight-orange group-hover:scale-110 transition-transform animate-pulse"
             />
             <span className="font-medium text-center md:text-left underline decoration-white/30 underline-offset-4">
-              Nsukka, Enugu State, Nigeria
+              The Block Hive
             </span>
           </a>
         </div>
