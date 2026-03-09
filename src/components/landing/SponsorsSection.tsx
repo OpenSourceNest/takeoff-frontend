@@ -101,10 +101,10 @@ const Sponsors = [
     height: 170,
   },
   {
-    name: "Lenz Visual",
-    logo: "/partners/lenz_visual.png",
-    width: 1044,
-    height: 555,
+    name: "The Block Hive",
+    logo: "/partners/block_hive.png",
+    width: 1821,
+    height: 660,
   },
 ];
 
