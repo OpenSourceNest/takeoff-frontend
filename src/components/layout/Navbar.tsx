@@ -58,7 +58,7 @@ function Navbar() {
                 Connect
               </button>
               <Link
-                href="https://getdp.co/takeoffbyosn"
+                href="https://getdp.co/TakeoffByOSN"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white hover:text-orange text-md font-medium transition-colors"
@@ -98,7 +98,7 @@ function Navbar() {
                 Connect
               </button>
               <Link
-                href="https://getdp.co/takeoffbyosn"
+                href="https://getdp.co/TakeoffByOSN"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-white text-lg font-medium hover:text-orange"
