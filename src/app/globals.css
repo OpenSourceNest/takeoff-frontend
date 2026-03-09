@@ -77,9 +77,10 @@ html {
   /* Enable 3D transforms for child elements */
   transform-style: preserve-3d;
   animation: rotateY 100s infinite linear reverse;
+  animation-play-state: paused;
 
   &:hover {
-    animation-play-state: paused;
+    animation-play-state: running;
   }
 }
 
@@ -99,8 +100,8 @@ html {
 
   transform-origin: center;
   height: fit-content;
-  /* width: fit-content; */
-  /* border: 2px solid red; */
+  width: fit-content;
+  border: 2px solid red;
   display: flex;
   justify-content: center;
   align-items: center;
