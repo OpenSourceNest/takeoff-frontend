@@ -33,7 +33,7 @@ export default function ImageMarquee({ images }: { images: typeof Partners }) {
           style={
             {
               ...styles.track,
-              animationDuration: `${20}s`,
+              animationDuration: `${30}s`,
               animationPlayState: paused ? "paused" : "running",
               "--track-width": `-${trackWidth}px`,
             } as unknown as CSSProperties

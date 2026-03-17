@@ -148,4 +148,10 @@ export const Partners = [
     width: 1044,
     height: 555,
   },
+  {
+    name: "Dev Events",
+    logo: "/partners/dev_events.png",
+    width: 1600,
+    height: 660,
+  },
 ];
