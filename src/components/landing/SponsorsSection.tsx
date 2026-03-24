@@ -101,6 +101,18 @@ export const Partners = [
     height: 493,
   },
   {
+    name: "Algorithmic Explorers",
+    logo: "/partners/algorithmic_explorers.png",
+    width: 1104,
+    height: 593,
+  },
+  {
+    name: "Genesys Club UNN",
+    logo: "/partners/genesys_unn.png",
+    width: 787,
+    height: 516,
+  },
+  {
     name: "Office of the Director of Information, Student Union Government - University of Nigeria Nsukka",
     logo: "/partners/sug_doi.png",
     width: 354,
