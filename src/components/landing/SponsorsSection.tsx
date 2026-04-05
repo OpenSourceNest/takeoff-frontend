@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import ImageMarquee from "../ui/ImageMarquee";
+import { ClassAttributes, HTMLAttributes } from "react";
+import Link from "next/link";
 
 export default function SponsorsSection() {
   return (
@@ -28,17 +30,28 @@ export default function SponsorsSection() {
 
           {/* Sponsors */}
           <div className="flex justify-center gap-2 px-5">
-            <div className="flex flex-wrap items-center justify-center gap-10">
+            <div className="flex flex-wrap items-center justify-center gap-10 gap-x-12 max-w-[850px]">
               {Sponsors.map((sponsor) => (
-                <Image
+                <Link
                   key={sponsor.name}
-                  src={sponsor.logo}
-                  alt={sponsor.name}
-                  width={sponsor.width}
-                  height={sponsor.height}
-                  className="h-[80px] md:h-[100px] w-auto object-contain"
-                  title={sponsor.name}
-                />
+                  href={sponsor.link || ""}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => {
+                    if (!sponsor.link) {
+                      e.preventDefault();
+                    }
+                  }}
+                >
+                  <Image
+                    src={sponsor.logo}
+                    alt={sponsor.name}
+                    width={sponsor.width}
+                    height={sponsor.height}
+                    className="h-[80px] w-auto object-contain"
+                    title={sponsor.name}
+                  />
+                </Link>
               ))}
             </div>
           </div>
@@ -65,18 +78,54 @@ export default function SponsorsSection() {
   );
 }
 
-const Sponsors = [
+const Sponsors: {
+  name: string;
+  logo: string;
+  width: number;
+  height: number;
+  className?: HTMLAttributes<"div">["className"];
+  link?: string;
+}[] = [
   {
     name: "Github",
     logo: "/partners/github.png",
     width: 170,
     height: 170,
+    className: "",
+    link: "https://github.com/",
   },
   {
     name: "The Block Hive",
     logo: "/partners/block_hive.png",
     width: 1821,
     height: 660,
+    link: "https://theblockhive.org/",
+  },
+  {
+    name: "Tech Nxt",
+    logo: "/partners/tech_nxt.png",
+    width: 646,
+    height: 458,
+    link: "https://technxt.io/",
+  },
+  {
+    name: "JetBrains",
+    logo: "/partners/jetbrains.png",
+    width: 1516,
+    height: 496,
+    link: "https://www.jetbrains.com/",
+  },
+  {
+    name: "YourNodCodeDev",
+    logo: "/partners/yncd.png",
+    width: 149,
+    height: 140,
+  },
+  {
+    name: "Vin Tech",
+    logo: "/partners/vin_tech.png",
+    width: 525,
+    height: 190,
   },
 ];
 
