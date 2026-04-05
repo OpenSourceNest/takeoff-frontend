@@ -1,7 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { HTMLAttributes } from "react";
 import ImageMarquee from "../ui/ImageMarquee";
 
 export default function SponsorsSection() {
@@ -28,17 +30,28 @@ export default function SponsorsSection() {
 
           {/* Sponsors */}
           <div className="flex justify-center gap-2 px-5">
-            <div className="flex flex-wrap items-center justify-center gap-10">
+            <div className="flex flex-wrap items-center justify-center gap-10 gap-x-12 max-w-[850px]">
               {Sponsors.map((sponsor) => (
-                <Image
+                <Link
                   key={sponsor.name}
-                  src={sponsor.logo}
-                  alt={sponsor.name}
-                  width={sponsor.width}
-                  height={sponsor.height}
-                  className="h-[80px] md:h-[100px] w-auto object-contain"
-                  title={sponsor.name}
-                />
+                  href={sponsor.link || ""}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => {
+                    if (!sponsor.link) {
+                      e.preventDefault();
+                    }
+                  }}
+                >
+                  <Image
+                    src={sponsor.logo}
+                    alt={sponsor.name}
+                    width={sponsor.width}
+                    height={sponsor.height}
+                    className="h-[80px] w-auto object-contain"
+                    title={sponsor.name}
+                  />
+                </Link>
               ))}
             </div>
           </div>
@@ -65,18 +78,54 @@ export default function SponsorsSection() {
   );
 }
 
-const Sponsors = [
+const Sponsors: {
+  name: string;
+  logo: string;
+  width: number;
+  height: number;
+  className?: HTMLAttributes<"div">["className"];
+  link?: string;
+}[] = [
   {
     name: "Github",
     logo: "/partners/github.png",
     width: 170,
     height: 170,
+    className: "",
+    link: "https://github.com/",
   },
   {
     name: "The Block Hive",
     logo: "/partners/block_hive.png",
     width: 1821,
     height: 660,
+    link: "https://theblockhive.org/",
+  },
+  {
+    name: "Tech Nxt",
+    logo: "/partners/tech_nxt.png",
+    width: 646,
+    height: 458,
+    link: "https://technxt.io/",
+  },
+  {
+    name: "JetBrains",
+    logo: "/partners/jetbrains.png",
+    width: 1516,
+    height: 496,
+    link: "https://www.jetbrains.com/",
+  },
+  {
+    name: "YourNodCodeDev",
+    logo: "/partners/yncd.png",
+    width: 149,
+    height: 140,
+  },
+  {
+    name: "Vin Tech",
+    logo: "/partners/vin_tech.png",
+    width: 525,
+    height: 190,
   },
 ];
 
@@ -117,6 +166,12 @@ export const Partners = [
     logo: "/partners/sug_doi.png",
     width: 354,
     height: 354,
+  },
+  {
+    name: "Google Developer Groups - Enugu",
+    logo: "/partners/gdg_enugu.png",
+    width: 644,
+    height: 168,
   },
   {
     name: "Nigeria Association of Physical Sciences Student - University of Nigeria Nsukka",
@@ -165,5 +220,29 @@ export const Partners = [
     logo: "/partners/dev_events.png",
     width: 1600,
     height: 660,
+  },
+  {
+    name: "Big Studios",
+    logo: "/partners/big_studios.png",
+    width: 350,
+    height: 154,
+  },
+  {
+    name: "Sandlip Oasis",
+    logo: "/partners/sandlip_oasis.png",
+    width: 419,
+    height: 171,
+  },
+  {
+    name: "AISEC Enugu",
+    logo: "/partners/aisec.png",
+    width: 755,
+    height: 155,
+  },
+  {
+    name: "N Digitals",
+    logo: "/partners/ndigitals.png",
+    width: 421,
+    height: 301,
   },
 ];
