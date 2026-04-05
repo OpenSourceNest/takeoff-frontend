@@ -1,10 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
-import ImageMarquee from "../ui/ImageMarquee";
-import { ClassAttributes, HTMLAttributes } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { HTMLAttributes } from "react";
+import ImageMarquee from "../ui/ImageMarquee";
 
 export default function SponsorsSection() {
   return (
@@ -168,6 +168,12 @@ export const Partners = [
     height: 354,
   },
   {
+    name: "Google Developer Groups - Enugu",
+    logo: "/partners/gdg_enugu.png",
+    width: 644,
+    height: 168,
+  },
+  {
     name: "Nigeria Association of Physical Sciences Student - University of Nigeria Nsukka",
     logo: "/partners/napss.png",
     width: 410,
@@ -214,5 +220,29 @@ export const Partners = [
     logo: "/partners/dev_events.png",
     width: 1600,
     height: 660,
+  },
+  {
+    name: "Big Studios",
+    logo: "/partners/big_studios.png",
+    width: 350,
+    height: 154,
+  },
+  {
+    name: "Sandlip Oasis",
+    logo: "/partners/sandlip_oasis.png",
+    width: 419,
+    height: 171,
+  },
+  {
+    name: "AISEC Enugu",
+    logo: "/partners/aisec.png",
+    width: 755,
+    height: 155,
+  },
+  {
+    name: "N Digitals",
+    logo: "/partners/ndigitals.png",
+    width: 421,
+    height: 301,
   },
 ];
